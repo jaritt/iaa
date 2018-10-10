@@ -13,12 +13,14 @@
     </organization>
     <developers>
         <developer>
-            <name>Stephan Anft</name>
-            <email>stephan.anft@nordakademie.de</email>
+            <name>Felix Welter</name>
+            <email>felix_jan_moritz.welter@nordakademie.de</email>
         </developer>
         <developer>
-            <name>Stefan Reichert</name>
-            <email>stefan.reichert@nordakademie.de</email>
+            <name>Vikash Sharma</name>
+        </developer>
+        <developer>
+            <name>Jannis Baer</name>
         </developer>
     </developers>
 
@@ -109,7 +111,6 @@
             <version>2.3.1</version>
             <scope>provided</scope>
         </dependency>
-
 
 
         <!-- Testing -->
