@@ -1,9 +1,9 @@
 <project>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>roommanagement.orm</artifactId>
+    <artifactId>library.orm</artifactId>
     <groupId>de.nordakademie.iaa</groupId>
     <version>1.0.0-SNAPSHOT</version>
-    <description>Roommanagement - ORM</description>
+    <description>Library</description>
 
     <packaging>war</packaging>
 
