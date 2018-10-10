@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+		"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+		"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<!-- Main template -->
+	<definition name="mainTemplate" template="/template/mainTemplate.jsp">
+		<put-attribute name="title" value="Struts Dummy HTML Title"/>
+		<put-attribute name="header" value="/tiles/header.jsp"/>
+	</definition>
+
+	<definition name="helloWorld" extends="mainTemplate">
+		<put-attribute name="content" value="/tiles/helloWorld.jsp"></put-attribute>
+	</definition>
+</tiles-definitions>

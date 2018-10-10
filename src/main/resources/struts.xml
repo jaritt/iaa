@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="default" extends="tiles-default">
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" default="true"/>
+        </result-types>
+
+
+        <action name="showHelloWorld" class="de.nordakademie.iaa.library.action.DummyAction">
+            <result>helloWorld</result>
+        </action>
+    </package>
+</struts>
