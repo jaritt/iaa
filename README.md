@@ -15,3 +15,7 @@ Hausarbeit Internet Anwendungssysteme
 4. In the same Config window you see "No artifacts marked for deployment". Click fix and choose library.orm exploded.
 5. If needed, set the project sdk in the "project structure" window.
 6. If you dont have the sdk installed, you can download it here: https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+
+# Notes on design decision
+
+1. Dependency injection is done via the constructor, since everything a class needs to deliver minimal functionality should be inserted during object creation. 
