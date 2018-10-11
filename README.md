@@ -14,3 +14,4 @@ Hausarbeit Internet Anwendungssysteme
 3. Add Configuration -> + -> Tomcat Server Local: Set your tomcat folder as application server.
 4. In the same Config window you see "No artifacts marked for deployment". Click fix and choose library.orm exploded.
 5. If needed, set the project sdk in the "project structure" window.
+6. If you dont have the sdk installed, you can download it here: https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
