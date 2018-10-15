@@ -9,33 +9,17 @@ import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
-public class Keyword {
+public class PublicationType {
 
-    public Keyword() {
-    }
-
-    public Keyword(String word) {
-        this.word = word;
-    }
-    
     /**
-     * The Identifier
+     * The identifier
      */
     private Long id;
 
     /**
-     * The actual word
+     * Designation of the Publication Type
      */
-    private String word;
-
-    @NaturalId
-    public String getWord() {
-        return word;
-    }
-
-    public void setWord(String word) {
-        this.word = word;
-    }
+    private String title;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -47,16 +31,25 @@ public class Keyword {
         this.id = id;
     }
 
+    @NaturalId
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Keyword keyword = (Keyword) o;
-        return Objects.equals(word, keyword.word);
+        PublicationType that = (PublicationType) o;
+        return Objects.equals(title, that.title);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(word);
+        return Objects.hash(title);
     }
 }
