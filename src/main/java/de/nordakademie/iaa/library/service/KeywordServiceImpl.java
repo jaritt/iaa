@@ -4,9 +4,11 @@ import de.nordakademie.iaa.library.dao.KeywordDAO;
 import de.nordakademie.iaa.library.model.Keyword;
 import de.nordakademie.iaa.library.service.api.KeywordService;
 
+import javax.inject.Named;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
+@Named
 public class KeywordServiceImpl implements KeywordService {
 
     private KeywordDAO dao;
