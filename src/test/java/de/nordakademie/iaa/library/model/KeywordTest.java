@@ -5,6 +5,13 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class KeywordTest {
+
+    @Test
+    void testConstructor() {
+        Keyword keyword = new Keyword("testme");
+        assertThat("testme".equals(keyword.getWord())).isTrue();
+    }
+
     @Test
     public void testKeywordsEqual() {
         Keyword keyword1 = new Keyword();
