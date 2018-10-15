@@ -10,9 +10,12 @@
             <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" default="true"/>
         </result-types>
 
-
         <action name="showHelloWorld" class="de.nordakademie.iaa.library.action.DummyAction">
             <result>helloWorld</result>
+        </action>
+
+        <action name="showKeywordList" class="de.nordakademie.iaa.library.action.ShowKeywordListAction">
+            <result type="tiles">keywordList</result>
         </action>
     </package>
 </struts>

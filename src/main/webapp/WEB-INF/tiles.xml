@@ -14,4 +14,8 @@
 	<definition name="helloWorld" extends="mainTemplate">
 		<put-attribute name="content" value="/tiles/helloWorld.jsp"></put-attribute>
 	</definition>
+
+	<definition name="keywordList" extends="mainTemplate">
+		<put-attribute name="content" value="/tiles/keywordList.jsp"/>
+	</definition>
 </tiles-definitions>

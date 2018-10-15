@@ -9,8 +9,4 @@ public class DummyDAO {
     public DummyMessage getMessage(){
         return new DummyMessage();
     }
-
-    public DummyMessage showMessage(){
-        System.out.println();
-    }
 }
