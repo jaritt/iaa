@@ -23,4 +23,3 @@ public class ShowKeywordListAction implements Action{
 
     public List<Keyword> getKeywords() {return keywords;}
 }
-
