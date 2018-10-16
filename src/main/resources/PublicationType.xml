@@ -6,7 +6,7 @@
 
 <struts>
     <package name="PublicationType" extends="tiles-default">
-        <action name="showPublicationTypeList" class="de.nordakademie.iaa.library.action.ShowPublicationTypeAction">
+        <action name="showPublicationTypeList" class="de.nordakademie.iaa.library.action.ShowPublicationTypeListAction">
             <result type="tiles">publicationTypeList</result>
         </action>
 
