@@ -1,3 +1,6 @@
+/**
+ * Author: Felix Welter
+ */
 package de.nordakademie.iaa.library.model;
 
 import org.hibernate.annotations.NaturalId;
@@ -16,7 +19,7 @@ public class Keyword {
     public Keyword(String word) {
         this.word = word;
     }
-    
+
     /**
      * The Identifier
      */

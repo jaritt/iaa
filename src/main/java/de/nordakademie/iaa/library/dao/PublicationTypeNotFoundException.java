@@ -1,3 +1,6 @@
+/**
+ * Author: Felix Welter
+ */
 package de.nordakademie.iaa.library.dao;
 
 public class PublicationTypeNotFoundException extends RuntimeException {

@@ -1,3 +1,6 @@
+/**
+ * Author: Felix Welter
+ */
 package de.nordakademie.iaa.library.model;
 
 public class DummyMessage {

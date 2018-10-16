@@ -1,3 +1,6 @@
+/**
+ * Author: Felix Welter
+ */
 package de.nordakademie.iaa.library.dao;
 
 import de.nordakademie.iaa.library.model.PublicationType;
