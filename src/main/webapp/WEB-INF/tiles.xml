@@ -18,4 +18,8 @@
 	<definition name="keywordList" extends="mainTemplate">
 		<put-attribute name="content" value="/tiles/keywordList.jsp"/>
 	</definition>
+
+	<definition name="PublicationTypeList" extends="mainTemplate">
+		<put-attribute name="content" value="/tiles/publicationTypeList.jsp"/>
+	</definition>v
 </tiles-definitions>

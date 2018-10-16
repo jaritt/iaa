@@ -17,5 +17,9 @@
         <action name="showKeywordList" class="de.nordakademie.iaa.library.action.ShowKeywordListAction">
             <result type="tiles">keywordList</result>
         </action>
+
+        <action name="showPublicationTypeList" class="de.nordakademie.iaa.library.action.ShowPublicationTypeAction">
+            <result type="tiles">PublicationTypeList</result>
+        </action>
     </package>
 </struts>
