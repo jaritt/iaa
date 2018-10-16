@@ -17,7 +17,7 @@
 
 	<definition name="PublicationTypeList" extends="mainTemplate">
 		<put-attribute name="content" value="/tiles/publicationTypeList.jsp"/>
-	</definition>v
+	</definition>
 
 	<definition name="keywordForm" extends="mainTemplate">
 		<put-attribute name="content" value="/tiles/keywordForm.jsp"/>
