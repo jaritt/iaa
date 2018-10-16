@@ -13,6 +13,7 @@ public class KeywordAction extends ActionSupport {
     private KeywordService keywordService;
 
     private Long id;
+    private String word;
     private Keyword keyword;
 
     public String load() throws Exception{
@@ -42,6 +43,10 @@ public class KeywordAction extends ActionSupport {
     public void setKeywordId(Long id) {
         this.id = id;
     }
+
+    public String getWord() { return word; }
+
+    public void setWord(String word) { this.word = word; }
 
     public Keyword getKeyword(){ return keyword; }
 
