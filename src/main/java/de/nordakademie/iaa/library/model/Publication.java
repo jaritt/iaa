@@ -1,6 +1,4 @@
-/**
- * Author: Felix Welter
- */
+
 package de.nordakademie.iaa.library.model;
 
 import org.hibernate.annotations.NaturalId;
@@ -9,6 +7,11 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Represents a publication which is owned by the library.
+ *
+ * @author Felix Welter
+ */
 @Entity
 public class Publication {
 

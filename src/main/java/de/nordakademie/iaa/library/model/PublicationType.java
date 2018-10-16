@@ -11,6 +11,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Objects;
 
+/**
+ * This class indicates which type a publication is of.
+ *
+ * @author Feli Welter
+ */
 @Entity
 public class PublicationType {
 
