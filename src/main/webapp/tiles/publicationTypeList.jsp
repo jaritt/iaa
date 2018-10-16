@@ -26,8 +26,8 @@
         </tr>
         </s:iterator>
     </table>
-    <s:submit key="button.addPublicationType" action="addPublicationType" />
-    <s:submit key="button.editPublicationType" action="loadPublicationType"/>
-    <s:submit key="button.deletePublicationType" action="deletePublicationType"/>
+    <s:submit key="button.addPublicationType" action="addPublicationType" value="Add"/>
+    <s:submit key="button.editPublicationType" action="loadPublicationType" value="Rename"/>
+    <s:submit key="button.deletePublicationType" action="deletePublicationType" value="Delete"/>
 </s:form>
 
