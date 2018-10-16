@@ -5,55 +5,11 @@
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <struts>
+    <include file="Keyword.xml"/>
+    <include file="PublicationType.xml"/>
     <package name="default" extends="tiles-default">
         <result-types>
             <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" default="true"/>
         </result-types>
-
-        <action name="showKeywordList" class="de.nordakademie.iaa.library.action.ShowKeywordListAction">
-            <result type="tiles">keywordList</result>
-        </action>
-
-        <action name="addKeyword" class="de.nordakademie.iaa.library.action.KeywordAction">
-            <result type="tiles">keywordForm</result>
-        </action>
-
-        <action name="loadKeyword" class="de.nordakademie.iaa.library.action.KeywordAction" method="load">
-            <result type="tiles">keywordForm</result>
-            <result name="input" type="chain">showKeywordList</result>
-        </action>
-
-        <action name="saveKeyword" class="de.nordakademie.iaa.library.action.KeywordAction" method="save">
-            <result type="redirectAction">showKeywordList</result>
-            <result name="input" type="tiles">keywordForm</result>
-        </action>
-
-        <action name="deleteKeyword" class="de.nordakademie.iaa.library.action.KeywordAction" method="delete">
-            <result type="redirectAction">showKeywordList</result>
-            <result name="input" type="chain">showKeywordList</result>
-        </action>
-
-        <action name="showPublicationTypeList" class="de.nordakademie.iaa.library.action.ShowPublicationTypeAction">
-            <result type="tiles">publicationTypeList</result>
-        </action>
-
-        <action name="addPublicationType" class="de.nordakademie.iaa.library.action.PublicationTypeAction">
-            <result type="tiles">publicationTypeForm</result>
-        </action>
-
-        <action name="loadPublicationType" class="de.nordakademie.iaa.library.action.PublicationTypeAction" method="load">
-            <result type="tiles">publicationTypeForm</result>
-            <result name="input" type="chain">showPublicationTypeList</result>
-        </action>
-
-        <action name="savePublicationType" class="de.nordakademie.iaa.library.action.PublicationTypeAction" method="save">
-            <result type="redirectAction">showPublicationTypeList</result>
-            <result name="input" type="tiles">publicationTypeForm</result>
-        </action>
-
-        <action name="deletePublicationType" class="de.nordakademie.iaa.library.action.PublicationTypeAction" method="delete">
-            <result type="redirectAction">showPublicationTypeList</result>
-            <result name="input" type="chain">showPublicationTypeList</result>
-        </action>
     </package>
 </struts>
