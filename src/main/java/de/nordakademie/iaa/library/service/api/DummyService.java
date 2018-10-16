@@ -1,3 +1,6 @@
+/**
+ * Author: Felix Welter
+ */
 package de.nordakademie.iaa.library.service.api;
 
 import com.opensymphony.xwork2.inject.Inject;
