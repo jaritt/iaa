@@ -135,7 +135,12 @@ public class Publication {
         this.isbn = isbn;
     }
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "publication_keyword",
+            joinColumns = @JoinColumn(name = "publication_id"),
+            inverseJoinColumns = @JoinColumn(name = "keyword_id")
+    )
     public List<Keyword> getKeywords() {
         return keywords;
     }
