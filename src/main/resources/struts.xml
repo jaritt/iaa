@@ -34,7 +34,7 @@
         </action>
 
         <action name="showPublicationTypeList" class="de.nordakademie.iaa.library.action.ShowPublicationTypeAction">
-        <result type="tiles">publicationTypeList</result>
+            <result type="tiles">publicationTypeList</result>
         </action>
 
         <action name="addPublicationType" class="de.nordakademie.iaa.library.action.PublicationTypeAction">
@@ -55,6 +55,5 @@
             <result type="redirectAction">showPublicationTypeList</result>
             <result name="input" type="chain">showPublicationTypeList</result>
         </action>
-
     </package>
 </struts>
