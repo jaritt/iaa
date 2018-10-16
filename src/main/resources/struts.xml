@@ -10,16 +10,32 @@
             <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" default="true"/>
         </result-types>
 
-        <action name="showHelloWorld" class="de.nordakademie.iaa.library.action.DummyAction">
-            <result>helloWorld</result>
-        </action>
-
         <action name="showKeywordList" class="de.nordakademie.iaa.library.action.ShowKeywordListAction">
             <result type="tiles">keywordList</result>
         </action>
 
+<<<<<<< Updated upstream
         <action name="showPublicationTypeList" class="de.nordakademie.iaa.library.action.ShowPublicationTypeAction">
             <result type="tiles">PublicationTypeList</result>
+=======
+        <action name="addKeyword" class="de.nordakademie.iaa.library.action.KeywordAction">
+            <result type="tiles">keywordForm</result>
+        </action>
+
+        <action name="loadKeyword" class="de.nordakademie.iaa.library.action.KeywordAction" method="load">
+            <result type="tiles">keywordForm</result>
+            <result name="input" type="chain">showKeywordList</result>
+        </action>
+
+        <action name="saveKeyword" class="de.nordakademie.iaa.library.action.KeywordAction" method="save">
+            <result type="redirectAction">showKeywordList</result>
+            <result name="input" type="tiles">keywordForm</result>
+        </action>
+
+        <action name="deleteKeyword" class="de.nordakademie.iaa.library.action.KeywordAction" method="delete">
+            <result type="redirectAction">showKeywordList</result>
+            <result name="input" type="chain">showKeywordList</result>
+>>>>>>> Stashed changes
         </action>
     </package>
 </struts>

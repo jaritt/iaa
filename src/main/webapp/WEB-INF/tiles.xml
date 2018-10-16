@@ -11,10 +11,6 @@
 		<put-attribute name="header" value="/tiles/header.jsp"/>
 	</definition>
 
-	<definition name="helloWorld" extends="mainTemplate">
-		<put-attribute name="content" value="/tiles/helloWorld.jsp"></put-attribute>
-	</definition>
-
 	<definition name="keywordList" extends="mainTemplate">
 		<put-attribute name="content" value="/tiles/keywordList.jsp"/>
 	</definition>
@@ -22,4 +18,8 @@
 	<definition name="PublicationTypeList" extends="mainTemplate">
 		<put-attribute name="content" value="/tiles/publicationTypeList.jsp"/>
 	</definition>v
+
+	<definition name="keywordForm" extends="mainTemplate">
+		<put-attribute name="content" value="/tiles/keywordForm.jsp"/>
+	</definition>
 </tiles-definitions>
