@@ -1,10 +1,6 @@
 package de.nordakademie.iaa.library.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -162,6 +158,7 @@ public class Lending {
      *
      * @return If the lending process is finished.
      */
+    @Transient
     public boolean isCompleted() {
         return isLost() || isReturned();
     }
@@ -171,6 +168,7 @@ public class Lending {
      *
      * @return prolongation possible
      */
+    @Transient
     public boolean canBeProlonged() {
         return getTimesProlonged() < MAX_TIMES_PROLONGED;
     }
@@ -197,6 +195,7 @@ public class Lending {
      *
      * @return States if a reminder process is open
      */
+    @Transient
     public boolean hasActiveReminder() {
         return !reminders.isEmpty() && !isCompleted();
     }
@@ -206,6 +205,7 @@ public class Lending {
      *
      * @return If lending can be marked as lost
      */
+    @Transient
     public boolean isLossPossible() {
         return reminders.size() >= 3 && !isCompleted();
     }
@@ -215,6 +215,7 @@ public class Lending {
      *
      * @return
      */
+
     /*
     public boolean isReminderDue() {
         return true;
@@ -223,9 +224,7 @@ public class Lending {
 
     public Reminder getLastReminder() {
         reminders.get()
-    }
-    */
-
+    }*/
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
