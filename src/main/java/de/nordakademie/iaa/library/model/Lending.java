@@ -1,12 +1,12 @@
 package de.nordakademie.iaa.library.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 /**
  * This represents a lending of a publications.
@@ -16,11 +16,13 @@ import java.util.Objects;
 @Entity
 public class Lending {
 
+    private static final int REMINDER_TIME_INTERVAL = 7;
+    private static final int MAX_TIMES_PROLONGED = 2;
+
     public Lending() {
         this.timesProlonged = new Long(0);
     }
 
-    private static final Long MAX_TIMES_PROLONGED = new Long(2);
     /**
      * Unique identifier
      */
@@ -63,6 +65,11 @@ public class Lending {
      * How many times this lending was prolonged
      */
     private Long timesProlonged;
+
+    /**
+     * Reminder that have been sent for this lending
+     */
+    private List<Reminder> reminders;
 
     @Id
     public Long getId() {
@@ -136,6 +143,19 @@ public class Lending {
         this.timesProlonged = timesProlonged;
     }
 
+    @OneToMany
+    public List<Reminder> getReminders() {
+        return reminders;
+    }
+
+    public void setReminders(List<Reminder> reminders) {
+        this.reminders = reminders;
+    }
+
+    public void addReminder(Reminder reminder) {
+        this.reminders.add(reminder);
+        reminder.setLending(this);
+    }
 
     /**
      * States if the lending process is finished either
@@ -143,6 +163,7 @@ public class Lending {
      *
      * @return If the lending process is finished.
      */
+    @Transient
     public boolean isCompleted() {
         return isLost() || isReturned();
     }
@@ -152,6 +173,7 @@ public class Lending {
      *
      * @return prolongation possible
      */
+    @Transient
     public boolean canBeProlonged() {
         return getTimesProlonged() < MAX_TIMES_PROLONGED;
     }
@@ -161,6 +183,7 @@ public class Lending {
      *
      * @param newEndDate New return date
      */
+    @Transient
     public void prolongUntil(LocalDate newEndDate) {
         if (canBeProlonged()) {
             setTimesProlonged(getTimesProlonged() + 1);
@@ -168,6 +191,50 @@ public class Lending {
         } else {
             throw new ProlongationNotPossible();
         }
+    }
+
+    /**
+     * States if this lending has active reminders.
+     * That would mean that reminder have been sent
+     * and the publication was neither returned
+     * nor marked as lost
+     *
+     * @return States if a reminder process is open
+     */
+    @Transient
+    public boolean hasActiveReminder() {
+        return !reminders.isEmpty() && !isCompleted();
+    }
+
+    /**
+     * States if this lending can be marked as lost
+     *
+     * @return If lending can be marked as lost
+     */
+    @Transient
+    public boolean isLossPossible() {
+        return reminders.size() >= 3 && !isCompleted();
+    }
+
+    /**
+     * States if a reminder is due to sent
+     *
+     * @return If a reminder is due
+     */
+    @Transient
+    public boolean isReminderDue() {
+        return !isCompleted() && (DAYS.between(getLastReminder().getDate(), LocalDate.now()) >= REMINDER_TIME_INTERVAL);
+    }
+
+    /**
+     * Returns the last reminder that was sent
+     * for this publication
+     *
+     * @return Last reminder that was sent
+     */
+    @Transient
+    public Reminder getLastReminder() {
+        return reminders.get(reminders.size() - 1);
     }
 
     @Override
