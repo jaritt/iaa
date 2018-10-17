@@ -5,14 +5,17 @@ import de.nordakademie.iaa.library.model.PublicationType;
 import de.nordakademie.iaa.library.service.api.PublicationTypeService;
 
 public class PublicationTypeAction extends ActionSupport {
+    public PublicationTypeAction(PublicationTypeService publicationTypeService) {
+        this.publicationTypeService = publicationTypeService;
+    }
 
     private PublicationTypeService publicationTypeService;
 
-    private Long publicatioinTypeId;
+    private Long publicationTypeId;
     private PublicationType publicationType;
 
     public String load() throws Exception{
-        publicationType = publicationTypeService.loadPublicationType(publicatioinTypeId);
+        publicationType = publicationTypeService.loadPublicationType(publicationTypeId);
         return SUCCESS;
     }
 
@@ -27,16 +30,16 @@ public class PublicationTypeAction extends ActionSupport {
     }
 
     public String delete() throws Exception{
-        publicationTypeService.deletePublicationType(publicatioinTypeId);
+        publicationTypeService.deletePublicationType(publicationTypeId);
         return SUCCESS;
     }
 
-    public Long getPublicatioinTypeId() {
-        return publicatioinTypeId;
+    public Long getPublicationTypeId() {
+        return publicationTypeId;
     }
 
-    public void setPublicatioinTypeId(Long publicatioinTypeId) {
-        this.publicatioinTypeId = publicatioinTypeId;
+    public void setPublicationTypeId(Long publicationTypeId) {
+        this.publicationTypeId = publicationTypeId;
     }
 
     public PublicationType getPublicationType() {
