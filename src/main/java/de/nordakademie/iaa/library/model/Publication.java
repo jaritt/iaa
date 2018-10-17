@@ -4,8 +4,11 @@ package de.nordakademie.iaa.library.model;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Represents a publication which is owned by the library.
@@ -38,7 +41,7 @@ public class Publication {
     /**
      * Release date
      */
-    private Date releaseDate;
+    private LocalDate releaseDate;
 
     /**
      * Publisher
@@ -64,6 +67,11 @@ public class Publication {
      * Count of copies
      */
     private Long copies;
+
+    /**
+     * Lendings of this publication
+     */
+    private List<Lending> lendings;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -103,11 +111,11 @@ public class Publication {
     }
 
     @Basic
-    public Date getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 
@@ -159,5 +167,52 @@ public class Publication {
 
     public void setCopies(Long copies) {
         this.copies = copies;
+    }
+
+    @OneToMany
+    public List<Lending> getLendings() {
+        return lendings;
+    }
+
+    public void setLendings(List<Lending> lendings) {
+        this.lendings = lendings;
+    }
+
+    public void addLending(Lending lending) {
+        this.lendings.add(lending);
+        lending.setPublication(this);
+    }
+
+    /**
+     * States how many copies of this publication
+     * are available and could be lend right now.
+     *
+     * @return How many copies are available
+     */
+    public Long copiesAvailable() {
+        return getCopies() - lendings.stream().filter(l -> !l.isCompleted()).collect(Collectors.toList()).size();
+    }
+
+    /**
+     * States if there is at least one more copy of thi
+     * publication that can be borrowed
+     *
+     * @return If a copy of publication is available
+     */
+    public boolean isCopyAvailable() {
+        return copiesAvailable() > 0;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Publication that = (Publication) o;
+        return Objects.equals(key, that.key);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(key);
     }
 }
