@@ -54,15 +54,13 @@ public class KeywordAction extends ActionSupport {
     /**
      * waiting for Felix to implement method findKeywordByWord in KeywordServiceImpl
      */
-
-    /*
+/*
     public void validateSave() {
-        if (keyword. != null) {
-            addActionError(getText("error."));
+        if (keywordService.findKeywordByWord(keyword.getWord()) != null) {
+            addActionError(getText("error.keywordAlreadyExists"));
         }
     }
-    */
-
+*/
     public Long getKeywordId() {
         return id;
     }
