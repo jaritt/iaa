@@ -68,11 +68,6 @@ public class Publication {
      */
     private Long copies;
 
-    /**
-     * Lendings of this publication
-     */
-    private List<Lending> lendings;
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
@@ -128,6 +123,7 @@ public class Publication {
         this.publisher = publisher;
     }
 
+
     @ManyToOne(optional = false)
     public PublicationType getType() {
         return type;
@@ -136,6 +132,7 @@ public class Publication {
     public void setType(PublicationType type) {
         this.type = type;
     }
+
 
     @Basic
     public String getIsbn() {
@@ -167,40 +164,6 @@ public class Publication {
 
     public void setCopies(Long copies) {
         this.copies = copies;
-    }
-
-    @OneToMany
-    public List<Lending> getLendings() {
-        return lendings;
-    }
-
-    public void setLendings(List<Lending> lendings) {
-        this.lendings = lendings;
-    }
-
-    public void addLending(Lending lending) {
-        this.lendings.add(lending);
-        lending.setPublication(this);
-    }
-
-    /**
-     * States how many copies of this publication
-     * are available and could be lend right now.
-     *
-     * @return How many copies are available
-     */
-    public Long copiesAvailable() {
-        return getCopies() - lendings.stream().filter(l -> !l.isCompleted()).collect(Collectors.toList()).size();
-    }
-
-    /**
-     * States if there is at least one more copy of thi
-     * publication that can be borrowed
-     *
-     * @return If a copy of publication is available
-     */
-    public boolean isCopyAvailable() {
-        return copiesAvailable() > 0;
     }
 
     @Override
