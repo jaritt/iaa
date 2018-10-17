@@ -79,4 +79,16 @@ public class KeywordServiceImpl implements KeywordService {
         }
         keyword.setWord(word);
     }
+
+
+    /**
+     * Finds a keyword identified by the word itself
+     *
+     * @param word The word to search for
+     * @return The keyword that is searched for
+     */
+    @Override
+    public Keyword findKeywordByWord(String word) {
+        return dao.findKeywordByWord(word);
+    }
 }

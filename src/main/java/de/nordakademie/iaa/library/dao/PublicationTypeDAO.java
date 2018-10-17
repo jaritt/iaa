@@ -11,6 +11,12 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+/**
+ * This class gives access to publication types.
+ *
+ * @author Felix Welter
+ * @see PublicationType
+ */
 @Named
 public class PublicationTypeDAO {
 
@@ -44,7 +50,7 @@ public class PublicationTypeDAO {
     }
 
     public PublicationType savePublicationType(PublicationType publicationType) {
-        if (findPublicationTypeByTitle(publicationType.getTitle()) != null){
+        if (findPublicationTypeByTitle(publicationType.getTitle()) != null) {
             throw new PublicationTypeAlreadyExistsException();
         }
         entityManager.persist(publicationType);

@@ -1,11 +1,15 @@
-/**
- * Author: Felix Welter
- */
 package de.nordakademie.iaa.library.model;
 
 import javax.persistence.*;
 import java.util.Objects;
 
+/**
+ * This class represents a customer that is able
+ * to lend book from the library, e.g. a student
+ * or a professor.
+ *
+ * @author Felix Welter
+ */
 @Entity
 public class Customer {
 
@@ -140,4 +144,3 @@ public class Customer {
         return Objects.hash(id);
     }
 }
-

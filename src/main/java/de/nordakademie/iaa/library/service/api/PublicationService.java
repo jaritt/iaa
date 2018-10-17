@@ -8,6 +8,7 @@ import de.nordakademie.iaa.library.model.Publication;
 import de.nordakademie.iaa.library.model.PublicationType;
 
 import javax.persistence.EntityNotFoundException;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -61,7 +62,7 @@ public interface PublicationService {
     void updatePublication(Long id,
                            String title,
                            String author,
-                           Date releaseDate,
+                           LocalDate releaseDate,
                            String publisher,
                            PublicationType type,
                            String isbn,
