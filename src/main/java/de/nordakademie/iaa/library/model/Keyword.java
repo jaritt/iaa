@@ -2,10 +2,8 @@
 package de.nordakademie.iaa.library.model;
 
 import org.hibernate.annotations.NaturalId;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 import java.util.Objects;
 
 /**
@@ -36,7 +34,7 @@ public class Keyword {
      */
     private String word;
 
-    @NaturalId
+    @Basic
     public String getWord() {
         return word;
     }
