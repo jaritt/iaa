@@ -3,8 +3,9 @@ package de.nordakademie.iaa.library.model;
 import javax.persistence.Basic;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -61,6 +62,11 @@ public class Lending {
      * How many times this lending was prolonged
      */
     private Long timesProlonged;
+
+    /**
+     * Reminder that have been sent for this lending
+     */
+    private List<Reminder> reminders;
 
     @Id
     public Long getId() {
@@ -134,6 +140,19 @@ public class Lending {
         this.timesProlonged = timesProlonged;
     }
 
+    @OneToMany
+    public List<Reminder> getReminders() {
+        return reminders;
+    }
+
+    public void setReminders(List<Reminder> reminders) {
+        this.reminders = reminders;
+    }
+
+    public void addReminder(Reminder reminder) {
+        this.reminders.add(reminder);
+        reminder.setLending(this);
+    }
 
     /**
      * States if the lending process is finished either
@@ -167,6 +186,43 @@ public class Lending {
             throw new ProlongationNotPossible();
         }
     }
+
+    /**
+     * States if this lending has active reminders.
+     * That would mean that reminder have been sent
+     * and the publication was neither returned
+     * nor marked as lost
+     *
+     * @return States if a reminder process is open
+     */
+    public boolean hasActiveReminder() {
+        return !reminders.isEmpty() && !isCompleted();
+    }
+
+    /**
+     * States if this lending can be marked as lost
+     *
+     * @return If lending can be marked as lost
+     */
+    public boolean isLossPossible() {
+        return reminders.size() >= 3 && !isCompleted();
+    }
+
+    /**
+     * States if a reminder is due to sent
+     *
+     * @return
+     */
+    /*
+    public boolean isReminderDue() {
+        return true;
+        //return !isCompleted() && getLastReminder()
+    }
+
+    public Reminder getLastReminder() {
+        reminders.get()
+    }
+    */
 
     @Override
     public boolean equals(Object o) {

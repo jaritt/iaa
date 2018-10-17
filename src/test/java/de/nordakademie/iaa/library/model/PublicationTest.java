@@ -56,4 +56,15 @@ public class PublicationTest {
 
         assertThat(publication.isCopyAvailable()).isTrue();
     }
+
+    @Test
+    void testAddLending() {
+        Lending lending = new Lending();
+        Publication publication = new Publication();
+        publication.setLendings(new ArrayList<Lending>());
+
+        publication.addLending(lending);
+
+        assertThat(lending.getPublication().equals(lending));
+    }
 }

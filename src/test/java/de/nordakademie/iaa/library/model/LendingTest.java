@@ -1,5 +1,6 @@
 package de.nordakademie.iaa.library.model;
 
+import de.nordakademie.iaa.library.dao.KeywordAlreadyExistsException;
 import org.junit.jupiter.api.Test;
 
 import java.text.DateFormat;
@@ -7,6 +8,7 @@ import java.time.LocalDate;
 import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
  * @author Felix Welter
@@ -47,5 +49,17 @@ public class LendingTest {
         assertThat(lending.canBeProlonged()).isFalse();
 
         assertThat(lending.getEndDate().equals(date(4))).isTrue();
+    }
+
+    @Test
+    void testErrorOnTooManyProlongations() {
+        Lending lending = new Lending();
+        lending.setStartDate(date(1));
+        lending.setEndDate(date(2));
+        lending.setTimesProlonged(new Long(1));
+
+        lending.prolongUntil(date(3));
+
+        assertThatThrownBy(() -> lending.prolongUntil(date(3))).isInstanceOf(ProlongationNotPossible.class);
     }
 }
