@@ -20,6 +20,7 @@
         </s:iterator>
     </table>
     <br>
-    <s:submit key="button.addKeyword" action="addKeyword" value="Add Keyword"/>
-    <s:submit key="button.deleteKeyword" action="deleteKeyword" value="Delete Keyword"/>
+    <s:submit key="button.addKeyword" action="addKeyword"/>
+    <s:submit key="button.editKeyword" action="loadKeyword"/>
+    <s:submit key="button.deleteKeyword" action="deleteKeyword"/>
 </s:form>

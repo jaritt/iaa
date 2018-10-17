@@ -1,5 +1,6 @@
 package de.nordakademie.iaa.library.action;
 
+import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import de.nordakademie.iaa.library.dao.KeywordAlreadyExistsException;
 import de.nordakademie.iaa.library.model.Keyword;
@@ -7,7 +8,7 @@ import de.nordakademie.iaa.library.service.api.KeywordService;
 
 import javax.persistence.EntityNotFoundException;
 
-public class KeywordAction extends ActionSupport {
+public class KeywordAction extends ActionSupport implements Action {
 
     public KeywordAction(KeywordService keywordService) {
         this.keywordService = keywordService;
@@ -45,22 +46,24 @@ public class KeywordAction extends ActionSupport {
      *
      */
 
+    public void validateSave() {
+        if (keywordService.findKeywordByWord(keyword.getWord()) != null) {
+            addActionError(getText("error.keywordAlreadyExists"));
+        }
+    }
+
+    public void validateLoad() {
+        if (id == null && keyword == null) {
+            addActionError(getText("error.selectKeyword"));
+        }
+    }
+
     public void validateDelete() {
         if (id == null && keyword == null) {
             addActionError(getText("error.selectKeyword"));
         }
     }
 
-    /**
-     * waiting for Felix to implement method findKeywordByWord in KeywordServiceImpl
-     */
-/*
-    public void validateSave() {
-        if (keywordService.findKeywordByWord(keyword.getWord()) != null) {
-            addActionError(getText("error.keywordAlreadyExists"));
-        }
-    }
-*/
     public Long getKeywordId() {
         return id;
     }
