@@ -2,9 +2,12 @@ package de.nordakademie.iaa.library.model;
 
 import de.nordakademie.iaa.library.dao.KeywordAlreadyExistsException;
 import org.junit.jupiter.api.Test;
+import org.mockito.cglib.core.Local;
 
 import java.text.DateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -61,5 +64,52 @@ public class LendingTest {
         lending.prolongUntil(date(3));
 
         assertThatThrownBy(() -> lending.prolongUntil(date(3))).isInstanceOf(ProlongationNotPossible.class);
+    }
+
+    @Test
+    void testReminderDue() {
+        Lending lending = new Lending();
+        lending.setReminders(new ArrayList<Reminder>());
+        Reminder reminder = new Reminder();
+        reminder.setDate(LocalDate.of(2000, 1, 1));
+        lending.addReminder(reminder);
+
+        assertThat(lending.isReminderDue()).isTrue();
+
+        Reminder reminder2 = new Reminder();
+        reminder2.setDate(LocalDate.now());
+        lending.addReminder(reminder2);
+
+        assertThat(lending.isReminderDue()).isFalse();
+    }
+
+    @Test
+    void testReminderDueAfterReturn() {
+        Lending lending = new Lending();
+        lending.setReminders(new ArrayList<Reminder>());
+        Reminder reminder = new Reminder();
+        reminder.setDate(LocalDate.of(2000, 1, 1));
+        lending.addReminder(reminder);
+
+        assertThat(lending.isReminderDue()).isTrue();
+
+        lending.setReturned(true);
+
+        assertThat(lending.isReminderDue()).isFalse();
+    }
+
+    @Test
+    void testReminderDueAfterLoss() {
+        Lending lending = new Lending();
+        lending.setReminders(new ArrayList<Reminder>());
+        Reminder reminder = new Reminder();
+        reminder.setDate(LocalDate.of(2000, 1, 1));
+        lending.addReminder(reminder);
+
+        assertThat(lending.isReminderDue()).isTrue();
+
+        lending.setLost(true);
+
+        assertThat(lending.isReminderDue()).isFalse();
     }
 }

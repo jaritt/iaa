@@ -2,8 +2,11 @@ package de.nordakademie.iaa.library.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 /**
  * This represents a lending of a publications.
@@ -13,11 +16,13 @@ import java.util.Objects;
 @Entity
 public class Lending {
 
+    private static final int REMINDER_TIME_INTERVAL = 7;
+    private static final int MAX_TIMES_PROLONGED = 2;
+
     public Lending() {
         this.timesProlonged = new Long(0);
     }
 
-    private static final Long MAX_TIMES_PROLONGED = new Long(2);
     /**
      * Unique identifier
      */
@@ -178,6 +183,7 @@ public class Lending {
      *
      * @param newEndDate New return date
      */
+    @Transient
     public void prolongUntil(LocalDate newEndDate) {
         if (canBeProlonged()) {
             setTimesProlonged(getTimesProlonged() + 1);
@@ -213,18 +219,24 @@ public class Lending {
     /**
      * States if a reminder is due to sent
      *
-     * @return
+     * @return If a reminder is due
      */
-
-    /*
+    @Transient
     public boolean isReminderDue() {
-        return true;
-        //return !isCompleted() && getLastReminder()
+        return !isCompleted() && (DAYS.between(getLastReminder().getDate(), LocalDate.now()) >= REMINDER_TIME_INTERVAL);
     }
 
+    /**
+     * Returns the last reminder that was sent
+     * for this publication
+     *
+     * @return Last reminder that was sent
+     */
+    @Transient
     public Reminder getLastReminder() {
-        reminders.get()
-    }*/
+        return reminders.get(reminders.size() - 1);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

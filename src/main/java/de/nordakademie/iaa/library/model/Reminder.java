@@ -4,6 +4,7 @@ import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -24,7 +25,7 @@ public class Reminder {
     /**
      * Date when the reminder was sent
      */
-    private Long LocalDate;
+    private LocalDate date;
 
     /**
      * Which lending this reminder belongs to
@@ -41,12 +42,12 @@ public class Reminder {
     }
 
     @Basic
-    public Long getLocalDate() {
-        return LocalDate;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setLocalDate(Long localDate) {
-        LocalDate = localDate;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     @ManyToOne
