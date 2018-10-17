@@ -6,9 +6,6 @@
 
 <struts>
     <package name="default" extends="tiles-default">
-        <result-types>
-            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" default="true"/>
-        </result-types>
 
         <action name="showKeywordList" class="de.nordakademie.iaa.library.action.ShowKeywordListAction">
             <result type="tiles">keywordList</result>
