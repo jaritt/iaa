@@ -5,14 +5,12 @@
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <struts>
+    <include file="Keyword.xml"/>
+    <include file="PublicationType.xml"/>
+    <include file="Customer.xml"/>
     <package name="default" extends="tiles-default">
         <result-types>
             <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" default="true"/>
         </result-types>
-
-
-        <action name="showHelloWorld" class="de.nordakademie.iaa.library.action.DummyAction">
-            <result>helloWorld</result>
-        </action>
     </package>
 </struts>
