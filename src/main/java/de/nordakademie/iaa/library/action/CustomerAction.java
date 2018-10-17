@@ -1,23 +1,18 @@
 package de.nordakademie.iaa.library.action;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.Preparable;
 import de.nordakademie.iaa.library.model.Customer;
 import de.nordakademie.iaa.library.service.api.CustomerService;
 
-import java.util.ArrayList;
-import java.util.List;
 
-public class CustomerAction extends ActionSupport implements Preparable {
+public class CustomerAction extends ActionSupport {
 
     public CustomerAction(CustomerService customerService) {
         this.customerService = customerService;
     }
-
     private CustomerService customerService;
 
     private Long customerId;
-    private List<String> title;
     private Customer customer;
 
     public String load() throws Exception{
@@ -39,14 +34,19 @@ public class CustomerAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-
-    public void prepare() throws Exception {
-        title=new ArrayList<String>();
-        title.add("Herr");
-        title.add("Frau");
+    public Long getCustomerId() {
+        return customerId;
     }
 
-    public String titleList() throws Exception{
-        return SUCCESS;
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }
