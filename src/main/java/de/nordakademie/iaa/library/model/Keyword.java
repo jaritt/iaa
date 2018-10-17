@@ -1,6 +1,4 @@
-/**
- * Author: Felix Welter
- */
+
 package de.nordakademie.iaa.library.model;
 
 import org.hibernate.annotations.NaturalId;
@@ -10,6 +8,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Objects;
 
+/**
+ * This class represents a keyword. Keywords are assignable
+ * to publications are helpful during a search process or
+ * categorisation.
+ *
+ * @author Felix Welter
+ * @see Publication
+ */
 @Entity
 public class Keyword {
 

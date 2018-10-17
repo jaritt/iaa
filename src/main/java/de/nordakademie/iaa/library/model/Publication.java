@@ -1,14 +1,20 @@
-/**
- * Author: Felix Welter
- */
+
 package de.nordakademie.iaa.library.model;
 
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
+/**
+ * Represents a publication which is owned by the library.
+ *
+ * @author Felix Welter
+ */
 @Entity
 public class Publication {
 
@@ -35,7 +41,7 @@ public class Publication {
     /**
      * Release date
      */
-    private Date releaseDate;
+    private LocalDate releaseDate;
 
     /**
      * Publisher
@@ -100,11 +106,11 @@ public class Publication {
     }
 
     @Basic
-    public Date getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 
@@ -117,6 +123,7 @@ public class Publication {
         this.publisher = publisher;
     }
 
+
     @ManyToOne(optional = false)
     public PublicationType getType() {
         return type;
@@ -125,6 +132,7 @@ public class Publication {
     public void setType(PublicationType type) {
         this.type = type;
     }
+
 
     @Basic
     public String getIsbn() {
@@ -156,5 +164,18 @@ public class Publication {
 
     public void setCopies(Long copies) {
         this.copies = copies;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Publication that = (Publication) o;
+        return Objects.equals(key, that.key);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(key);
     }
 }

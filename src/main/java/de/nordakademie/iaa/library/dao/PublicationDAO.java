@@ -11,6 +11,12 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+/**
+ * This class gives access to publications.
+ *
+ * @author Felix Welter
+ * @see Publication
+ */
 @Named
 public class PublicationDAO {
 

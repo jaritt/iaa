@@ -50,4 +50,12 @@ public interface KeywordService {
      */
     void updateKeyword(Long id, String word) throws EntityNotFoundException;
 
+    /**
+     * Finds a keyword identified by the word itself
+     *
+     * @param word The word to search for
+     * @return The keyword that is searched for
+     */
+    Keyword findKeywordByWord(String word);
+
 }

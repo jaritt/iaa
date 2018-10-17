@@ -11,6 +11,7 @@ import de.nordakademie.iaa.library.service.api.PublicationService;
 
 import javax.inject.Named;
 import javax.persistence.EntityNotFoundException;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -83,7 +84,7 @@ public class PublicationServiceImpl implements PublicationService {
      * @throws EntityNotFoundException
      */
     @Override
-    public void updatePublication(Long id, String title, String author, Date releaseDate, String publisher, PublicationType type, String isbn, List<Keyword> keywords, Long copies) throws EntityNotFoundException {
+    public void updatePublication(Long id, String title, String author, LocalDate releaseDate, String publisher, PublicationType type, String isbn, List<Keyword> keywords, Long copies) throws EntityNotFoundException {
         Publication publication = loadPublication(id);
         if (publication == null) {
             throw new EntityNotFoundException();

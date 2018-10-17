@@ -4,13 +4,12 @@
 
 <html>
 <head>
-    <meta charset="UTF-8">
     <title><tiles:insertAttribute name="title"/></title>
     <s:head/>
 </head>
 <body>
-<tiles:insertAttribute name="header"/>
-<hr/>
-<tiles:insertAttribute name="content"/>
+    <tiles:insertAttribute name="header"/>
+    <hr/>
+    <tiles:insertAttribute name="content"/>
 </body>
 </html>
