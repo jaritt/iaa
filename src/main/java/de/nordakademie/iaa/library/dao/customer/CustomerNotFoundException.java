@@ -1,13 +1,13 @@
 /**
  * Author: Felix Welter
  */
-package de.nordakademie.iaa.library.dao;
+package de.nordakademie.iaa.library.dao.customer;
 
-public class PublicationNotFoundException extends RuntimeException {
+public class CustomerNotFoundException extends RuntimeException {
 
     private static final long serialVersionUID = 3907164798606983597L;
 
-    public PublicationNotFoundException(){
+    public CustomerNotFoundException() {
         super("The Keyword could not be found.");
     }
 }

@@ -3,7 +3,7 @@
  */
 package de.nordakademie.iaa.library.service;
 
-import de.nordakademie.iaa.library.dao.KeywordDAO;
+import de.nordakademie.iaa.library.dao.keyword.KeywordDAO;
 import de.nordakademie.iaa.library.model.Keyword;
 import de.nordakademie.iaa.library.service.api.KeywordService;
 

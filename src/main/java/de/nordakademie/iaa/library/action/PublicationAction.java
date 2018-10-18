@@ -2,8 +2,7 @@ package de.nordakademie.iaa.library.action;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
-
-import de.nordakademie.iaa.library.dao.PublicationAlreadyExistsException;
+import de.nordakademie.iaa.library.dao.publication.PublicationAlreadyExistsException;
 import de.nordakademie.iaa.library.model.Keyword;
 import de.nordakademie.iaa.library.model.Publication;
 import de.nordakademie.iaa.library.model.PublicationType;
@@ -43,9 +42,6 @@ public class PublicationAction extends ActionSupport implements Action {
         return publicationTypeService.listPublicationTypes();
     }
 
-    /**
-     * @param publicationTypeList
-     */
     public void setPublicationTypeList(List<PublicationType> publicationTypeList) {
         this.publicationTypeList = publicationTypeList;
     }
@@ -58,19 +54,11 @@ public class PublicationAction extends ActionSupport implements Action {
         this.keywordList = keywordList;
     }
 
-    /**
-     * @return
-     * @throws EntityNotFoundException
-     */
     public String load() throws EntityNotFoundException {
         publication = publicationService.loadPublication(id);
         return SUCCESS;
     }
 
-    /**
-     * @return
-     * @throws PublicationAlreadyExistsException
-     */
     public String save() throws PublicationAlreadyExistsException {
         System.out.println("action.save");
         if (publication.getId() != null) {
@@ -84,30 +72,21 @@ public class PublicationAction extends ActionSupport implements Action {
                     publication.getIsbn(),
                     publication.getKeywords(),
                     publication.getCopies());
-            return SUCCESS;
-        } else if (publication.getId() == null){
+        } else {
             publicationService.createPublication(publication);
-            return SUCCESS;
         }
-        return ERROR;
+        return SUCCESS;
     }
 
-    /**
-     * @return
-     * @throws EntityNotFoundException
-     */
     public String delete() throws EntityNotFoundException {
         publicationService.deletePublication(id);
         return SUCCESS;
     }
 
-    /*
-    public void validationSave() {
-        if (publication.getType() == null) {
-
-        }
+    public String publicationTypeList() throws Exception {
+        this.publicationTypeList = publicationTypeService.listPublicationTypes();
+        return SUCCESS;
     }
-    */
 
     public void validateLoad() {
         if (id == null && publication == null) {

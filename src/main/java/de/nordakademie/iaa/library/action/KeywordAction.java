@@ -2,7 +2,7 @@ package de.nordakademie.iaa.library.action;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
-import de.nordakademie.iaa.library.dao.KeywordAlreadyExistsException;
+import de.nordakademie.iaa.library.dao.keyword.KeywordAlreadyExistsException;
 import de.nordakademie.iaa.library.model.Keyword;
 import de.nordakademie.iaa.library.service.api.KeywordService;
 

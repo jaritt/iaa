@@ -1,6 +1,3 @@
-/**
- * Author: Felix Welter
- */
 package de.nordakademie.iaa.library.service.api;
 
 import de.nordakademie.iaa.library.model.PublicationType;
@@ -8,6 +5,9 @@ import de.nordakademie.iaa.library.model.PublicationType;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
+/**
+ * Author: Felix Welter
+ */
 public interface PublicationTypeService {
     /**
      * Takes a new publication type and stores it in the database.
