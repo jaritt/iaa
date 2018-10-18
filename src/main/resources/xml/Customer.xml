@@ -21,13 +21,12 @@
 
         <action name="saveCustomer" class="de.nordakademie.iaa.library.action.CustomerAction" method="save">
             <result type="redirectAction">showCustomerList</result>
-            <result name="input" type="tiles">CustomerForm</result>
+            <result name="input" type="tiles">customerForm</result>
         </action>
 
         <action name="deleteCustomer" class="de.nordakademie.iaa.library.action.CustomerAction" method="delete">
             <result type="redirectAction">showCustomerList</result>
             <result name="input" type="chain">showCustomerList</result>
         </action>
-
     </package>
 </struts>

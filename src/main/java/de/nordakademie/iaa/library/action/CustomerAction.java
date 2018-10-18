@@ -23,7 +23,8 @@ public class CustomerAction extends ActionSupport {
     public String save() throws Exception{
         if (customer.getId() != null){
             customerService.updateCustomer(customer.getId(),customer.getTitle(),customer.getName(),customer.getFirstName(),customer.getCity(),customer.getStreet(),customer.getMatnr());
-        }else{
+        }
+        else{
             customerService.createCustomer(customer);
         }
         return SUCCESS;
