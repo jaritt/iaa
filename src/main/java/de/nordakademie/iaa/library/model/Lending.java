@@ -72,6 +72,7 @@ public class Lending {
     private List<Reminder> reminders;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }
