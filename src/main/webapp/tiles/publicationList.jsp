@@ -28,6 +28,7 @@
         </s:iterator>
     </table>
     <br>
+    <!-- <a href="<s:url action="addPublication"></s:url>">Hinzufügeen</a> -->
     <s:submit key="button.addPublication" action="addPublication"/>
     <s:submit key="button.editPublication" action="loadPublication"/>
     <s:submit key="button.deletePublication" action="deletePublication"/>

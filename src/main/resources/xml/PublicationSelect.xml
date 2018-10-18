@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+    <package name="default" namespace="/" extends="struts-default">
+
+        <action name="publicationAction"
+                class="de.nordakademie.iaa.library.action.PublicationAction" method="display">
+            <result name="none">/tiles/selectPublication.jsp</result>
+        </action>
+
+        <action name="resultPublication" class="de.nordakademie.iaa.library.action.PublicationAction">
+            <result name="success">/tiles/resultPublication.jsp</result>
+        </action>
+
+
+    </package>
+
+</struts>

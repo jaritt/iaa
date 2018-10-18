@@ -38,4 +38,5 @@
 	<definition name="customerList" extends="mainTemplate">
 		<put-attribute name="content" value="/tiles/customerList.jsp"/>
 	</definition>
+
 </tiles-definitions>

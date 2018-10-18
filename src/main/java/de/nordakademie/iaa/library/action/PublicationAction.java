@@ -2,7 +2,7 @@ package de.nordakademie.iaa.library.action;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.Preparable;
+
 import de.nordakademie.iaa.library.dao.PublicationAlreadyExistsException;
 import de.nordakademie.iaa.library.model.Keyword;
 import de.nordakademie.iaa.library.model.Publication;
@@ -14,7 +14,7 @@ import de.nordakademie.iaa.library.service.api.PublicationTypeService;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
-public class PublicationAction extends ActionSupport implements Action, Preparable {
+public class PublicationAction extends ActionSupport implements Action {
 
     public PublicationAction(
             PublicationService publicationService,
@@ -23,6 +23,7 @@ public class PublicationAction extends ActionSupport implements Action, Preparab
         this.publicationService = publicationService;
         this.keywordService = keywordService;
         this.publicationTypeService = publicationTypeService;
+        System.out.println("Action constructor");
     }
 
     private PublicationService publicationService;
@@ -35,13 +36,43 @@ public class PublicationAction extends ActionSupport implements Action, Preparab
     private List<PublicationType> publicationTypeList;
     private List<Keyword> keywordList;
 
+    /**
+     * @return List of PublicationTypes
+     */
+    public List<PublicationType> getPublicationTypeList() {
+        return publicationTypeService.listPublicationTypes();
+    }
+
+    /**
+     * @param publicationTypeList
+     */
+    public void setPublicationTypeList(List<PublicationType> publicationTypeList) {
+        this.publicationTypeList = publicationTypeList;
+    }
+
+    public List<Keyword> getKeywordList() {
+        return keywordService.listKeywords();
+    }
+
+    public void setKeywordList(List<Keyword> keywordList) {
+        this.keywordList = keywordList;
+    }
+
+    /**
+     * @return
+     * @throws EntityNotFoundException
+     */
     public String load() throws EntityNotFoundException {
         publication = publicationService.loadPublication(id);
-        this.keywordList = keywordService.listKeywords();
         return SUCCESS;
     }
 
+    /**
+     * @return
+     * @throws PublicationAlreadyExistsException
+     */
     public String save() throws PublicationAlreadyExistsException {
+        System.out.println("action.save");
         if (publication.getId() != null) {
             publicationService.updatePublication(
                     publication.getId(),
@@ -53,27 +84,30 @@ public class PublicationAction extends ActionSupport implements Action, Preparab
                     publication.getIsbn(),
                     publication.getKeywords(),
                     publication.getCopies());
-        } else {
+            return SUCCESS;
+        } else if (publication.getId() == null){
             publicationService.createPublication(publication);
+            return SUCCESS;
         }
-        return SUCCESS;
+        return ERROR;
     }
 
+    /**
+     * @return
+     * @throws EntityNotFoundException
+     */
     public String delete() throws EntityNotFoundException {
         publicationService.deletePublication(id);
         return SUCCESS;
     }
 
-    public String publicationTypeList() throws Exception{
-        this.publicationTypeList = publicationTypeService.listPublicationTypes();
-        return SUCCESS;
+    /*
+    public void validationSave() {
+        if (publication.getType() == null) {
+
+        }
     }
-
-    /**
-     * validation
-     */
-
-    //validationSave()
+    */
 
     public void validateLoad() {
         if (id == null && publication == null) {
@@ -103,24 +137,4 @@ public class PublicationAction extends ActionSupport implements Action, Preparab
         this.publication = publication;
     }
 
-    public List<PublicationType> getPublicationTypeList() {
-        return publicationTypeList;
-    }
-
-    public void setPublicationTypeList(List<PublicationType> publicationTypeList) {
-        this.publicationTypeList = publicationTypeList;
-    }
-
-    public List<Keyword> getKeywordList() {
-        return keywordList;
-    }
-
-    public void setKeywordList(List<Keyword> keywordList) {
-        this.keywordList = keywordList;
-    }
-
-    @Override
-    public void prepare() throws Exception {
-
-    }
 }

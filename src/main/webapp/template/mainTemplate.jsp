@@ -11,6 +11,5 @@
     <tiles:insertAttribute name="header"/>
     <hr/>
     <tiles:insertAttribute name="content"/>
-    <tiles:putListAttribute name="content"/>
 </body>
 </html>

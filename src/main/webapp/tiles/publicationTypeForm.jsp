@@ -12,7 +12,7 @@
 
 <s:form>
     <s:hidden name="publicationType.id"/>
-    <s:textfield name="publicationType.title" key="label.publicationTypeTitle" requiredLabel="true"/>
+    <s:textfield name="publicationType.title" key="label.publicationTypeText" requiredLabel="true"/>
     <s:submit key="button.save" action="savePublicationType"/>
     <s:submit key="button.cancel" action="showPublicationTypeList"/>
 </s:form>
