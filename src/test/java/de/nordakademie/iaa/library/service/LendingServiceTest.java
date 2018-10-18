@@ -23,10 +23,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 /**
  * @author Felix Welter
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringJUnitWebConfig(locations = {"file:./src/main/resources/spring-config.xml"})
-@Transactional
-public class LendingServiceTest {
+public class LendingServiceTest extends BasicServiceTest{
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired

@@ -15,10 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * @author Felix Welter
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringJUnitWebConfig(locations = {"file:./src/main/resources/spring-config.xml"})
-@Transactional
-public class KeywordServiceTest {
+public class KeywordServiceTest extends BasicServiceTest{
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired

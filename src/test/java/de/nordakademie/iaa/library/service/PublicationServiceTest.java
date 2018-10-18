@@ -23,10 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * @author Felix Welter
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringJUnitWebConfig(locations = {"file:./src/main/resources/spring-config.xml"})
-@Transactional
-public class PublicationServiceTest {
+public class PublicationServiceTest extends BasicServiceTest{
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
