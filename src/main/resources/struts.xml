@@ -6,6 +6,7 @@
 
 <struts>
     <include file="xml/Keyword.xml"/>
+    <include file="xml/Publication.xml"/>
     <include file="xml/PublicationType.xml"/>
     <include file="xml/Customer.xml"/>
     <package name="default" extends="tiles-default">
