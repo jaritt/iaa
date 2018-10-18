@@ -1,14 +1,9 @@
 package de.nordakademie.iaa.library.model;
 
-import de.nordakademie.iaa.library.dao.KeywordAlreadyExistsException;
 import org.junit.jupiter.api.Test;
-import org.mockito.cglib.core.Local;
 
-import java.text.DateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
