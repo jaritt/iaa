@@ -3,7 +3,7 @@ package de.nordakademie.iaa.library.action;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
-import de.nordakademie.iaa.library.dao.PublicationAlreadyExistsException;
+import de.nordakademie.iaa.library.dao.publication.PublicationAlreadyExistsException;
 import de.nordakademie.iaa.library.model.Keyword;
 import de.nordakademie.iaa.library.model.Publication;
 import de.nordakademie.iaa.library.model.PublicationType;
@@ -64,7 +64,7 @@ public class PublicationAction extends ActionSupport implements Action, Preparab
         return SUCCESS;
     }
 
-    public String publicationTypeList() throws Exception{
+    public String publicationTypeList() throws Exception {
         this.publicationTypeList = publicationTypeService.listPublicationTypes();
         return SUCCESS;
     }
@@ -74,7 +74,6 @@ public class PublicationAction extends ActionSupport implements Action, Preparab
      */
 
     //validationSave()
-
     public void validateLoad() {
         if (id == null && publication == null) {
             addActionError(getText("error.selectPublication"));
