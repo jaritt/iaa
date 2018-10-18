@@ -3,7 +3,7 @@
  */
 package de.nordakademie.iaa.library.service;
 
-import de.nordakademie.iaa.library.dao.PublicationDAO;
+import de.nordakademie.iaa.library.dao.publication.PublicationDAO;
 import de.nordakademie.iaa.library.model.Keyword;
 import de.nordakademie.iaa.library.model.Publication;
 import de.nordakademie.iaa.library.model.PublicationType;
@@ -12,7 +12,6 @@ import de.nordakademie.iaa.library.service.api.PublicationService;
 import javax.inject.Named;
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Named

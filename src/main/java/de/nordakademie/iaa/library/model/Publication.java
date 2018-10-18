@@ -4,8 +4,9 @@ package de.nordakademie.iaa.library.model;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -17,6 +18,26 @@ import java.util.stream.Collectors;
  */
 @Entity
 public class Publication {
+
+    public Publication() {
+
+    }
+
+    public Publication(String key, String title) {
+        this.key = key;
+        this.title = title;
+        this.setKeywords(new ArrayList<>());
+        this.setLendings(new ArrayList<>());
+    }
+
+    public Publication(String key, String title, PublicationType type, Long copies) {
+        this.key = key;
+        this.title = title;
+        this.type = type;
+        this.copies = copies;
+        this.setKeywords(new ArrayList<>());
+        this.setLendings(new ArrayList<>());
+    }
 
     /**
      * Identifier
@@ -205,6 +226,10 @@ public class Publication {
     @Transient
     public boolean isCopyAvailable() {
         return copiesAvailable() > 0;
+    }
+
+    public void decreaseCopyCount() {
+        setCopies(getCopies() - 1);
     }
 
     @Override
