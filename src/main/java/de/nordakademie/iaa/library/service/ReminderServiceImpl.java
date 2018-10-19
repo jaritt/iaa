@@ -3,7 +3,6 @@
  */
 package de.nordakademie.iaa.library.service;
 
-import de.nordakademie.iaa.library.dao.lending.LendingDAO;
 import de.nordakademie.iaa.library.dao.reminder.ReminderDAO;
 import de.nordakademie.iaa.library.model.Lending;
 import de.nordakademie.iaa.library.model.Reminder;

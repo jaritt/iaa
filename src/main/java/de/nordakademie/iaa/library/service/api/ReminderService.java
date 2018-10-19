@@ -1,6 +1,5 @@
 package de.nordakademie.iaa.library.service.api;
 
-import de.nordakademie.iaa.library.model.Keyword;
 import de.nordakademie.iaa.library.model.Lending;
 import de.nordakademie.iaa.library.model.Reminder;
 

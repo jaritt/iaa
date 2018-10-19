@@ -2,7 +2,6 @@ package de.nordakademie.iaa.library.dao.reminder;
 
 import de.nordakademie.iaa.library.model.Lending;
 import de.nordakademie.iaa.library.model.Reminder;
-import de.nordakademie.iaa.library.model.Publication;
 
 import javax.inject.Named;
 import javax.persistence.EntityManager;

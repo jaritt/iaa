@@ -1,13 +1,14 @@
 package de.nordakademie.iaa.library.service.initialization;
 
 import de.nordakademie.iaa.library.dao.lending.LendingDAO;
-import de.nordakademie.iaa.library.model.*;
+import de.nordakademie.iaa.library.model.Customer;
+import de.nordakademie.iaa.library.model.Keyword;
+import de.nordakademie.iaa.library.model.Publication;
+import de.nordakademie.iaa.library.model.PublicationType;
 import de.nordakademie.iaa.library.service.api.*;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
-
-import javax.inject.Named;
 
 /**
  * @author Felix Welter

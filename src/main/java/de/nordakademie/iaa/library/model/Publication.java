@@ -4,7 +4,6 @@ package de.nordakademie.iaa.library.model;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
