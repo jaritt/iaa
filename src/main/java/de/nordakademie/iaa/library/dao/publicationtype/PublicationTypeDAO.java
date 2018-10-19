@@ -1,6 +1,3 @@
-/**
- * Author: Felix Welter
- */
 package de.nordakademie.iaa.library.dao.publicationtype;
 
 import de.nordakademie.iaa.library.model.PublicationType;
@@ -28,7 +25,7 @@ public class PublicationTypeDAO {
     }
 
     public PublicationType loadPublicationType(Long publicationTypeId) {
-        PublicationType publicationType = (PublicationType) entityManager.find(PublicationType.class, publicationTypeId);
+        PublicationType publicationType = entityManager.find(PublicationType.class, publicationTypeId);
         if (publicationType == null) {
             throw new PublicationTypeNotFoundException();
         }

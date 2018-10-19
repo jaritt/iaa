@@ -26,7 +26,7 @@ public class ReminderDAO {
     }
 
     public Reminder loadReminder(Long reminderId) {
-        Reminder reminder = (Reminder) entityManager.find(Reminder.class, reminderId);
+        Reminder reminder = entityManager.find(Reminder.class, reminderId);
         if (reminder == null) {
             throw new ReminderNotFoundException();
         }

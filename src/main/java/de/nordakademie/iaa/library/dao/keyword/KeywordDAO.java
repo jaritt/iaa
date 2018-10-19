@@ -25,7 +25,7 @@ public class KeywordDAO {
     }
 
     public Keyword loadKeyword(Long keywordId) {
-        Keyword keyword = (Keyword) entityManager.find(Keyword.class, keywordId);
+        Keyword keyword = entityManager.find(Keyword.class, keywordId);
         if (keyword == null) {
             throw new KeywordNotFoundException();
         }

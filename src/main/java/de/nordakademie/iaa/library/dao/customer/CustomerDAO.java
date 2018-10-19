@@ -1,6 +1,3 @@
-/**
- * Author: Felix Welter
- */
 package de.nordakademie.iaa.library.dao.customer;
 
 import de.nordakademie.iaa.library.model.Customer;
@@ -28,7 +25,7 @@ public class CustomerDAO {
     }
 
     public Customer loadCustomer(Long customerId) {
-        Customer customer = (Customer) entityManager.find(Customer.class, customerId);
+        Customer customer = entityManager.find(Customer.class, customerId);
         if (customer == null) {
             throw new CustomerNotFoundException();
         }

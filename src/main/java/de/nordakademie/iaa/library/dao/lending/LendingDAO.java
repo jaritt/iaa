@@ -26,7 +26,7 @@ public class LendingDAO {
     }
 
     public Lending loadLending(Long lendingId) {
-        Lending lending = (Lending) entityManager.find(Lending.class, lendingId);
+        Lending lending = entityManager.find(Lending.class, lendingId);
         if (lending == null) {
             throw new LendingNotFoundException();
         }
