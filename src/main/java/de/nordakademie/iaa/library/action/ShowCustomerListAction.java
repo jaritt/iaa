@@ -22,5 +22,9 @@ public class ShowCustomerListAction implements Action {
         return SUCCESS;
     }
 
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
 
 }
