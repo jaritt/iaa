@@ -18,11 +18,7 @@
             <result type="tiles">publicationForm</result>
             <result name="input" type="chain">showPublicationList</result>
         </action>
-        <!--
-        <action name="savePublication" class="de.nordakademie.iaa.library.action.PublicationAction">
-            <result name="success" type="chain">showPublicationList</result>
-        </action>
-        -->
+
         <action name="savePublication" class="de.nordakademie.iaa.library.action.PublicationAction" method="save">
             <result type="redirectAction">showPublicationList</result>
             <result name="input" type="tiles">publicationForm</result>

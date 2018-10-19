@@ -19,16 +19,23 @@
             <th><s:text name="label.publicationKeywords"/></th>
             <th><s:text name="label.publicationCopies"/></th>
         </tr>
-        <s:iterator value="keywords">
+        <s:iterator value="publications">
             <tr>
                 <td><s:radio list="#{id:''}" name="publicationId" theme="simple"/></td>
                 <td><s:property value="id"/></td>
-                <td><s:property value="word"/></td>
+                <td><s:property value="key"/></td>
+                <td><s:property value="title"/></td>
+                <td><s:property value="author"/></td>
+                <td><s:property value="releaseDate"/></td>
+                <td><s:property value="publisher"/></td>
+                <td><s:property value="type"/></td>
+                <td><s:property value="isbn"/></td>
+                <td><s:property value="keywords"/></td>
+                <td><s:property value="copies"/></td>
             </tr>
         </s:iterator>
     </table>
     <br>
-    <!-- <a href="<s:url action="addPublication"></s:url>">Hinzufügeen</a> -->
     <s:submit key="button.addPublication" action="addPublication"/>
     <s:submit key="button.editPublication" action="loadPublication"/>
     <s:submit key="button.deletePublication" action="deletePublication"/>
