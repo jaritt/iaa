@@ -1,9 +1,6 @@
 package de.nordakademie.iaa.library.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -33,6 +30,7 @@ public class Reminder {
     private Lending lending;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }

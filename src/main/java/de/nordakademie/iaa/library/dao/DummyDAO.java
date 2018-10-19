@@ -1,15 +1,15 @@
-/**
- * Author: Felix Welter
- */
 package de.nordakademie.iaa.library.dao;
 
 import de.nordakademie.iaa.library.model.DummyMessage;
 
 import javax.inject.Named;
 
+/**
+ * Author: Felix Welter
+ */
 @Named
 public class DummyDAO {
-    public DummyMessage getMessage(){
+    public DummyMessage getMessage() {
         return new DummyMessage();
     }
 }

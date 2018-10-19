@@ -131,6 +131,15 @@ public class Customer {
         this.matnr = matnr;
     }
 
+    @Transient
+    public String fullRepresentation() {
+        StringBuilder builder = new StringBuilder();
+        if (getFirstName() != null) builder.append(getFirstName()).append(" ");
+        if (getName() != null) builder.append(getName()).append(" ");
+        if (getMatnr() != null) builder.append("(").append(getMatnr()).append(")");
+        return builder.toString();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

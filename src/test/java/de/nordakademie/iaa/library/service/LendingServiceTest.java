@@ -23,7 +23,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 /**
  * @author Felix Welter
  */
-public class LendingServiceTest extends BasicServiceTest{
+public class LendingServiceTest extends BasicServiceTest {
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
@@ -66,6 +66,7 @@ public class LendingServiceTest extends BasicServiceTest{
         Lending lending = service.lendPublication(publication(), customer());
         assertThat(lending).isEqualTo(service.listLendings().get(0));
         assertThat(lending).isEqualTo(publication().getLendings().get(0));
+        assertThat(publication().copiesAvailable()).isEqualTo(9L);
     }
 
     @Test

@@ -1,8 +1,6 @@
 
 package de.nordakademie.iaa.library.model;
 
-import org.hibernate.annotations.NaturalId;
-
 import javax.persistence.*;
 import java.util.Objects;
 

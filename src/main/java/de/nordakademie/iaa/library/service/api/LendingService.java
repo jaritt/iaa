@@ -5,7 +5,6 @@ import de.nordakademie.iaa.library.model.Lending;
 import de.nordakademie.iaa.library.model.ProlongationNotPossible;
 import de.nordakademie.iaa.library.model.Publication;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 /**

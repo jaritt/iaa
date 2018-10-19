@@ -4,7 +4,6 @@ import de.nordakademie.iaa.library.model.Customer;
 import de.nordakademie.iaa.library.model.Lending;
 import de.nordakademie.iaa.library.model.Publication;
 import de.nordakademie.iaa.library.service.internal.api.ReturnDateCalculatorService;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 import javax.inject.Named;
 import java.time.LocalDate;
