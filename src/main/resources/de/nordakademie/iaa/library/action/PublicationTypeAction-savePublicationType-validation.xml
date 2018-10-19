@@ -4,10 +4,11 @@
                 "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
 
 <validators>
-    <field name="keyword">
+    <field name="publicationType">
         <field-validator type="visitor">
             <message/>
         </field-validator>
     </field>
 </validators>
+
 

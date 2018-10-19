@@ -1,6 +1,3 @@
-/**
- * Author: Felix Welter
- */
 package de.nordakademie.iaa.library.dao.publication;
 
 import de.nordakademie.iaa.library.model.Publication;
@@ -27,33 +24,33 @@ public class PublicationDAO {
         return entityManager.createQuery("from Publication", Publication.class).getResultList();
     }
 
-    public Publication loadPublication(Long publiationId) {
-        Publication publiation = (Publication) entityManager.find(Publication.class, publiationId);
-        if (publiation == null) {
+    public Publication loadPublication(Long publicationId) {
+        Publication publication = entityManager.find(Publication.class, publicationId);
+        if (publication == null) {
             throw new PublicationNotFoundException();
         }
-        return publiation;
+        return publication;
     }
 
     public Publication findPublicationByKey(String key) {
         TypedQuery<Publication> query = entityManager.createQuery("from Publication l where l.key = :key", Publication.class);
         query.setParameter("key", key);
-        List<Publication> publiations = query.getResultList();
-        if (publiations.isEmpty()) {
+        List<Publication> publications = query.getResultList();
+        if (publications.isEmpty()) {
             return null;
         }
-        return publiations.get(0);
+        return publications.get(0);
     }
 
-    public void deletePublication(Long publiationId) {
-        entityManager.remove(loadPublication(publiationId));
+    public void deletePublication(Long publicationId) {
+        entityManager.remove(loadPublication(publicationId));
     }
 
-    public Publication savePublication(Publication publiation) {
-        if (findPublicationByKey(publiation.getKey()) != null) {
+    public Publication savePublication(Publication publication) {
+        if (findPublicationByKey(publication.getKey()) != null) {
             throw new PublicationAlreadyExistsException();
         }
-        entityManager.persist(publiation);
-        return publiation;
+        entityManager.persist(publication);
+        return publication;
     }
 }

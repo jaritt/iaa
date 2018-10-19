@@ -79,4 +79,15 @@ public class PublicationTypeServiceImpl implements PublicationTypeService {
         }
         publicationType.setTitle(title);
     }
+
+    /**
+     * Finds a keyword identified by the word itself
+     *
+     * @param title The word to search for
+     * @return The keyword that is searched for
+     */
+    @Override
+    public PublicationType findPublicationTypeByTitle(String title) {
+        return dao.findPublicationTypeByTitle(title);
+    }
 }

@@ -2,7 +2,6 @@ package de.nordakademie.iaa.library.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -236,6 +235,11 @@ public class Lending {
     @Transient
     public Reminder getLastReminder() {
         return reminders.get(reminders.size() - 1);
+    }
+
+    @Transient
+    public String getPublicationTitle() {
+        return getPublication().getTitle();
     }
 
     @Override
