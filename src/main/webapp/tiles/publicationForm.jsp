@@ -8,7 +8,7 @@
     <s:hidden name="publication.key"/>
     <s:textfield name="publication.type" key="label.publicationType" requiredLabel="true"/>
     <s:select name="publication.type" headerKey="-1" headerValue="Select..."
-              list="publicationTypeList" listValue="title" listValueKey=""
+              list="publicationTypeList" listValue="title" listValueKey="title"
               key="label.publicationTypeText" requiredLabel="true"/>
     <s:textfield name="publication.title" key="label.publicationTitle" requiredLabel="true"/>
     <s:textfield name="publication.author" key="label.publicationAuthor" requiredLabel="true"/>
