@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class SelectAction extends ActionSupport{
+public class HelloWorldAction extends ActionSupport{
 
     private List<String> searchEngine;
 
@@ -45,7 +45,7 @@ public class SelectAction extends ActionSupport{
         return "yahoo.com";
     }
 
-    public SelectAction(){
+    public HelloWorldAction(){
         searchEngine = new ArrayList<String>();
         searchEngine.add("google.com");
         searchEngine.add("bing.com");

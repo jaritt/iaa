@@ -22,6 +22,9 @@ public class PublicationAction extends ActionSupport implements Action {
         this.publicationService = publicationService;
         this.keywordService = keywordService;
         this.publicationTypeService = publicationTypeService;
+
+        publicationTypeList = this.publicationTypeService.listPublicationTypes();
+        keywordList = this.keywordService.listKeywords();
         System.out.println("Action constructor");
     }
 
@@ -33,25 +36,73 @@ public class PublicationAction extends ActionSupport implements Action {
     private Long id;
 
     private List<PublicationType> publicationTypeList;
-    private List<Keyword> keywordList;
+    private PublicationType selectedPublicationType;
 
-    /**
-     * @return List of PublicationTypes
-     */
+    private List<Keyword> keywordList;
+    private List<Keyword> selectedKeywords;
+    private Keyword selectedKeyword;
+
+    public String getSelectedKeyword() {
+        return selectedKeyword.getWord();
+    }
+
+    public void setSelectedKeyword(Keyword selectedKeyword) {
+        this.selectedKeyword = selectedKeyword;
+    }
+
+    public List<Keyword> getSelectedKeywords() {
+        return selectedKeywords;
+    }
+
+    public void setSelectedKeywords(List<Keyword> selectedKeywords) {
+        this.selectedKeywords = selectedKeywords;
+    }
+
     public List<PublicationType> getPublicationTypeList() {
+        System.out.println("action.getPublicationTypesList");
+        System.out.println("class: " + publicationTypeService.listPublicationTypes().getClass());
         return publicationTypeService.listPublicationTypes();
     }
 
     public void setPublicationTypeList(List<PublicationType> publicationTypeList) {
+        System.out.println("action.setPublicationTypesList");
         this.publicationTypeList = publicationTypeList;
     }
 
     public List<Keyword> getKeywordList() {
+        System.out.println("action.getKeywordList");
+        System.out.println("class: " + keywordService.listKeywords().getClass());
         return keywordService.listKeywords();
     }
 
     public void setKeywordList(List<Keyword> keywordList) {
+        System.out.println("action.setKeywordList");
         this.keywordList = keywordList;
+    }
+
+    public PublicationType getSelectedPublication() {
+        System.out.println("action.getSelectedPublication");
+        return selectedPublicationType;
+    }
+
+    public void setSelectedPublicationType(PublicationType selectedPublicationType) {
+        System.out.println("action.setSelectedPublicationType");
+        this.selectedPublicationType = selectedPublicationType;
+    }
+
+    public PublicationType defaultSelectedPublicationType(){
+        System.out.println("action.defaultSelectedPublicationType");
+        return publicationTypeService.listPublicationTypes().get(0);
+    }
+
+    public String execute() {
+        System.out.println("action.execute");
+        return SUCCESS;
+    }
+
+    public String display() {
+        System.out.println("action.display");
+        return NONE;
     }
 
     public String load() throws EntityNotFoundException {
@@ -61,7 +112,12 @@ public class PublicationAction extends ActionSupport implements Action {
 
     public String save() throws PublicationAlreadyExistsException {
         System.out.println("action.save");
+
+        publication.setType(selectedPublicationType);
+        publication.setKeywords(selectedKeywords);
+
         if (publication.getId() != null) {
+            System.out.println("Action.updatePublication");
             publicationService.updatePublication(
                     publication.getId(),
                     publication.getTitle(),
@@ -73,6 +129,7 @@ public class PublicationAction extends ActionSupport implements Action {
                     publication.getKeywords(),
                     publication.getCopies());
         } else {
+            System.out.println("action.createPublication");
             publicationService.createPublication(publication);
         }
         return SUCCESS;
@@ -83,9 +140,12 @@ public class PublicationAction extends ActionSupport implements Action {
         return SUCCESS;
     }
 
-    public String publicationTypeList() throws Exception {
-        this.publicationTypeList = publicationTypeService.listPublicationTypes();
-        return SUCCESS;
+    public void validateSave() {
+        if (!publication.getTitle().getClass().equals(String.class)){
+            System.out.println("validate.Titel");
+            System.out.println(publication.getTitle().getClass() + " == " + String.class);
+            addActionError(getText("error.publicationTitle"));
+        }
     }
 
     public void validateLoad() {
@@ -113,6 +173,7 @@ public class PublicationAction extends ActionSupport implements Action {
     }
 
     public void setPublication(Publication publication) {
+        System.out.println("action.setPublication");
         this.publication = publication;
     }
 
