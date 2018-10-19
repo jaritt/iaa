@@ -238,6 +238,11 @@ public class Lending {
         return reminders.get(reminders.size() - 1);
     }
 
+    @Transient
+    public String getPublicationTitle() {
+        return getPublication().getTitle();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

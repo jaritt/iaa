@@ -22,22 +22,22 @@ abstract public class BasicServiceTest {
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
-    private CustomerService customerService;
+    protected CustomerService customerService;
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
-    private KeywordService keywordService;
+    protected KeywordService keywordService;
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
-    private PublicationService publicationService;
+    protected PublicationService publicationService;
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
-    private PublicationTypeService typeService;
+    protected PublicationTypeService typeService;
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
-    private LendingService lendingService;
+    protected LendingService lendingService;
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
-    private LendingDAO lendingDAO;
+    protected LendingDAO lendingDAO;
 
     @Before
     public void clearData() {
