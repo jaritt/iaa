@@ -20,10 +20,21 @@ public class KeywordDAO {
     @PersistenceContext
     private EntityManager entityManager;
 
+    /**
+     * List all keywords
+     *
+     * @return list of keywords
+     */
     public List<Keyword> listKeywords() {
         return entityManager.createQuery("from Keyword", Keyword.class).getResultList();
     }
 
+    /**
+     * Load a specific keyword identified by its id
+     *
+     * @param keywordId keyword identifier
+     * @return the requested keyword
+     */
     public Keyword loadKeyword(Long keywordId) {
         Keyword keyword = entityManager.find(Keyword.class, keywordId);
         if (keyword == null) {
@@ -32,6 +43,12 @@ public class KeywordDAO {
         return keyword;
     }
 
+    /**
+     * Find the keyword specific by the word itself
+     *
+     * @param word the word to search for
+     * @return the requested keyword
+     */
     public Keyword findKeywordByWord(String word) {
         TypedQuery<Keyword> query = entityManager.createQuery("from Keyword l where l.word = :word", Keyword.class);
         query.setParameter("word", word);
@@ -42,10 +59,21 @@ public class KeywordDAO {
         return keywords.get(0);
     }
 
+    /**
+     * Delete a specific keyword
+     *
+     * @param keywordId keyword identifier
+     */
     public void deleteKeyword(Long keywordId) {
         entityManager.remove(loadKeyword(keywordId));
     }
 
+    /**
+     * Save a new keyword to the database
+     *
+     * @param keyword a new keyword
+     * @return the persisted keyword
+     */
     public Keyword saveKeyword(Keyword keyword) {
         if (findKeywordByWord(keyword.getWord()) != null) {
             throw new KeywordAlreadyExistsException();
