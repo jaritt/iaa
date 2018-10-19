@@ -1,6 +1,7 @@
 package de.nordakademie.iaa.library.model;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.cglib.core.Local;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -65,6 +66,15 @@ public class LendingTest {
     void testReminderDue() {
         Lending lending = new Lending();
         lending.setReminders(new ArrayList<Reminder>());
+
+        lending.setEndDate(LocalDate.now());
+
+        assertThat(lending.isReminderDue()).isFalse();
+
+        lending.setEndDate(date(1));
+
+        assertThat(lending.isReminderDue()).isTrue();
+
         Reminder reminder = new Reminder();
         reminder.setDate(LocalDate.of(2000, 1, 1));
         lending.addReminder(reminder);
@@ -76,14 +86,17 @@ public class LendingTest {
         lending.addReminder(reminder2);
 
         assertThat(lending.isReminderDue()).isFalse();
+
+
     }
 
     @Test
     void testReminderDueAfterReturn() {
         Lending lending = new Lending();
         lending.setReminders(new ArrayList<Reminder>());
+        lending.setEndDate(date(1));
         Reminder reminder = new Reminder();
-        reminder.setDate(LocalDate.of(2000, 1, 1));
+        reminder.setDate(date(2));
         lending.addReminder(reminder);
 
         assertThat(lending.isReminderDue()).isTrue();
@@ -97,8 +110,9 @@ public class LendingTest {
     void testReminderDueAfterLoss() {
         Lending lending = new Lending();
         lending.setReminders(new ArrayList<Reminder>());
+        lending.setEndDate(date(1));
         Reminder reminder = new Reminder();
-        reminder.setDate(LocalDate.of(2000, 1, 1));
+        reminder.setDate(date(2));
         lending.addReminder(reminder);
 
         assertThat(lending.isReminderDue()).isTrue();

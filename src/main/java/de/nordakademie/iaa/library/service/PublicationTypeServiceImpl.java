@@ -1,6 +1,3 @@
-/**
- * Author: Felix Welter
- */
 package de.nordakademie.iaa.library.service;
 
 import de.nordakademie.iaa.library.dao.publicationtype.PublicationTypeDAO;
@@ -11,6 +8,12 @@ import javax.inject.Named;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
+/**
+ * Implements functions defined by PublicationTypeService
+ *
+ * @author Felix Welter
+ * @see PublicationTypeService
+ */
 @Named
 public class PublicationTypeServiceImpl implements PublicationTypeService {
 

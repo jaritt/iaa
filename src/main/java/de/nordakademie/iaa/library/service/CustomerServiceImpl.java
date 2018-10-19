@@ -1,6 +1,3 @@
-/**
- * Author: Felix Welter
- */
 package de.nordakademie.iaa.library.service;
 
 import de.nordakademie.iaa.library.dao.customer.CustomerDAO;
@@ -11,6 +8,13 @@ import javax.inject.Named;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
+/**
+ * Implements functions defined by
+ * the CustomerService interface
+ *
+ * @author Felix Welter
+ * @see CustomerService
+ */
 @Named
 public class CustomerServiceImpl implements CustomerService {
 

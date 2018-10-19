@@ -6,6 +6,8 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 /**
+ * Defines how keyword data is accessed
+ *
  * @author Felix Welter
  */
 public interface KeywordService {

@@ -6,6 +6,7 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 /**
+ * Defines how publication types are accessed
  * Author: Felix Welter
  */
 public interface PublicationTypeService {

@@ -1,6 +1,3 @@
-/**
- * Author: Felix Welter
- */
 package de.nordakademie.iaa.library.service;
 
 import de.nordakademie.iaa.library.dao.publication.PublicationDAO;
@@ -14,6 +11,12 @@ import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Implements functions defined by PublicationService
+ *
+ * @author Felix Welter
+ * @see PublicationService
+ */
 @Named
 public class PublicationServiceImpl implements PublicationService {
 

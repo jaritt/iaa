@@ -18,7 +18,7 @@ public class ReminderServiceTest extends BasicServiceTest {
     ReminderService reminderService;
 
     @Before
-    public void setupData() {
+    public void setupData() throws NoCopyAvailable {
         Customer customer = new Customer("Peter", "Parker");
         customerService.createCustomer(customer);
         PublicationType type = new PublicationType("Anleitung");
