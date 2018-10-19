@@ -34,6 +34,24 @@ public class PublicationTypeAction extends ActionSupport {
         return SUCCESS;
     }
 
+    public void validateSave() {
+        if (publicationTypeService.findPublicationTypeByTitle(publicationType.getTitle()) != null) {
+            addActionError(getText("error.publicationTypeAlreadyExists"));
+        }
+    }
+
+    public void validateLoad() {
+        if (publicationTypeId == null && publicationType == null) {
+            addActionError(getText("error.selectPublicationType"));
+        }
+    }
+
+    public void validateDelete() {
+        if (publicationTypeId == null && publicationType == null) {
+            addActionError(getText("error.selectPublicationType"));
+        }
+    }
+
     public Long getPublicationTypeId() {
         return publicationTypeId;
     }

@@ -23,7 +23,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 /**
  * @author Felix Welter
  */
-public class LendingServiceTest extends BasicServiceTest{
+public class LendingServiceTest extends BasicServiceTest {
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
@@ -62,14 +62,15 @@ public class LendingServiceTest extends BasicServiceTest{
     }
 
     @Test
-    public void testLendingCreation() {
+    public void testLendingCreation() throws NoCopyAvailable {
         Lending lending = service.lendPublication(publication(), customer());
         assertThat(lending).isEqualTo(service.listLendings().get(0));
         assertThat(lending).isEqualTo(publication().getLendings().get(0));
+        assertThat(publication().copiesAvailable()).isEqualTo(9L);
     }
 
     @Test
-    public void testLendingCreationFailWhenNoCopiesAvailable() {
+    public void testLendingCreationFailWhenNoCopiesAvailable() throws NoCopyAvailable {
         PublicationType type = new PublicationType("Anleitung");
         publicationTypeService.createPublicationType(type);
         Publication pub1 = new Publication("BG-112", "Sun Screen", type, 2L);
@@ -89,10 +90,12 @@ public class LendingServiceTest extends BasicServiceTest{
         assertThat(publication.isCopyAvailable()).isFalse();
 
         assertThat(service.listLendings().size()).isEqualTo(2);
+
+        assertThatThrownBy(() -> service.lendPublication(publication, customer())).isInstanceOf(NoCopyAvailable.class);
     }
 
     @Test
-    public void testProlongLending() {
+    public void testProlongLending() throws NoCopyAvailable {
         Lending lending = service.lendPublication(publication(), customer());
         assertThat(lending.canBeProlonged()).isTrue();
 
@@ -108,7 +111,7 @@ public class LendingServiceTest extends BasicServiceTest{
     }
 
     @Test
-    public void testMarkLendingAsReturned() {
+    public void testMarkLendingAsReturned() throws NoCopyAvailable {
         Lending lending = service.lendPublication(publication(), customer());
         assertThat(service.listLendings().get(0).isCompleted()).isFalse();
         service.markLendingAsReturned(lending);
@@ -117,7 +120,7 @@ public class LendingServiceTest extends BasicServiceTest{
     }
 
     @Test
-    public void testMarkLendingAsLost() {
+    public void testMarkLendingAsLost() throws NoCopyAvailable {
         Lending lending = service.lendPublication(publication(), customer());
         assertThat(service.listLendings().get(0).isCompleted()).isFalse();
         service.markLendingAsLost(lending);

@@ -4,7 +4,6 @@ package de.nordakademie.iaa.library.model;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -228,6 +227,10 @@ public class Publication {
         return copiesAvailable() > 0;
     }
 
+    /**
+     * Decrease the copy count of
+     * this publication by one
+     */
     public void decreaseCopyCount() {
         setCopies(getCopies() - 1);
     }

@@ -63,14 +63,19 @@ public class LendingServiceImpl implements LendingService {
      * @return the created lending
      */
     @Override
-    public Lending lendPublication(Publication publication, Customer customer) {
+    public Lending lendPublication(Publication publication, Customer customer) throws NoCopyAvailable {
+
+        if (!publication.isCopyAvailable()) {
+            throw new NoCopyAvailable();
+        }
+
         Lending lending = new Lending();
         lending.setReturned(false);
         lending.setLost(false);
         lending.setStartDate(LocalDate.now());
         lending.setEndDate(returnDateCalculator.reset().getReturnDate());
         lending.setTimesProlonged(0L);
-        lending.setReminders(new ArrayList<Reminder>());
+        lending.setReminders(new ArrayList<>());
         lending.setCustomer(customer);
         publication.addLending(lending);
         dao.saveLending(lending);

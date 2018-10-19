@@ -1,15 +1,20 @@
 package de.nordakademie.iaa.library.model;
 
+import net.bytebuddy.asm.Advice;
+
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
 /**
- * This represents a lending of a publications.
+ * This represents a lending of a publication and holds
+ * information about lending timing und the customer.
+ * Lending is aware of its reminders, if a new reminder is
+ * due and if the lending process is completed by return
+ * of the publication or loss.
  *
  * @author Felix Welter
  */
@@ -153,6 +158,12 @@ public class Lending {
         this.reminders = reminders;
     }
 
+    /**
+     * Helper to add a reminder to a
+     * lending bidirectional
+     *
+     * @param reminder the reminder to be added
+     */
     public void addReminder(Reminder reminder) {
         this.reminders.add(reminder);
         reminder.setLending(this);
@@ -196,7 +207,7 @@ public class Lending {
 
     /**
      * States if this lending has active reminders.
-     * That would mean that reminder have been sent
+     * That would mean that reminders have been sent
      * and the publication was neither returned
      * nor marked as lost
      *
@@ -224,7 +235,22 @@ public class Lending {
      */
     @Transient
     public boolean isReminderDue() {
-        return !isCompleted() && (DAYS.between(getLastReminder().getDate(), LocalDate.now()) >= REMINDER_TIME_INTERVAL);
+        if (isCompleted()) return false;
+
+        return isOverDue()
+                && (getReminders().isEmpty()
+                || ((DAYS.between(getLastReminder().getDate(), LocalDate.now()) >= REMINDER_TIME_INTERVAL)));
+    }
+
+    /**
+     * States if the lending should have been
+     * returned by now
+     *
+     * @return if return is due
+     */
+    @Transient
+    public boolean isOverDue() {
+        return LocalDate.now().isAfter(getEndDate());
     }
 
     /**
@@ -236,6 +262,16 @@ public class Lending {
     @Transient
     public Reminder getLastReminder() {
         return reminders.get(reminders.size() - 1);
+    }
+
+    /**
+     * Return the title of the related publication
+     *
+     * @return title of the related publiation
+     */
+    @Transient
+    public String getPublicationTitle() {
+        return getPublication().getTitle();
     }
 
     @Override

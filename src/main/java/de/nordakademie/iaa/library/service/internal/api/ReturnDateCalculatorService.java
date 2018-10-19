@@ -4,7 +4,6 @@ import de.nordakademie.iaa.library.model.Customer;
 import de.nordakademie.iaa.library.model.Lending;
 import de.nordakademie.iaa.library.model.Publication;
 
-import javax.swing.text.DefaultEditorKit;
 import java.time.LocalDate;
 
 /**

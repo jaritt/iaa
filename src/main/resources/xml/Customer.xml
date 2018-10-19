@@ -10,5 +10,23 @@
             <result type="tiles">customerList</result>
         </action>
 
+        <action name="addCustomer" class="de.nordakademie.iaa.library.action.CustomerAction">
+            <result type="tiles">customerForm</result>
+        </action>
+
+        <action name="loadCustomer" class="de.nordakademie.iaa.library.action.CustomerAction" method="load">
+            <result type="tiles">customerForm</result>
+            <result name="input" type="chain">showCustomerList</result>
+        </action>
+
+        <action name="saveCustomer" class="de.nordakademie.iaa.library.action.CustomerAction" method="save">
+            <result type="redirectAction">showCustomerList</result>
+            <result name="input" type="tiles">customerForm</result>
+        </action>
+
+        <action name="deleteCustomer" class="de.nordakademie.iaa.library.action.CustomerAction" method="delete">
+            <result type="redirectAction">showCustomerList</result>
+            <result name="input" type="chain">showCustomerList</result>
+        </action>
     </package>
 </struts>

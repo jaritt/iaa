@@ -4,11 +4,14 @@ import de.nordakademie.iaa.library.model.Customer;
 import de.nordakademie.iaa.library.model.Lending;
 import de.nordakademie.iaa.library.model.ProlongationNotPossible;
 import de.nordakademie.iaa.library.model.Publication;
+import de.nordakademie.iaa.library.service.NoCopyAvailable;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 /**
+ * Defines how lending data is accessed and how
+ * new lendings are created
+ *
  * @author Felix Welter
  */
 public interface LendingService {
@@ -28,7 +31,7 @@ public interface LendingService {
      * @param customer    Customer hat receives the publication
      * @return The created lending
      */
-    Lending lendPublication(Publication publication, Customer customer);
+    Lending lendPublication(Publication publication, Customer customer) throws NoCopyAvailable;
 
     /**
      * This prolongs a lending. New duration is calculated automatically.

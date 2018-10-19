@@ -39,4 +39,7 @@
 		<put-attribute name="content" value="/tiles/customerList.jsp"/>
 	</definition>
 
+	<definition name="customerForm" extends="mainTemplate">
+		<put-attribute name="content" value="/tiles/customerForm.jsp"/>
+	</definition>
 </tiles-definitions>

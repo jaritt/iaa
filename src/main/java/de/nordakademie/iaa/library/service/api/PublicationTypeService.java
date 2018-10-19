@@ -6,6 +6,7 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 /**
+ * Defines how publication types are accessed
  * Author: Felix Welter
  */
 public interface PublicationTypeService {
@@ -49,4 +50,12 @@ public interface PublicationTypeService {
      * @throws EntityNotFoundException
      */
     void updatePublicationType(Long id, String title) throws EntityNotFoundException;
+
+    /**
+     * Finds a keyword identified by the word itself
+     *
+     * @param title The word to search for
+     * @return The keyword that is searched for
+     */
+    PublicationType findPublicationTypeByTitle(String title);
 }

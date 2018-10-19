@@ -6,6 +6,8 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 /**
+ * Defines how customer data is accessed
+ *
  * @author Felix Welter
  */
 public interface CustomerService {

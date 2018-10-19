@@ -3,15 +3,16 @@
  */
 package de.nordakademie.iaa.library.model;
 
-import org.hibernate.annotations.NaturalId;
-
 import javax.persistence.*;
 import java.util.Objects;
 
 /**
- * This class indicates which type a publication is of.
+ * This class represents a certain
+ * type of publication
+ * and therefore indicates which
+ * type a publication is of.
  *
- * @author Feli Welter
+ * @author Felix Welter
  */
 @Entity
 public class PublicationType {

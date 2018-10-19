@@ -1,6 +1,3 @@
-/**
- * Author: Felix Welter
- */
 package de.nordakademie.iaa.library.service;
 
 import de.nordakademie.iaa.library.dao.publicationtype.PublicationTypeDAO;
@@ -11,6 +8,12 @@ import javax.inject.Named;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
+/**
+ * Implements functions defined by PublicationTypeService
+ *
+ * @author Felix Welter
+ * @see PublicationTypeService
+ */
 @Named
 public class PublicationTypeServiceImpl implements PublicationTypeService {
 
@@ -78,5 +81,16 @@ public class PublicationTypeServiceImpl implements PublicationTypeService {
             throw new EntityNotFoundException();
         }
         publicationType.setTitle(title);
+    }
+
+    /**
+     * Finds a keyword identified by the word itself
+     *
+     * @param title The word to search for
+     * @return The keyword that is searched for
+     */
+    @Override
+    public PublicationType findPublicationTypeByTitle(String title) {
+        return dao.findPublicationTypeByTitle(title);
     }
 }

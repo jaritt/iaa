@@ -1,6 +1,3 @@
-/**
- * Author: Felix Welter
- */
 package de.nordakademie.iaa.library.dao.publication;
 
 import de.nordakademie.iaa.library.model.Publication;
@@ -23,37 +20,65 @@ public class PublicationDAO {
     @PersistenceContext
     private EntityManager entityManager;
 
+    /**
+     * List all publications
+     *
+     * @return list of publications
+     */
     public List<Publication> listPublications() {
         return entityManager.createQuery("from Publication", Publication.class).getResultList();
     }
 
-    public Publication loadPublication(Long publiationId) {
-        Publication publiation = (Publication) entityManager.find(Publication.class, publiationId);
-        if (publiation == null) {
+    /**
+     * Load a specific publication
+     *
+     * @param publicationId publication identifier
+     * @return requested publication
+     */
+    public Publication loadPublication(Long publicationId) {
+        Publication publication = entityManager.find(Publication.class, publicationId);
+        if (publication == null) {
             throw new PublicationNotFoundException();
         }
-        return publiation;
+        return publication;
     }
 
+    /**
+     * Load a publication identified by its non-technical publication key
+     *
+     * @param key publication key
+     * @return the requested publication
+     */
     public Publication findPublicationByKey(String key) {
         TypedQuery<Publication> query = entityManager.createQuery("from Publication l where l.key = :key", Publication.class);
         query.setParameter("key", key);
-        List<Publication> publiations = query.getResultList();
-        if (publiations.isEmpty()) {
+        List<Publication> publications = query.getResultList();
+        if (publications.isEmpty()) {
             return null;
         }
-        return publiations.get(0);
+        return publications.get(0);
     }
 
-    public void deletePublication(Long publiationId) {
-        entityManager.remove(loadPublication(publiationId));
+    /**
+     * Delete a specific publication
+     *
+     * @param publicationId publication identifier
+     */
+    public void deletePublication(Long publicationId) {
+        entityManager.remove(loadPublication(publicationId));
     }
 
-    public Publication savePublication(Publication publiation) {
-        if (findPublicationByKey(publiation.getKey()) != null) {
+    /**
+     * Save a new publication to the database
+     *
+     * @param publication a new publication
+     * @return the persisted publication
+     */
+    public Publication savePublication(Publication publication) {
+        if (findPublicationByKey(publication.getKey()) != null) {
             throw new PublicationAlreadyExistsException();
         }
-        entityManager.persist(publiation);
-        return publiation;
+        entityManager.persist(publication);
+        return publication;
     }
 }
