@@ -11,6 +11,8 @@ import de.nordakademie.iaa.library.service.api.PublicationService;
 import de.nordakademie.iaa.library.service.api.PublicationTypeService;
 
 import javax.persistence.EntityNotFoundException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class PublicationAction extends ActionSupport implements Action {
@@ -28,14 +30,21 @@ public class PublicationAction extends ActionSupport implements Action {
         System.out.println("Action constructor");
     }
 
+    final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+
     private PublicationService publicationService;
     private KeywordService keywordService;
     private PublicationTypeService publicationTypeService;
 
     private Publication publication;
     private Long id;
+    private Long typeId;
+
+    private String publicationDate;
+    private LocalDate releaseDate;
 
     private List<PublicationType> publicationTypeList;
+    private List<String> publicationTypeTitleList;
     private PublicationType selectedPublicationType;
 
     private List<Keyword> keywordList;
@@ -62,6 +71,15 @@ public class PublicationAction extends ActionSupport implements Action {
         System.out.println("action.getPublicationTypesList");
         System.out.println("class: " + publicationTypeService.listPublicationTypes().getClass());
         return publicationTypeService.listPublicationTypes();
+    }
+
+    public List<String> getPublicationTypeTitleList() {
+        publicationTypeList = getPublicationTypeList();
+
+        for (PublicationType publicationType: publicationTypeList) {
+            publicationTypeTitleList.add(publicationType.getTitle());
+        }
+        return publicationTypeTitleList;
     }
 
     public void setPublicationTypeList(List<PublicationType> publicationTypeList) {
@@ -175,6 +193,28 @@ public class PublicationAction extends ActionSupport implements Action {
     public void setPublication(Publication publication) {
         System.out.println("action.setPublication");
         this.publication = publication;
+    }
+
+    public Long getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(Long typeId) {
+        this.typeId = typeId;
+        publication.setType(publicationTypeService.loadPublicationType(typeId));
+    }
+
+    public String getPublicationDate() {
+        return publicationDate;
+    }
+
+    public void setPublicationDate(String publicationDate) {
+        this.publicationDate = publicationDate;
+        publication.setReleaseDate(convertStringToDate(publicationDate));
+    }
+
+    public LocalDate convertStringToDate(String publicationDate) {
+        return releaseDate = LocalDate.parse(publicationDate, formatter);
     }
 
 }
