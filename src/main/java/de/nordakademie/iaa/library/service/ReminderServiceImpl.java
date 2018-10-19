@@ -15,18 +15,22 @@ import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.util.List;
 
+
+/**
+ * Implements functions defined by ReminderService
+ *
+ * @author Felix Welter
+ * @see ReminderService
+ */
 @Named
 public class ReminderServiceImpl implements ReminderService {
 
     private ReminderDAO dao;
 
-    private LendingService lendingService;
-
     private NotifierService notifier;
 
-    public ReminderServiceImpl(ReminderDAO dao, LendingService lendingService, NotifierService notifier) {
+    public ReminderServiceImpl(ReminderDAO dao, NotifierService notifier) {
         this.dao = dao;
-        this.lendingService = lendingService;
         this.notifier = notifier;
     }
 

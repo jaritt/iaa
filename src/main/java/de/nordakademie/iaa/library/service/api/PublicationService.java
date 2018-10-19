@@ -9,6 +9,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 /**
+ * Defines how publication data is accessed
+ *
  * @author Felix Welter
  */
 public interface PublicationService {

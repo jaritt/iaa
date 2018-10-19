@@ -1,6 +1,3 @@
-/**
- * Author: Felix Welter
- */
 package de.nordakademie.iaa.library.service;
 
 import de.nordakademie.iaa.library.dao.keyword.KeywordDAO;
@@ -11,6 +8,12 @@ import javax.inject.Named;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
+/**
+ * Implements functions defined by KeywordService
+ *
+ * @author Felix Welter
+ * @see KeywordService
+ */
 @Named
 public class KeywordServiceImpl implements KeywordService {
 

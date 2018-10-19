@@ -8,6 +8,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 /**
+ * Defines how reminder data is accessed and how new
+ * reminders are sent to customers
+ *
  * @author Felix Welter
  */
 public interface ReminderService {
@@ -55,6 +58,7 @@ public interface ReminderService {
 
     /**
      * Send a reminder about a certain lending
+     * to the related customer
      *
      * @param lending
      */

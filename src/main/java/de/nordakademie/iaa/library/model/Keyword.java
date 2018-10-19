@@ -1,4 +1,3 @@
-
 package de.nordakademie.iaa.library.model;
 
 import javax.persistence.*;
@@ -6,7 +5,7 @@ import java.util.Objects;
 
 /**
  * This class represents a keyword. Keywords are assignable
- * to publications are helpful during a search process or
+ * to publications. Helpful during a search process or
  * categorisation.
  *
  * @author Felix Welter

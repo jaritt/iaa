@@ -227,6 +227,10 @@ public class Publication {
         return copiesAvailable() > 0;
     }
 
+    /**
+     * Decrease the copy count of
+     * this publication by one
+     */
     public void decreaseCopyCount() {
         setCopies(getCopies() - 1);
     }

@@ -20,10 +20,21 @@ public class PublicationDAO {
     @PersistenceContext
     private EntityManager entityManager;
 
+    /**
+     * List all publications
+     *
+     * @return list of publications
+     */
     public List<Publication> listPublications() {
         return entityManager.createQuery("from Publication", Publication.class).getResultList();
     }
 
+    /**
+     * Load a specific publication
+     *
+     * @param publicationId publication identifier
+     * @return requested publication
+     */
     public Publication loadPublication(Long publicationId) {
         Publication publication = entityManager.find(Publication.class, publicationId);
         if (publication == null) {
@@ -32,6 +43,12 @@ public class PublicationDAO {
         return publication;
     }
 
+    /**
+     * Load a publication identified by its non-technical publication key
+     *
+     * @param key publication key
+     * @return the requested publication
+     */
     public Publication findPublicationByKey(String key) {
         TypedQuery<Publication> query = entityManager.createQuery("from Publication l where l.key = :key", Publication.class);
         query.setParameter("key", key);
@@ -42,10 +59,21 @@ public class PublicationDAO {
         return publications.get(0);
     }
 
+    /**
+     * Delete a specific publication
+     *
+     * @param publicationId publication identifier
+     */
     public void deletePublication(Long publicationId) {
         entityManager.remove(loadPublication(publicationId));
     }
 
+    /**
+     * Save a new publication to the database
+     *
+     * @param publication a new publication
+     * @return the persisted publication
+     */
     public Publication savePublication(Publication publication) {
         if (findPublicationByKey(publication.getKey()) != null) {
             throw new PublicationAlreadyExistsException();
