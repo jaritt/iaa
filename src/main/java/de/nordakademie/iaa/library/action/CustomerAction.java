@@ -35,6 +35,18 @@ public class CustomerAction extends ActionSupport {
         return SUCCESS;
     }
 
+        public void validateLoad() {
+        if (customerId == null && customer == null) {
+            addActionError(getText("error.selectCustomer"));
+        }
+    }
+
+    public void validateDelete() {
+        if (customerId == null && customer == null) {
+            addActionError(getText("error.selectCustomer"));
+        }
+    }
+
     public Long getCustomerId() {
         return customerId;
     }
