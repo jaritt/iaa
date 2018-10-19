@@ -24,4 +24,10 @@
             <message key="error.fieldRequired"/>
         </field-validator>
     </field>
+    <field name="matnr">
+        <field-validator type="regex">
+            <param name="regexExpression">[0-9]</param>
+            <message key="error.onlyNumbersAllowed"/>
+        </field-validator>
+    </field>
 </validators>
