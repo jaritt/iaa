@@ -1,6 +1,3 @@
-/**
- * Author: Felix Welter
- */
 package de.nordakademie.iaa.library.service.api;
 
 import de.nordakademie.iaa.library.model.Keyword;
@@ -12,6 +9,9 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author Felix Welter
+ */
 public interface PublicationService {
     /**
      * Takes a new publication and stores it in the database.

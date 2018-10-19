@@ -2,11 +2,12 @@ package de.nordakademie.iaa.library.action;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
-import de.nordakademie.iaa.library.dao.KeywordAlreadyExistsException;
+import de.nordakademie.iaa.library.dao.keyword.KeywordAlreadyExistsException;
 import de.nordakademie.iaa.library.model.Keyword;
 import de.nordakademie.iaa.library.service.api.KeywordService;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
 public class KeywordAction extends ActionSupport implements Action {
 
@@ -18,6 +19,7 @@ public class KeywordAction extends ActionSupport implements Action {
 
     private Long id;
     private Keyword keyword;
+    private List<Keyword> keywordList;
 
     public String load() throws EntityNotFoundException {
         keyword = keywordService.loadKeyword(id);
@@ -35,6 +37,11 @@ public class KeywordAction extends ActionSupport implements Action {
 
     public String delete() throws EntityNotFoundException {
         keywordService.deleteKeyword(id);
+        return SUCCESS;
+    }
+
+    public String getKeywords() throws Exception {
+        keywordService.listKeywords();
         return SUCCESS;
     }
 
@@ -63,6 +70,7 @@ public class KeywordAction extends ActionSupport implements Action {
             addActionError(getText("error.selectKeyword"));
         }
     }
+
 
     public Long getKeywordId() {
         return id;

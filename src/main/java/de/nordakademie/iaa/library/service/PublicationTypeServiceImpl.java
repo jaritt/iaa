@@ -3,7 +3,7 @@
  */
 package de.nordakademie.iaa.library.service;
 
-import de.nordakademie.iaa.library.dao.PublicationTypeDAO;
+import de.nordakademie.iaa.library.dao.publicationtype.PublicationTypeDAO;
 import de.nordakademie.iaa.library.model.PublicationType;
 import de.nordakademie.iaa.library.service.api.PublicationTypeService;
 

@@ -1,6 +1,3 @@
-/**
- * Author: Felix Welter
- */
 package de.nordakademie.iaa.library.service.api;
 
 import de.nordakademie.iaa.library.model.Keyword;
@@ -8,6 +5,9 @@ import de.nordakademie.iaa.library.model.Keyword;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
+/**
+ * @author Felix Welter
+ */
 public interface KeywordService {
     /**
      * Takes a new keyword and stores it in the database.

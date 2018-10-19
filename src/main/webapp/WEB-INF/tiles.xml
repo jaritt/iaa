@@ -19,6 +19,14 @@
 		<put-attribute name="content" value="/tiles/keywordForm.jsp"/>
 	</definition>
 
+	<definition name="publicationList" extends="mainTemplate">
+		<put-attribute name="content" value="/tiles/publicationList.jsp"/>
+	</definition>
+
+	<definition name="publicationForm" extends="mainTemplate">
+		<put-attribute name="content" value="/tiles/publicationForm.jsp"/>
+	</definition>
+
 	<definition name="publicationTypeList" extends="mainTemplate">
 		<put-attribute name="content" value="/tiles/publicationTypeList.jsp"/>
 	</definition>
@@ -30,4 +38,5 @@
 	<definition name="customerList" extends="mainTemplate">
 		<put-attribute name="content" value="/tiles/customerList.jsp"/>
 	</definition>
+
 </tiles-definitions>

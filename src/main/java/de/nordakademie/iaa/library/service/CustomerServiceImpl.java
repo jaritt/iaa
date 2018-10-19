@@ -3,7 +3,7 @@
  */
 package de.nordakademie.iaa.library.service;
 
-import de.nordakademie.iaa.library.dao.CustomerDAO;
+import de.nordakademie.iaa.library.dao.customer.CustomerDAO;
 import de.nordakademie.iaa.library.model.Customer;
 import de.nordakademie.iaa.library.service.api.CustomerService;
 

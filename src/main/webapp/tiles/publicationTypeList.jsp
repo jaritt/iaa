@@ -16,7 +16,7 @@
         <tr>
             <th></th>
             <th><s:text name="label.publicationTypeId"/></th>
-            <th><s:text name="label.publicationTypeTitle"/></th>
+            <th><s:text name="label.publicationTypeText"/></th>
         </tr>
         <s:iterator value="publicationTypes">
         <tr>

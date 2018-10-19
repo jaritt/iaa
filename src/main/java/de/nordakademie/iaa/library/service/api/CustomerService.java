@@ -1,6 +1,3 @@
-/**
- * Author: Felix Welter
- */
 package de.nordakademie.iaa.library.service.api;
 
 import de.nordakademie.iaa.library.model.Customer;
@@ -8,6 +5,9 @@ import de.nordakademie.iaa.library.model.Customer;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
+/**
+ * @author Felix Welter
+ */
 public interface CustomerService {
     /**
      * Takes a new customer and stores it in the database.

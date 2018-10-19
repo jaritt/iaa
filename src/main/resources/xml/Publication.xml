@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="Publication" extends="tiles-default">
+        <action name="showPublicationList" class="de.nordakademie.iaa.library.action.ShowPublicationListAction">
+            <result type="tiles">publicationList</result>
+        </action>
+
+        <action name="addPublication" class="de.nordakademie.iaa.library.action.PublicationAction">
+            <result type="tiles">publicationForm</result>
+        </action>
+
+        <action name="loadPublication" class="de.nordakademie.iaa.library.action.PublicationAction" method="load">
+            <result type="tiles">publicationForm</result>
+            <result name="input" type="chain">showPublicationList</result>
+        </action>
+
+        <action name="savePublication" class="de.nordakademie.iaa.library.action.PublicationAction" method="save">
+            <result type="redirectAction">showPublicationList</result>
+            <result name="input" type="tiles">publicationForm</result>
+        </action>
+
+        <action name="deletePublication" class="de.nordakademie.iaa.library.action.PublicationAction" method="delete">
+            <result type="redirectAction">showPublicationList</result>
+            <result name="input" type="chain">showPublicationList</result>
+        </action>
+    </package>
+</struts>
