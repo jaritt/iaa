@@ -1,13 +1,15 @@
 package de.nordakademie.iaa.library.action;
 
+import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
-import de.nordakademie.iaa.library.dao.KeywordAlreadyExistsException;
+import de.nordakademie.iaa.library.dao.keyword.KeywordAlreadyExistsException;
 import de.nordakademie.iaa.library.model.Keyword;
 import de.nordakademie.iaa.library.service.api.KeywordService;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
-public class KeywordAction extends ActionSupport {
+public class KeywordAction extends ActionSupport implements Action {
 
     public KeywordAction(KeywordService keywordService) {
         this.keywordService = keywordService;
@@ -17,6 +19,7 @@ public class KeywordAction extends ActionSupport {
 
     private Long id;
     private Keyword keyword;
+    private List<Keyword> keywordList;
 
     public String load() throws EntityNotFoundException {
         keyword = keywordService.loadKeyword(id);
@@ -37,6 +40,11 @@ public class KeywordAction extends ActionSupport {
         return SUCCESS;
     }
 
+    public String getKeywords() throws Exception {
+        keywordService.listKeywords();
+        return SUCCESS;
+    }
+
     /**
      * To implement validation for specific methods, use "validate" + "MethodeName" as method description.
      * Link below for further instruction.
@@ -45,22 +53,25 @@ public class KeywordAction extends ActionSupport {
      *
      */
 
+    public void validateSave() {
+        if (keywordService.findKeywordByWord(keyword.getWord()) != null) {
+            addActionError(getText("error.keywordAlreadyExists"));
+        }
+    }
+
+    public void validateLoad() {
+        if (id == null && keyword == null) {
+            addActionError(getText("error.selectKeyword"));
+        }
+    }
+
     public void validateDelete() {
         if (id == null && keyword == null) {
             addActionError(getText("error.selectKeyword"));
         }
     }
 
-    /**
-     * waiting for Felix to implement method findKeywordByWord in KeywordServiceImpl
-     */
-/*
-    public void validateSave() {
-        if (keywordService.findKeywordByWord(keyword.getWord()) != null) {
-            addActionError(getText("error.keywordAlreadyExists"));
-        }
-    }
-*/
+
     public Long getKeywordId() {
         return id;
     }

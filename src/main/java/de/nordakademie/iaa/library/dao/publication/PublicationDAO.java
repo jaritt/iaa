@@ -1,7 +1,7 @@
 /**
  * Author: Felix Welter
  */
-package de.nordakademie.iaa.library.dao;
+package de.nordakademie.iaa.library.dao.publication;
 
 import de.nordakademie.iaa.library.model.Publication;
 
@@ -35,7 +35,7 @@ public class PublicationDAO {
         return publiation;
     }
 
-    public Publication findPublicationByWord(String key) {
+    public Publication findPublicationByKey(String key) {
         TypedQuery<Publication> query = entityManager.createQuery("from Publication l where l.key = :key", Publication.class);
         query.setParameter("key", key);
         List<Publication> publiations = query.getResultList();
@@ -50,7 +50,7 @@ public class PublicationDAO {
     }
 
     public Publication savePublication(Publication publiation) {
-        if (findPublicationByWord(publiation.getKey()) != null) {
+        if (findPublicationByKey(publiation.getKey()) != null) {
             throw new PublicationAlreadyExistsException();
         }
         entityManager.persist(publiation);

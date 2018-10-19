@@ -1,7 +1,4 @@
-/**
- * Author: Felix Welter
- */
-package de.nordakademie.iaa.library.dao;
+package de.nordakademie.iaa.library.dao.keyword;
 
 import de.nordakademie.iaa.library.model.Keyword;
 
@@ -50,7 +47,7 @@ public class KeywordDAO {
     }
 
     public Keyword saveKeyword(Keyword keyword) {
-        if (findKeywordByWord(keyword.getWord()) != null){
+        if (findKeywordByWord(keyword.getWord()) != null) {
             throw new KeywordAlreadyExistsException();
         }
         entityManager.persist(keyword);

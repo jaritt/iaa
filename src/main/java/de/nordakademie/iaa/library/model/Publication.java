@@ -4,8 +4,9 @@ package de.nordakademie.iaa.library.model;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -17,6 +18,26 @@ import java.util.stream.Collectors;
  */
 @Entity
 public class Publication {
+
+    public Publication() {
+
+    }
+
+    public Publication(String key, String title) {
+        this.key = key;
+        this.title = title;
+        this.setKeywords(new ArrayList<>());
+        this.setLendings(new ArrayList<>());
+    }
+
+    public Publication(String key, String title, PublicationType type, Long copies) {
+        this.key = key;
+        this.title = title;
+        this.type = type;
+        this.copies = copies;
+        this.setKeywords(new ArrayList<>());
+        this.setLendings(new ArrayList<>());
+    }
 
     /**
      * Identifier
@@ -67,6 +88,11 @@ public class Publication {
      * Count of copies
      */
     private Long copies;
+
+    /**
+     * Lendings of this publication
+     */
+    private List<Lending> lendings;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -123,7 +149,6 @@ public class Publication {
         this.publisher = publisher;
     }
 
-
     @ManyToOne(optional = false)
     public PublicationType getType() {
         return type;
@@ -164,6 +189,47 @@ public class Publication {
 
     public void setCopies(Long copies) {
         this.copies = copies;
+    }
+
+    @OneToMany
+    public List<Lending> getLendings() {
+        return lendings;
+    }
+
+    public void setLendings(List<Lending> lendings) {
+        this.lendings = lendings;
+    }
+
+    @Transient
+    public void addLending(Lending lending) {
+        this.lendings.add(lending);
+        lending.setPublication(this);
+    }
+
+    /**
+     * States how many copies of this publication
+     * are available and could be lend right now.
+     *
+     * @return How many copies are available
+     */
+    @Transient
+    public Long copiesAvailable() {
+        return getCopies() - lendings.stream().filter(l -> !l.isCompleted()).collect(Collectors.toList()).size();
+    }
+
+    /**
+     * States if there is at least one more copy of thi
+     * publication that can be borrowed
+     *
+     * @return If a copy of publication is available
+     */
+    @Transient
+    public boolean isCopyAvailable() {
+        return copiesAvailable() > 0;
+    }
+
+    public void decreaseCopyCount() {
+        setCopies(getCopies() - 1);
     }
 
     @Override

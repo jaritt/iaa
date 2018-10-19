@@ -3,7 +3,6 @@ package de.nordakademie.iaa.library.model;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -55,5 +54,16 @@ public class PublicationTest {
         l2.setReturned(true);
 
         assertThat(publication.isCopyAvailable()).isTrue();
+    }
+
+    @Test
+    void testAddLending() {
+        Lending lending = new Lending();
+        Publication publication = new Publication();
+        publication.setLendings(new ArrayList<Lending>());
+
+        publication.addLending(lending);
+
+        assertThat(lending.getPublication().equals(lending));
     }
 }

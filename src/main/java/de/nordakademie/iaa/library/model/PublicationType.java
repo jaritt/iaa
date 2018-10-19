@@ -5,10 +5,7 @@ package de.nordakademie.iaa.library.model;
 
 import org.hibernate.annotations.NaturalId;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 /**
@@ -18,6 +15,14 @@ import java.util.Objects;
  */
 @Entity
 public class PublicationType {
+
+    public PublicationType() {
+
+    }
+
+    public PublicationType(String title) {
+        this.title = title;
+    }
 
     /**
      * The identifier
@@ -39,7 +44,7 @@ public class PublicationType {
         this.id = id;
     }
 
-    @NaturalId
+    @Basic
     public String getTitle() {
         return title;
     }
