@@ -38,48 +38,21 @@ public class PublicationAction extends ActionSupport implements Action {
 
     private Publication publication;
     private Long id;
-    private Long typeId;
+    private Long selectedTypeId;
+
+    //private List<Long> selectedKeywordIds;
+
+    private Long selectedKeywordId;
 
     private String publicationDate;
     private LocalDate releaseDate;
 
     private List<PublicationType> publicationTypeList;
-    private List<String> publicationTypeTitleList;
-    private PublicationType selectedPublicationType;
-
     private List<Keyword> keywordList;
-    private List<Keyword> selectedKeywords;
-    private Keyword selectedKeyword;
-
-    public String getSelectedKeyword() {
-        return selectedKeyword.getWord();
-    }
-
-    public void setSelectedKeyword(Keyword selectedKeyword) {
-        this.selectedKeyword = selectedKeyword;
-    }
-
-    public List<Keyword> getSelectedKeywords() {
-        return selectedKeywords;
-    }
-
-    public void setSelectedKeywords(List<Keyword> selectedKeywords) {
-        this.selectedKeywords = selectedKeywords;
-    }
 
     public List<PublicationType> getPublicationTypeList() {
-        System.out.println("action.getPublicationTypesList");
-        System.out.println("class: " + publicationTypeService.listPublicationTypes().getClass());
+        System.out.println("action.getPublicationTypesList " + publicationTypeService.listPublicationTypes().getClass());
         return publicationTypeService.listPublicationTypes();
-    }
-
-    public List<String> getPublicationTypeTitleList() {
-        publicationTypeList = getPublicationTypeList();
-
-        for (PublicationType publicationType: publicationTypeList) {
-            publicationTypeTitleList.add(publicationType.getTitle());
-        }
-        return publicationTypeTitleList;
     }
 
     public void setPublicationTypeList(List<PublicationType> publicationTypeList) {
@@ -88,8 +61,8 @@ public class PublicationAction extends ActionSupport implements Action {
     }
 
     public List<Keyword> getKeywordList() {
-        System.out.println("action.getKeywordList");
-        System.out.println("class: " + keywordService.listKeywords().getClass());
+        System.out.println("action.getKeywordList " + keywordService.listKeywords().getClass().toString());
+        System.out.println();
         return keywordService.listKeywords();
     }
 
@@ -98,44 +71,25 @@ public class PublicationAction extends ActionSupport implements Action {
         this.keywordList = keywordList;
     }
 
-    public PublicationType getSelectedPublication() {
-        System.out.println("action.getSelectedPublication");
-        return selectedPublicationType;
-    }
-
-    public void setSelectedPublicationType(PublicationType selectedPublicationType) {
-        System.out.println("action.setSelectedPublicationType");
-        this.selectedPublicationType = selectedPublicationType;
-    }
-
-    public PublicationType defaultSelectedPublicationType(){
-        System.out.println("action.defaultSelectedPublicationType");
-        return publicationTypeService.listPublicationTypes().get(0);
-    }
-
-    public String execute() {
-        System.out.println("action.execute");
-        return SUCCESS;
-    }
-
-    public String display() {
-        System.out.println("action.display");
-        return NONE;
-    }
-
     public String load() throws EntityNotFoundException {
         publication = publicationService.loadPublication(id);
+        publicationTypeList = publicationTypeService.listPublicationTypes();
+        keywordList = keywordService.listKeywords();
+
         return SUCCESS;
     }
 
     public String save() throws PublicationAlreadyExistsException {
         System.out.println("action.save");
 
-        publication.setType(selectedPublicationType);
-        publication.setKeywords(selectedKeywords);
+        publication.setType(publicationTypeService.loadPublicationType(selectedTypeId));
+        System.out.println("action.save SelectedTypeId: " + selectedTypeId);
+        System.out.println("action.save SelectedTypeObject: " + publicationTypeService.loadPublicationType(selectedTypeId));
+        System.out.println("action.save SelectedTypeTitle: " + publicationTypeService.loadPublicationType(selectedTypeId).getTitle());
+        System.out.println("action.save getPublicationype: " + publication.getType());
 
         if (publication.getId() != null) {
-            System.out.println("Action.updatePublication");
+            System.out.println("action.updatePublication");
             publicationService.updatePublication(
                     publication.getId(),
                     publication.getTitle(),
@@ -160,7 +114,7 @@ public class PublicationAction extends ActionSupport implements Action {
 
     public void validateSave() {
         if (!publication.getTitle().getClass().equals(String.class)){
-            System.out.println("validate.Titel");
+            System.out.println("validate.publicationTitel");
             System.out.println(publication.getTitle().getClass() + " == " + String.class);
             addActionError(getText("error.publicationTitle"));
         }
@@ -195,26 +149,54 @@ public class PublicationAction extends ActionSupport implements Action {
         this.publication = publication;
     }
 
-    public Long getTypeId() {
-        return typeId;
+    public Long getSelectedTypeId() {
+        System.out.println("action.getSelectedTypeId");
+        return selectedTypeId;
     }
 
-    public void setTypeId(Long typeId) {
-        this.typeId = typeId;
-        publication.setType(publicationTypeService.loadPublicationType(typeId));
+    public void setSelectedTypeId(Long selectedTypeId) {
+        System.out.println("action.setSelectedTypeId");
+        this.selectedTypeId = selectedTypeId;
+        publication.setType(publicationTypeService.loadPublicationType(selectedTypeId));
     }
+
+    /*
+    public List<Long> getSelectedKeywordIds() {
+        System.out.println("action.getSelectedKeywordIds");
+        return selectedKeywordIds;
+    }
+    /*
+
+    /**
+     * @Todo
+     * Der KeywordService sollte die Möglichkeit haben,
+     * eine List mit den selektierten Keywords zu erhalten.
+     *
+     */
+
+    /*
+    public void setSelectedKeywordIds(List<Long> selectedKeywordIds) {
+        System.out.println("action.setSelectedKeywordIds");
+        System.out.println("--> SelectedKeywordIds: " + selectedKeywordIds);
+        System.out.println("--> KeywordService.listKeywords(): " + keywordService.listKeywords());
+        this.selectedKeywordIds = selectedKeywordIds;
+        publication.setKeywords(keywordService.listKeywords());
+    }
+    */
 
     public String getPublicationDate() {
+        System.out.println("action.getPublicationDate");
         return publicationDate;
     }
 
     public void setPublicationDate(String publicationDate) {
+        System.out.println("action.setPublicationDate");
         this.publicationDate = publicationDate;
         publication.setReleaseDate(convertStringToDate(publicationDate));
     }
 
     public LocalDate convertStringToDate(String publicationDate) {
+        System.out.println("action.convertStringToDate");
         return releaseDate = LocalDate.parse(publicationDate, formatter);
     }
-
 }
