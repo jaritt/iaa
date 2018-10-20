@@ -42,4 +42,8 @@
 	<definition name="customerForm" extends="mainTemplate">
 		<put-attribute name="content" value="/tiles/customerForm.jsp"/>
 	</definition>
+
+    <definition name="lendingList" extends="mainTemplate">
+        <put-attribute name="content" value="/tiles/lendingList.jsp"/>
+    </definition>
 </tiles-definitions>
