@@ -23,8 +23,12 @@
 		<put-attribute name="content" value="/tiles/publicationList.jsp"/>
 	</definition>
 
-	<definition name="publicationForm" extends="mainTemplate">
-		<put-attribute name="content" value="/tiles/publicationForm.jsp"/>
+	<definition name="publicationCreateForm" extends="mainTemplate">
+		<put-attribute name="content" value="/tiles/publicationCreateForm.jsp"/>
+	</definition>
+
+	<definition name="publicationUpdateForm" extends="mainTemplate">
+		<put-attribute name="content" value="/tiles/publicationUpdateForm.jsp"/>
 	</definition>
 
 	<definition name="publicationTypeList" extends="mainTemplate">

@@ -7,6 +7,7 @@ import de.nordakademie.iaa.library.model.Keyword;
 import de.nordakademie.iaa.library.model.Publication;
 import de.nordakademie.iaa.library.model.PublicationType;
 import de.nordakademie.iaa.library.service.api.KeywordService;
+import de.nordakademie.iaa.library.service.api.LendingService;
 import de.nordakademie.iaa.library.service.api.PublicationService;
 import de.nordakademie.iaa.library.service.api.PublicationTypeService;
 
@@ -20,21 +21,24 @@ public class PublicationAction extends ActionSupport implements Action {
     public PublicationAction(
             PublicationService publicationService,
             KeywordService keywordService,
-            PublicationTypeService publicationTypeService) {
+            PublicationTypeService publicationTypeService,
+            LendingService lendingService) {
         this.publicationService = publicationService;
         this.keywordService = keywordService;
         this.publicationTypeService = publicationTypeService;
+        this.lendingService = lendingService;
 
         publicationTypeList = this.publicationTypeService.listPublicationTypes();
         keywordList = this.keywordService.listKeywords();
         System.out.println("Action constructor");
     }
 
-    final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+    final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-MM-yyyy");
 
     private PublicationService publicationService;
     private KeywordService keywordService;
     private PublicationTypeService publicationTypeService;
+    private LendingService lendingService;
 
     private Publication publication;
     private Long id;

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.2//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+
+<validators>
+    <field name="key">
+        <field-validator type="requiredstring">
+            <message key="error.fieldRequired"/>
+        </field-validator>
+        <field-validator type="regex">
+            <param name="regex">^(LS)-(\d{4,})$</param>
+            <message key="error.publicationKey"/>
+        </field-validator>
+    </field>
+    <field name="title">
+        <field-validator type="requiredstring">
+            <message key="error.fieldRequired"/>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="minLength">1</param>
+            <param name="maxLength">250</param>
+            <message key="error.publicationTitle"/>
+        </field-validator>
+    </field>
+    <field name="author">
+        <field-validator type="stringlength">
+            <param name="minLength">1</param>
+            <param name="maxLength">250</param>
+            <message key="error.publicationAuthor"/>
+        </field-validator>
+    </field>
+    <field name="releaseDate">
+        <field-validator type="regex">
+            <param name="regex"></param>
+            <message key="error.publicationReleaseDate"/>
+        </field-validator>
+    </field>
+    <field name="publisher">
+        <field-validator type="stringlength">
+            <param name="minLength">1</param>
+            <param name="maxLength">250</param>
+            <message key="error.publicationPublisher"/>
+        </field-validator>
+    </field>
+    <field name="isbn">
+        <field-validator type="regex">
+            <param name="regex">(ISBN[-]*(1[03])*[ ]*(: ){0,1})*(([0-9Xx][- ]*){13}|([0-9Xx][- ]*){10})</param>
+            <message key="error.publicationIsbn"/>
+        </field-validator>
+    </field>
+    <field name="copies">
+        <field-validator type="requiredstring">
+            <message key="error.fieldRequired"/>
+        </field-validator>
+        <field-validator type="long">
+            <param name="min">1</param>
+            <param name="max">1000</param>
+            <message key="error.publicationCopies"/>
+        </field-validator>
+    </field>
+</validators>

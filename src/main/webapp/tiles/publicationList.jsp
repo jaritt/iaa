@@ -20,7 +20,6 @@
     <table style="width: 100%">
         <tr>
             <th></th>
-            <th><s:text name="label.publicationId"/></th>
             <th><s:text name="label.publicationKey"/></th>
             <th><s:text name="label.publicationTitle"/></th>
             <th><s:text name="label.publicationAuthor"/></th>
@@ -34,7 +33,6 @@
         <s:iterator value="publications">
             <tr>
                 <td><s:radio list="#{id:''}" name="publicationId" theme="simple"/></td>
-                <td><s:property value="id"/></td>
                 <td><s:property value="key"/></td>
                 <td><s:property value="title"/></td>
                 <td><s:property value="author"/></td>
