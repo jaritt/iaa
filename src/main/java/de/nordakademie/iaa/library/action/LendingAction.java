@@ -6,11 +6,10 @@ import de.nordakademie.iaa.library.dao.lending.LendingNotFoundException;
 import de.nordakademie.iaa.library.model.Customer;
 import de.nordakademie.iaa.library.model.Lending;
 import de.nordakademie.iaa.library.model.Publication;
+import de.nordakademie.iaa.library.service.NoCopyAvailable;
 import de.nordakademie.iaa.library.service.api.CustomerService;
 import de.nordakademie.iaa.library.service.api.LendingService;
 import de.nordakademie.iaa.library.service.api.PublicationService;
-
-import javax.persistence.EntityNotFoundException;
 
 public class LendingAction extends ActionSupport {
 
@@ -34,7 +33,7 @@ public class LendingAction extends ActionSupport {
         return SUCCESS;
     }
 
-    public String save() throws LendingAlreadyExistsException {
+    public String save() throws LendingAlreadyExistsException, NoCopyAvailable {
         if (lending.getId() != null) {
 
         } else {
@@ -42,11 +41,6 @@ public class LendingAction extends ActionSupport {
             lendingService.lendPublication(publication, customer);
         }
 
-
-
         return SUCCESS;
     }
-
-
-
 }
