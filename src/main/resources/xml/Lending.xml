@@ -5,7 +5,10 @@
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <struts>
-    <package name="Lending">
+    <package name="Lending" extends="tiles-default">
+        <action name="showLendingList" class="de.nordakademie.iaa.library.action.ShowLendingListAction">
+            <result type="tiles">lendingList</result>
+        </action>
 
     </package>
 </struts>
