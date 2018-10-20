@@ -11,8 +11,6 @@ import de.nordakademie.iaa.library.service.api.CustomerService;
 import de.nordakademie.iaa.library.service.api.LendingService;
 import de.nordakademie.iaa.library.service.api.PublicationService;
 
-import javax.persistence.EntityNotFoundException;
-
 public class LendingAction extends ActionSupport {
 
     public LendingAction(PublicationService publicationService, CustomerService customerService) {
@@ -43,11 +41,6 @@ public class LendingAction extends ActionSupport {
             lendingService.lendPublication(publication, customer);
         }
 
-
-
         return SUCCESS;
     }
-
-
-
 }
