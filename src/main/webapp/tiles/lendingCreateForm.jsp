@@ -11,6 +11,7 @@
 <h1><s:text name="header.lendingForm" /></h1>
 
 <s:form>
+    <s:hidden name="lending.id"/>
     <s:select name="selctedCustomerId" headerKey="-1" headerValue="Select customer..."
-              list="customerList" listKey="Id" listValue="fullRepresentation"/>
+              list="customerList" listKey="id" listValue="name"/>
 </s:form>

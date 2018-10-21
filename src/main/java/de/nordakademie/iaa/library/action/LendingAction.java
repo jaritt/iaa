@@ -15,11 +15,15 @@ import java.util.List;
 
 public class LendingAction extends ActionSupport {
 
-    public LendingAction(PublicationService publicationService, CustomerService customerService) {
+    public LendingAction(LendingService lendingService,
+                         PublicationService publicationService,
+                         CustomerService customerService) {
+        this.lendingService = lendingService;
         this.publicationService = publicationService;
         this.customerService = customerService;
 
         customerList = this.customerService.listCustomers();
+        System.out.println("LendingAction constructor");
     }
 
     private LendingService lendingService;
@@ -27,6 +31,7 @@ public class LendingAction extends ActionSupport {
     private CustomerService customerService;
 
     private Publication publication;
+    private Long publicationId;
     private Customer customer;
 
     private Lending lending;
@@ -36,17 +41,21 @@ public class LendingAction extends ActionSupport {
     private Long selectedCustomerId;
 
     public List<Customer> getCustomerList() {
+        System.out.println("action.getCustomerList " + customerService.listCustomers().getClass());
         return customerService.listCustomers();
     }
 
     public void setCustomerList(List<Customer> customerList) {
+        System.out.println("action.setCustomerList");
         this.customerList = customerList;
     }
 
-
     public String load() throws LendingNotFoundException {
         lending = lendingService.loadLending(lendingId);
-        customerList = customerService.listCustomers();
+        System.out.println("Lending: " + lending.getStartDate());
+        publication = publicationService.loadPublication(lending.getPublicationId());
+        System.out.println("Publication: " + publication);
+        customer = customerService.loadCustomer(lending.getCustomerId());
         return SUCCESS;
     }
 
@@ -54,19 +63,49 @@ public class LendingAction extends ActionSupport {
         if (lending.getId() != null) {
 
         } else {
-
             lendingService.lendPublication(publication, customer);
         }
-
         return SUCCESS;
     }
 
     public Long getSelectedCustomerId() {
+        System.out.println("action.getSelectedCustomerId");
         return selectedCustomerId;
     }
 
     public void setSelectedCustomerId(Long selectedCustomerId) {
+        System.out.println("action.setSelectedCustomerId");
         this.selectedCustomerId = selectedCustomerId;
         lending.setCustomer(customerService.loadCustomer(selectedCustomerId));
+    }
+
+    public Long getLendingId() {
+        System.out.println("action.getLendingId");
+        return lendingId;
+    }
+
+    public void setLendingId(Long id) {
+        System.out.println("action.setLendingId");
+        this.lendingId = id;
+    }
+
+    public Publication getPublication() {
+        System.out.println("action.getPublication");
+        return publication;
+    }
+
+    public void setPublication(Publication publication) {
+        System.out.println("action.setPublication");
+        this.publication = publication;
+        System.out.println("Publication: " + publication);
+    }
+
+    public Long getPublicationId() {
+
+        return publicationId;
+    }
+
+    public void setPublicationId(Long publicationId) {
+        this.publicationId = publicationId;
     }
 }

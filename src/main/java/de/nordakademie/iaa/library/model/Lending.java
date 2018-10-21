@@ -275,6 +275,12 @@ public class Lending {
     }
 
     @Transient
+    public Long getPublicationId() { return getPublication().getId(); }
+
+    @Transient
+    public Long getCustomerId() { return getCustomer().getId(); }
+
+    @Transient
     public String getCustomerFullName(){
         String customerFullName = getCustomer().getFirstName() + " " + getCustomer().getName();
         return customerFullName;

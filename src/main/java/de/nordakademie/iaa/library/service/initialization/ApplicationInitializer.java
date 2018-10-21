@@ -11,6 +11,8 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+
 /**
  * Adds sample data after application start up
  *
@@ -66,6 +68,10 @@ public class ApplicationInitializer implements ApplicationListener<ContextRefres
 
         Publication publication = new Publication("LS-2339", "Europäische Märkte", type, 3L);
         publication.getKeywords().add(keyword);
+        publication.setReleaseDate(LocalDate.now());
+        publication.setAuthor("Vikash");
+        publication.setIsbn("1-978-4535323");
+        publication.setPublisher("Vikash&Akash");
         publicationService.createPublication(publication);
 
         try {

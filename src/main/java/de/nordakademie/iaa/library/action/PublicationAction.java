@@ -41,7 +41,7 @@ public class PublicationAction extends ActionSupport implements Action {
     private LendingService lendingService;
 
     private Publication publication;
-    private Long id;
+    private Long publicationId;
     private Long selectedTypeId;
 
     //private List<Long> selectedKeywordIds;
@@ -76,7 +76,7 @@ public class PublicationAction extends ActionSupport implements Action {
     }
 
     public String load() throws EntityNotFoundException {
-        publication = publicationService.loadPublication(id);
+        publication = publicationService.loadPublication(publicationId);
         publicationTypeList = publicationTypeService.listPublicationTypes();
         keywordList = keywordService.listKeywords();
         return SUCCESS;
@@ -111,12 +111,12 @@ public class PublicationAction extends ActionSupport implements Action {
     }
 
     public String delete() throws EntityNotFoundException {
-        publicationService.deletePublication(id);
+        publicationService.deletePublication(publicationId);
         return SUCCESS;
     }
 
     public String lend() throws EntityNotFoundException {
-        publication = publicationService.loadPublication(id);
+        publication = publicationService.loadPublication(publicationId);
         publicationTypeList = publicationTypeService.listPublicationTypes();
         keywordList = keywordService.listKeywords();
         return SUCCESS;
@@ -131,29 +131,29 @@ public class PublicationAction extends ActionSupport implements Action {
     }
 
     public void validateLoad() {
-        if (id == null && publication == null) {
+        if (publicationId == null && publication == null) {
             addActionError(getText("error.selectPublication"));
         }
     }
 
     public void validateDelete() {
-        if (id == null && publication == null) {
+        if (publicationId == null && publication == null) {
             addActionError(getText("error.selectPublication"));
         }
     }
 
     public void validateLend() {
-        if (id == null && publication == null) {
+        if (publicationId == null && publication == null) {
             addActionError(getText("error.selectPublication"));
         }
     }
 
     public Long getPublicationId() {
-        return id;
+        return publicationId;
     }
 
     public void setPublicationId(Long id) {
-        this.id = id;
+        this.publicationId = id;
     }
 
     public Publication getPublication() {
