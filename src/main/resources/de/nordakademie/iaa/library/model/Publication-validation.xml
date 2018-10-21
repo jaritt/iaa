@@ -49,14 +49,4 @@
             <message key="error.publicationIsbn"/>
         </field-validator>
     </field>
-    <field name="copies">
-        <field-validator type="requiredstring">
-            <message key="error.fieldRequired"/>
-        </field-validator>
-        <field-validator type="long">
-            <param name="min">1</param>
-            <param name="max">1000</param>
-            <message key="error.publicationCopies"/>
-        </field-validator>
-    </field>
 </validators>

@@ -28,5 +28,10 @@
             <result type="redirectAction">showPublicationList</result>
             <result name="input" type="chain">showPublicationList</result>
         </action>
+
+        <action name="showPublication" class="de.nordakademie.iaa.library.action.PublicationAction" method="load">
+            <result type="tiles">publicationShowForm</result>
+            <result name="input" type="chain">showPublicationList</result>
+        </action>
     </package>
 </struts>

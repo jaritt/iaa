@@ -79,7 +79,6 @@ public class PublicationAction extends ActionSupport implements Action {
         publication = publicationService.loadPublication(id);
         publicationTypeList = publicationTypeService.listPublicationTypes();
         keywordList = keywordService.listKeywords();
-
         return SUCCESS;
     }
 
@@ -116,6 +115,13 @@ public class PublicationAction extends ActionSupport implements Action {
         return SUCCESS;
     }
 
+    public String lend() throws EntityNotFoundException {
+        publication = publicationService.loadPublication(id);
+        publicationTypeList = publicationTypeService.listPublicationTypes();
+        keywordList = keywordService.listKeywords();
+        return SUCCESS;
+    }
+
     public void validateSave() {
         if (!publication.getTitle().getClass().equals(String.class)){
             System.out.println("validate.publicationTitel");
@@ -131,6 +137,12 @@ public class PublicationAction extends ActionSupport implements Action {
     }
 
     public void validateDelete() {
+        if (id == null && publication == null) {
+            addActionError(getText("error.selectPublication"));
+        }
+    }
+
+    public void validateLend() {
         if (id == null && publication == null) {
             addActionError(getText("error.selectPublication"));
         }

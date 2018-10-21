@@ -3,8 +3,6 @@
 
 <h1><s:text name="header.publicationForm"/></h1>
 
-<!-- Möglicherweise eigene publicationUpdateForm, da die select-Felder im Falle des Bearbeitens bereits gesetzt sind -->
-
 <s:form>
     <s:hidden name="publication.id"/>
     <s:textfield name="publication.key" key="label.publicationKey" requiredLabel="true"/>
@@ -19,7 +17,7 @@
     <s:select name="selectedKeywordId" headerKey="0" headerValue="Select..."
               list="keywordList" listKey="id" listValue="word"
               key="label.publicationKeywords"/>
-    <s:textfield name="publication.copies" key="label.publicationCopies" value="1" requiredLabel="true"/>
+    <s:textfield name="publication.copies" key="label.publicationCopies" requiredLabel="true"/>
     <s:submit key="button.save" action="savePublication"/>
     <s:submit key="button.cancel" action="showPublicationList"/>
 </s:form>
