@@ -276,7 +276,7 @@ public class Lending {
 
     @Transient
     public String getCustomerFullName(){
-        String customerFullName = getCustomer().getTitle() + " " + getCustomer().getFirstName() + " " + getCustomer().getName();
+        String customerFullName = getCustomer().getFirstName() + " " + getCustomer().getName();
         return customerFullName;
     }
 

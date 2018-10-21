@@ -11,11 +11,15 @@ import de.nordakademie.iaa.library.service.api.CustomerService;
 import de.nordakademie.iaa.library.service.api.LendingService;
 import de.nordakademie.iaa.library.service.api.PublicationService;
 
+import java.util.List;
+
 public class LendingAction extends ActionSupport {
 
     public LendingAction(PublicationService publicationService, CustomerService customerService) {
         this.publicationService = publicationService;
         this.customerService = customerService;
+
+        customerList = this.customerService.listCustomers();
     }
 
     private LendingService lendingService;
@@ -28,8 +32,21 @@ public class LendingAction extends ActionSupport {
     private Lending lending;
     private Long lendingId;
 
+    private List<Customer> customerList;
+    private Long selectedCustomerId;
+
+    public List<Customer> getCustomerList() {
+        return customerService.listCustomers();
+    }
+
+    public void setCustomerList(List<Customer> customerList) {
+        this.customerList = customerList;
+    }
+
+
     public String load() throws LendingNotFoundException {
         lending = lendingService.loadLending(lendingId);
+        customerList = customerService.listCustomers();
         return SUCCESS;
     }
 
@@ -42,5 +59,14 @@ public class LendingAction extends ActionSupport {
         }
 
         return SUCCESS;
+    }
+
+    public Long getSelectedCustomerId() {
+        return selectedCustomerId;
+    }
+
+    public void setSelectedCustomerId(Long selectedCustomerId) {
+        this.selectedCustomerId = selectedCustomerId;
+        lending.setCustomer(customerService.loadCustomer(selectedCustomerId));
     }
 }
