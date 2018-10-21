@@ -9,9 +9,13 @@
         <action name="showLendingList" class="de.nordakademie.iaa.library.action.ShowLendingListAction">
             <result type="tiles">lendingList</result>
         </action>
-        <action name="showLending" class="de.nordakademie.iaa.library.action.LendingAction" method="load">
+        <action name="showLendingForm" class="de.nordakademie.iaa.library.action.LendingAction" method="load">
             <result type="tiles">lendingShowForm</result>
             <result name="input" type="chain">showLendingList</result>
+        </action>
+
+        <action name="lendPublication" class="de.nordakademie.iaa.library.action.LendingAction" method="load">
+            <result type="tiles">lendingCreateForm</result>
         </action>
     </package>
 </struts>

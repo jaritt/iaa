@@ -149,6 +149,8 @@ public class PublicationAction extends ActionSupport implements Action {
     }
 
     public Long getPublicationId() {
+        System.out.println("PublicationAction --> getPublicationId");
+        System.out.println("PublicationId: " + publicationId);
         return publicationId;
     }
 

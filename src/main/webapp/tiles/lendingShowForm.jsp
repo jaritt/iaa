@@ -14,12 +14,11 @@
     <s:textfield name="publication.releaseDate" key="label.publicationReleaseDate" disabled="true"/>
     <s:textfield name="publication.publisher" key="label.publicationPublisher" disabled="true"/>
     <s:textfield name="publication.isbn" key="label.publicationIsbn" disabled="true"/>
+    <s:textfield name="customer.title" key="label.customerTitle" disabled="true"/>
+    <s:textfield name="customer.firstName" key="label.customerFirstName" disabled="true"/>
+    <s:textfield name="customer.name" key="label.customerName" disabled="true"/>
+    <s:textfield name="customer.matnr" key="label.customerMatnr" disabled="true"/>
+    <s:textfield name="customer.city" key="label.customerCity" disabled="true"/>
+    <s:textfield name="customer.street" key="label.customerStreet" disabled="true"/>
     <s:submit key="button.back" action="showLendingList"/>
-
-
-    <td><s:property value="publicationTitle"/></td>
-    <td><s:property value="customerFullName"/></td>
-    <td><s:property value="startDate"/></td>
-    <td><s:property value="endDate"/></td>
-    <td><s:property value="status"/></td>
 </s:form>

@@ -51,11 +51,19 @@ public class LendingAction extends ActionSupport {
     }
 
     public String load() throws LendingNotFoundException {
-        lending = lendingService.loadLending(lendingId);
-        System.out.println("Lending: " + lending.getStartDate());
-        publication = publicationService.loadPublication(lending.getPublicationId());
+        System.out.println("method.load");
+        if (lendingId != null) {
+            System.out.println("LendingID != null");
+            lending = lendingService.loadLending(lendingId);
+            System.out.println("Lending: " + lending);
+            publication = publicationService.loadPublication(lending.getPublicationId());
+            System.out.println("Publication: " + publication);
+            customer = customerService.loadCustomer(lending.getCustomerId());
+            System.out.println("Customer: " + customer);
+        }
+        System.out.println("LendingID == null");
         System.out.println("Publication: " + publication);
-        customer = customerService.loadCustomer(lending.getCustomerId());
+
         return SUCCESS;
     }
 
@@ -89,23 +97,43 @@ public class LendingAction extends ActionSupport {
         this.lendingId = id;
     }
 
+    public Lending getLending() {
+        return lending;
+    }
+
+    public void setLending(Lending lending) {
+        System.out.println("action.setLending");
+        this.lending = lending;
+    }
+
     public Publication getPublication() {
         System.out.println("action.getPublication");
-        return publication;
+        System.out.println("PublicationId: " + publicationId);
+        return publicationService.loadPublication(publicationId);
     }
 
     public void setPublication(Publication publication) {
         System.out.println("action.setPublication");
         this.publication = publication;
-        System.out.println("Publication: " + publication);
+    }
+
+    public Customer getCustomer() {
+        System.out.println("action.getCustomer");
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        System.out.println("action.setCustomer");
+        this.customer = customer;
     }
 
     public Long getPublicationId() {
-
-        return publicationId;
+        System.out.println("action.getPublicationId");
+        return publicationService.;
     }
 
     public void setPublicationId(Long publicationId) {
+        System.out.println("action.setPublicationId");
         this.publicationId = publicationId;
     }
 }

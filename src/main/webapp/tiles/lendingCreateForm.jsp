@@ -14,4 +14,7 @@
     <s:hidden name="lending.id"/>
     <s:select name="selctedCustomerId" headerKey="-1" headerValue="Select customer..."
               list="customerList" listKey="id" listValue="name"/>
+    <s:textfield name="publication.title" key="label.publicationTitle" disabled="true"/>
+    <s:textfield name="lending.startDate" key="label.lendingStartDate" disabled="true"/>
+    <s:textfield name="lending.endDate"  key="label.lendingEndDate" disabled="true"/>
 </s:form>

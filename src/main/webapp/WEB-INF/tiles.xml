@@ -55,7 +55,7 @@
         <put-attribute name="content" value="/tiles/lendingList.jsp"/>
     </definition>
 
-	<definition name="lendingCreatForm" extends="mainTemplate">
+	<definition name="lendingCreateForm" extends="mainTemplate">
 		<put-attribute name="content" value="/tiles/lendingCreateForm.jsp"/>
 	</definition>
 
