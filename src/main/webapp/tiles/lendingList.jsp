@@ -16,8 +16,13 @@
         </tr>
         <s:iterator value="lendings">
             <tr>
-                <td><s:radio list="#{id:''}" name="lendingId" theme="ajax"/></td>
-                <td><s:property value="publication"/></td>
+                <td><s:radio list="#{id:''}" name="lendingId" theme="simple"/></td>
+                <td><s:property value="publicationTitle"/></td>
+                <td><s:property value="customerFullName"/></td>
+                <td><s:property value="startDate"/></td>
+                <td><s:property value="endDate"/></td>
+                <td><s:property value="status"/></td>
+                <td></td>
             </tr>
         </s:iterator>
     </table>
