@@ -10,14 +10,19 @@ import de.nordakademie.iaa.library.service.NoCopyAvailable;
 import de.nordakademie.iaa.library.service.api.CustomerService;
 import de.nordakademie.iaa.library.service.api.LendingService;
 import de.nordakademie.iaa.library.service.api.PublicationService;
+import de.nordakademie.iaa.library.service.internal.api.ReturnDateCalculatorService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class LendingAction extends ActionSupport {
 
     public LendingAction(LendingService lendingService,
                          PublicationService publicationService,
-                         CustomerService customerService) {
+                         CustomerService customerService,
+                         ReturnDateCalculatorService returnDateCalculator) {
+
+        this.returnDateCalculator = returnDateCalculator;
         this.lendingService = lendingService;
         this.publicationService = publicationService;
         this.customerService = customerService;
@@ -36,9 +41,13 @@ public class LendingAction extends ActionSupport {
 
     private Lending lending;
     private Long lendingId;
+    private ReturnDateCalculatorService returnDateCalculator;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
     private List<Customer> customerList;
     private Long selectedCustomerId;
+
 
     public List<Customer> getCustomerList() {
         System.out.println("action.getCustomerList " + customerService.listCustomers().getClass());
@@ -61,6 +70,8 @@ public class LendingAction extends ActionSupport {
             customer = customerService.loadCustomer(lending.getCustomerId());
             System.out.println("Customer: " + customer);
         }
+        setStartDate(LocalDate.now());
+        setEndDate(returnDateCalculator.reset().getReturnDate());
         System.out.println("LendingID == null");
         System.out.println("Publication: " + publication);
 
@@ -135,5 +146,29 @@ public class LendingAction extends ActionSupport {
     public void setPublicationId(Long publicationId) {
         System.out.println("action.setPublicationId");
         this.publicationId = publicationId;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public ReturnDateCalculatorService getReturnDateCalculator() {
+        return returnDateCalculator;
+    }
+
+    public void setReturnDateCalculator(ReturnDateCalculatorService returnDateCalculator) {
+        this.returnDateCalculator = returnDateCalculator;
     }
 }
