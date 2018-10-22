@@ -129,7 +129,7 @@ public class LendingAction extends ActionSupport {
 
     public Long getPublicationId() {
         System.out.println("action.getPublicationId");
-        return publicationService.;
+        return publicationId;
     }
 
     public void setPublicationId(Long publicationId) {

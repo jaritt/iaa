@@ -33,5 +33,11 @@
             <result type="tiles">publicationShowForm</result>
             <result name="input" type="chain">showPublicationList</result>
         </action>
+        <action name="sendPublicationId" class="de.nordakademie.iaa.library.action.PublicationAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">lendPublication</param>
+                <param name="publicationId">${publication.Id}</param>
+            </result>
+        </action>
     </package>
 </struts>
