@@ -61,6 +61,7 @@ public class ApplicationInitializer implements ApplicationListener<ContextRefres
         PublicationType type = new PublicationType("Hausarbeit");
         typeService.createPublicationType(type);
         typeService.createPublicationType(new PublicationType("Fachbuch"));
+        typeService.createPublicationType(new PublicationType("Lehrbuch"));
 
         Keyword keyword = new Keyword("Ökonomie");
         keywordService.createKeyword(keyword);

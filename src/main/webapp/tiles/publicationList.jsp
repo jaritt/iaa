@@ -40,10 +40,11 @@
                 <td><s:property value="publisher"/></td>
                 <td><s:property value="type.title"/></td>
                 <td><s:property value="isbn"/></td>
-                <td><s:property value="keywords"/></td>
+                <td><s:property value="keywordsAsString"/></td>
                 <td><s:property value="copies"/></td>
             </tr>
         </s:iterator>
+
     </table>
     <br>
     <s:submit key="button.addPublication" action="addPublication"/>
