@@ -14,6 +14,7 @@ import de.nordakademie.iaa.library.service.api.PublicationTypeService;
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PublicationAction extends ActionSupport implements Action {
@@ -44,9 +45,10 @@ public class PublicationAction extends ActionSupport implements Action {
     private Long publicationId;
     private Long selectedTypeId;
 
-    //private List<Long> selectedKeywordIds;
+    private List<Long> keywordIds;
+    private List<Keyword> keywords;
 
-    private Long selectedKeywordId;
+    //private List<Long> selectedKeywordIds;
 
     private String publicationDate;
     private LocalDate releaseDate;
@@ -86,6 +88,8 @@ public class PublicationAction extends ActionSupport implements Action {
         System.out.println("action.save");
 
         publication.setType(publicationTypeService.loadPublicationType(selectedTypeId));
+        publication.setKeywords(this.keywords);
+
         System.out.println("action.save SelectedTypeId: " + selectedTypeId);
         System.out.println("action.save SelectedTypeObject: " + publicationTypeService.loadPublicationType(selectedTypeId));
         System.out.println("action.save SelectedTypeTitle: " + publicationTypeService.loadPublicationType(selectedTypeId).getTitle());
@@ -123,7 +127,7 @@ public class PublicationAction extends ActionSupport implements Action {
     }
 
     public void validateSave() {
-        if (!publication.getTitle().getClass().equals(String.class)){
+        if (!publication.getTitle().getClass().equals(String.class)) {
             System.out.println("validate.publicationTitel");
             System.out.println(publication.getTitle().getClass() + " == " + String.class);
             addActionError(getText("error.publicationTitle"));
@@ -204,7 +208,7 @@ public class PublicationAction extends ActionSupport implements Action {
 
     public String getPublicationDate() {
         System.out.println("action.getPublicationDate");
-        return publicationDate;
+        return publicationDate.toString();
     }
 
     public void setPublicationDate(String publicationDate) {
@@ -216,5 +220,14 @@ public class PublicationAction extends ActionSupport implements Action {
     public LocalDate convertStringToDate(String publicationDate) {
         System.out.println("action.convertStringToDate");
         return releaseDate = LocalDate.parse(publicationDate, formatter);
+    }
+
+    public List<Long> getKeywordIds() {
+        return keywordIds;
+    }
+
+    public void setKeywordIds(List<Long> keywordIds) {
+        this.keywordIds = keywordIds;
+        this.keywords = keywordService.listKeywords(keywordIds);
     }
 }

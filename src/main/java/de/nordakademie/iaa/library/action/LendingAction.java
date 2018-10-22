@@ -12,6 +12,7 @@ import de.nordakademie.iaa.library.service.api.LendingService;
 import de.nordakademie.iaa.library.service.api.PublicationService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LendingAction extends ActionSupport {
 

@@ -42,6 +42,17 @@ public class KeywordServiceImpl implements KeywordService {
     }
 
     /**
+     * Returns several keywords identified by a list of ids
+     *
+     * @param idList The identifiers.
+     * @return The requested keyword
+     */
+    @Override
+    public List<Keyword> listKeywords(List<Long> idList) {
+        return dao.listKeywords(idList);
+    }
+
+    /**
      * Deletes a keyword
      *
      * @param id The identifier.
@@ -66,6 +77,7 @@ public class KeywordServiceImpl implements KeywordService {
     public Keyword loadKeyword(Long id) {
         return dao.loadKeyword(id);
     }
+
 
     /**
      * Update a keyword

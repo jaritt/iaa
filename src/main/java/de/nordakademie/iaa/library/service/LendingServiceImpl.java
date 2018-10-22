@@ -73,7 +73,7 @@ public class LendingServiceImpl implements LendingService {
         lending.setReturned(false);
         lending.setLost(false);
         lending.setStartDate(LocalDate.now());
-        lending.setEndDate(returnDateCalculator.reset().getReturnDate());
+        lending.setEndDate(returnDateCalculator.reset().setCustomer(customer).setPublication(publication).getReturnDate());
         lending.setTimesProlonged(0L);
         lending.setReminders(new ArrayList<>());
         lending.setCustomer(customer);
