@@ -14,7 +14,6 @@ import de.nordakademie.iaa.library.service.api.PublicationTypeService;
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,7 +31,7 @@ public class PublicationAction extends ActionSupport implements Action {
 
         publicationTypeList = this.publicationTypeService.listPublicationTypes();
         keywordList = this.keywordService.listKeywords();
-        System.out.println("Action constructor");
+        System.out.println("PublicationAction constructor");
     }
 
     final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-MM-yyyy");
@@ -49,8 +48,6 @@ public class PublicationAction extends ActionSupport implements Action {
     private List<Long> keywordIds;
     private List<Keyword> keywords;
 
-    //private List<Long> selectedKeywordIds;
-
     private String publicationDate;
     private LocalDate releaseDate;
 
@@ -58,23 +55,18 @@ public class PublicationAction extends ActionSupport implements Action {
     private List<Keyword> keywordList;
 
     public List<PublicationType> getPublicationTypeList() {
-        System.out.println("action.getPublicationTypesList " + publicationTypeService.listPublicationTypes().getClass());
         return publicationTypeService.listPublicationTypes();
     }
 
     public void setPublicationTypeList(List<PublicationType> publicationTypeList) {
-        System.out.println("action.setPublicationTypesList");
         this.publicationTypeList = publicationTypeList;
     }
 
     public List<Keyword> getKeywordList() {
-        System.out.println("action.getKeywordList " + keywordService.listKeywords().getClass().toString());
-        System.out.println();
         return keywordService.listKeywords();
     }
 
     public void setKeywordList(List<Keyword> keywordList) {
-        System.out.println("action.setKeywordList");
         this.keywordList = keywordList;
     }
 
@@ -86,18 +78,10 @@ public class PublicationAction extends ActionSupport implements Action {
     }
 
     public String save() throws PublicationAlreadyExistsException {
-        System.out.println("action.save");
-
         publication.setType(publicationTypeService.loadPublicationType(selectedTypeId));
         publication.setKeywords(this.keywords);
 
-        System.out.println("action.save SelectedTypeId: " + selectedTypeId);
-        System.out.println("action.save SelectedTypeObject: " + publicationTypeService.loadPublicationType(selectedTypeId));
-        System.out.println("action.save SelectedTypeTitle: " + publicationTypeService.loadPublicationType(selectedTypeId).getTitle());
-        System.out.println("action.save getPublicationype: " + publication.getType());
-
         if (publication.getId() != null) {
-            System.out.println("action.updatePublication");
             publicationService.updatePublication(
                     publication.getId(),
                     publication.getTitle(),
@@ -109,7 +93,6 @@ public class PublicationAction extends ActionSupport implements Action {
                     publication.getKeywords(),
                     publication.getCopies());
         } else {
-            System.out.println("action.createPublication");
             publicationService.createPublication(publication);
         }
         return SUCCESS;
@@ -129,8 +112,6 @@ public class PublicationAction extends ActionSupport implements Action {
 
     public void validateSave() {
         if (!publication.getTitle().getClass().equals(String.class)) {
-            System.out.println("validate.publicationTitel");
-            System.out.println(publication.getTitle().getClass() + " == " + String.class);
             addActionError(getText("error.publicationTitle"));
         }
     }
@@ -154,8 +135,6 @@ public class PublicationAction extends ActionSupport implements Action {
     }
 
     public Long getPublicationId() {
-        System.out.println("PublicationAction --> getPublicationId");
-        System.out.println("PublicationId: " + publicationId);
         return publicationId;
     }
 
@@ -168,58 +147,28 @@ public class PublicationAction extends ActionSupport implements Action {
     }
 
     public void setPublication(Publication publication) {
-        System.out.println("action.setPublication");
         this.publication = publication;
     }
 
     public Long getSelectedTypeId() {
-        System.out.println("action.getSelectedTypeId");
         return selectedTypeId;
     }
 
     public void setSelectedTypeId(Long selectedTypeId) {
-        System.out.println("action.setSelectedTypeId");
         this.selectedTypeId = selectedTypeId;
         publication.setType(publicationTypeService.loadPublicationType(selectedTypeId));
     }
 
-    /*
-    public List<Long> getSelectedKeywordIds() {
-        System.out.println("action.getSelectedKeywordIds");
-        return selectedKeywordIds;
-    }
-    /*
-
-    /**
-     * @Todo
-     * Der KeywordService sollte die Möglichkeit haben,
-     * eine List mit den selektierten Keywords zu erhalten.
-     *
-     */
-
-    /*
-    public void setSelectedKeywordIds(List<Long> selectedKeywordIds) {
-        System.out.println("action.setSelectedKeywordIds");
-        System.out.println("--> SelectedKeywordIds: " + selectedKeywordIds);
-        System.out.println("--> KeywordService.listKeywords(): " + keywordService.listKeywords());
-        this.selectedKeywordIds = selectedKeywordIds;
-        publication.setKeywords(keywordService.listKeywords());
-    }
-    */
-
     public String getPublicationDate() {
-        System.out.println("action.getPublicationDate");
         return publicationDate.toString();
     }
 
     public void setPublicationDate(String publicationDate) {
-        System.out.println("action.setPublicationDate");
         this.publicationDate = publicationDate;
         publication.setReleaseDate(convertStringToDate(publicationDate));
     }
 
     public LocalDate convertStringToDate(String publicationDate) {
-        System.out.println("action.convertStringToDate");
         return releaseDate = LocalDate.parse(publicationDate, formatter);
     }
 
