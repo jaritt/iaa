@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PublicationAction extends ActionSupport implements Action {
 
@@ -223,7 +224,7 @@ public class PublicationAction extends ActionSupport implements Action {
     }
 
     public List<Long> getKeywordIds() {
-        return keywordIds;
+        return this.publication.getKeywords().stream().map(Keyword::getId).collect(Collectors.toList());
     }
 
     public void setKeywordIds(List<Long> keywordIds) {

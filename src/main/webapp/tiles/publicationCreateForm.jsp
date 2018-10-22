@@ -15,8 +15,6 @@
     <s:textfield name="publication.publisher" key="label.publicationPublisher"/>
     <s:textfield name="publication.isbn" key="label.publicationIsbn"/>
     <s:select name="keywordIds"
-              headerKey="0"
-              headerValue="Select..."
               list="keywordList"
               listKey="id"
               listValue="word"
