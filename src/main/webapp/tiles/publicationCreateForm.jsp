@@ -14,8 +14,11 @@
     <s:textfield name="publicationDate" key="label.publicationReleaseDate"/>
     <s:textfield name="publication.publisher" key="label.publicationPublisher"/>
     <s:textfield name="publication.isbn" key="label.publicationIsbn"/>
-    <s:select name="selectedKeywordId" headerKey="0" headerValue="Select..."
-              list="keywordList" listKey="id" listValue="word"
+    <s:select name="keywordIds"
+              list="keywordList"
+              listKey="id"
+              listValue="word"
+              multiple="true"
               key="label.publicationKeywords"/>
     <s:textfield name="publication.copies" key="label.publicationCopies" requiredLabel="true"/>
     <s:submit key="button.save" action="savePublication"/>

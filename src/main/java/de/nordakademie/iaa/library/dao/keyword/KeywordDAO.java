@@ -5,6 +5,7 @@ import de.nordakademie.iaa.library.model.Keyword;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -19,6 +20,17 @@ public class KeywordDAO {
 
     @PersistenceContext
     private EntityManager entityManager;
+
+    /**
+     * List all keywords
+     *
+     * @return list of keywords
+     */
+    public List<Keyword> listKeywords(List<Long> ids) {
+        TypedQuery<Keyword> query = entityManager.createQuery("from Keyword k where k.id in :ids", Keyword.class);
+        query.setParameter("ids", ids);
+        return query.getResultList();
+    }
 
     /**
      * List all keywords

@@ -61,6 +61,7 @@ public class ApplicationInitializer implements ApplicationListener<ContextRefres
         PublicationType type = new PublicationType("Hausarbeit");
         typeService.createPublicationType(type);
         typeService.createPublicationType(new PublicationType("Fachbuch"));
+        typeService.createPublicationType(new PublicationType("Lehrbuch"));
 
         Keyword keyword = new Keyword("Ökonomie");
         keywordService.createKeyword(keyword);
@@ -70,7 +71,7 @@ public class ApplicationInitializer implements ApplicationListener<ContextRefres
         publication.getKeywords().add(keyword);
         publication.setReleaseDate(LocalDate.now());
         publication.setAuthor("Vikash");
-        publication.setIsbn("1-978-4535323");
+        publication.setIsbn("978-3-16-148410-0");
         publication.setPublisher("Vikash&Akash");
         publicationService.createPublication(publication);
 

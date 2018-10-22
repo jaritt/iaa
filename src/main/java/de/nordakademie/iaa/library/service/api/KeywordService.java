@@ -28,6 +28,14 @@ public interface KeywordService {
     List<Keyword> listKeywords();
 
     /**
+     * Returns several keywords identified by a list of ids
+     *
+     * @param idList The identifiers.
+     * @return The requested keyword
+     */
+    List<Keyword> listKeywords(List<Long> idList);
+
+    /**
      * Deletes the keyword with the given id.
      *
      * @param id The identifier.

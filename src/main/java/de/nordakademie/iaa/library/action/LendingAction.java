@@ -14,6 +14,7 @@ import de.nordakademie.iaa.library.service.internal.api.ReturnDateCalculatorServ
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LendingAction extends ActionSupport {
 
