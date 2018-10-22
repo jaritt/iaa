@@ -8,6 +8,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+
 <h1><s:text name="header.customerList"/></h1>
 
 <s:actionerror/>
@@ -38,6 +52,6 @@
     </table>
     <br>
     <s:submit key="button.addCustomer" action="addCustomer" value="Add Customer"/>
-    <s:submit key="button.editCustomer" action="editCustomer" value="Edit Customer"/>
+    <s:submit key="button.editCustomer" action="loadCustomer" value="Edit Customer"/>
     <s:submit key="button.deleteCustomer" action="deleteCustomer" value="Delete Customer"/>
 </s:form>

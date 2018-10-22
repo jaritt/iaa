@@ -56,6 +56,9 @@ public class ApplicationInitializer implements ApplicationListener<ContextRefres
 
     public void setupData() {
         Customer customer = new Customer("Peter", "Parker");
+        customer.setCity("SpiderTown");
+        customer.setStreet("SpiderStreet");
+        customer.setMatnr((long) 8);
         customerService.createCustomer(customer);
 
         PublicationType type = new PublicationType("Hausarbeit");

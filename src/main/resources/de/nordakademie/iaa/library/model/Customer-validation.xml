@@ -8,6 +8,11 @@
         <field-validator type="requiredstring">
             <message key="error.fieldRequired"/>
         </field-validator>
+        <field-validator type="stringlength">
+            <param name="minLength">2</param>
+            <param name="maxLength">50</param>
+            <message key="error.inputLength"/>
+        </field-validator>
     </field>
     <field name="firstName">
         <field-validator type="requiredstring">
@@ -23,11 +28,15 @@
         <field-validator type="requiredstring">
             <message key="error.fieldRequired"/>
         </field-validator>
+        <field-validator type="regex">
+            <param name="regexExpression">^(([a-zA-ZäÄöÖüÜ]+)((-)|(\s)))+(\d{1,})(\w{0,1})$</param>
+            <message key="error.customerAddressFormat"/>
+        </field-validator>
     </field>
     <field name="matnr">
         <field-validator type="regex">
-            <param name="regexExpression">[0-9]</param>
-            <message key="error.onlyNumbersAllowed"/>
+            <param name="regexExpression">(\d{4,})</param>
+            <message key="error.customerMatnrFormat"/>
         </field-validator>
     </field>
 </validators>
