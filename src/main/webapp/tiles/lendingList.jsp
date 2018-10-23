@@ -29,5 +29,5 @@
     <br>
     <s:submit key="button.extendLending" action="extendLending"/>
     <s:submit key="button.receiveLending" action="receiveLending"/>
-    <s:submit key="button.showLending" action="showLending"/>
+    <s:submit key="button.showLending" action="showLendingForm"/>
 </s:form>

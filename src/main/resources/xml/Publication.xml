@@ -6,8 +6,14 @@
 
 <struts>
     <package name="Publication" extends="tiles-default">
+
         <action name="showPublicationList" class="de.nordakademie.iaa.library.action.ShowPublicationListAction">
             <result type="tiles">publicationList</result>
+        </action>
+
+        <action name="showPublication" class="de.nordakademie.iaa.library.action.PublicationAction" method="load">
+            <result type="tiles">publicationShowForm</result>
+            <result name="input" type="chain">showPublicationList</result>
         </action>
 
         <action name="addPublication" class="de.nordakademie.iaa.library.action.PublicationAction">
@@ -29,15 +35,12 @@
             <result name="input" type="chain">showPublicationList</result>
         </action>
 
-        <action name="showPublication" class="de.nordakademie.iaa.library.action.PublicationAction" method="load">
-            <result type="tiles">publicationShowForm</result>
-            <result name="input" type="chain">showPublicationList</result>
-        </action>
         <action name="sendPublicationId" class="de.nordakademie.iaa.library.action.PublicationAction">
             <result name="success" type="redirectAction">
-                <param name="actionName">lendPublication</param>
+                <param name="actionName">showLendingCreateForm</param>
                 <param name="publicationId">${publication.Id}</param>
             </result>
         </action>
+
     </package>
 </struts>
