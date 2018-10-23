@@ -12,7 +12,6 @@ import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
 import org.apache.lucene.queryparser.classic.ParseException;
-import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
@@ -34,6 +33,8 @@ public class PublicationSearchServiceImpl implements PublicationSearchService {
 
     private static final String[] AVAILABLE_FIELDS = new String[]{"key", "title", "author", "publisher", "isbn", "keywords"};
 
+    private static final boolean printSearchRoutineToSystemOut = false;
+
     @Override
     public List<Long> search(String searchPhrase) {
         return search(searchPhrase, AVAILABLE_FIELDS);
@@ -43,7 +44,14 @@ public class PublicationSearchServiceImpl implements PublicationSearchService {
     public List<Long> search(String searchPhrase, String[] fields) {
 
         try {
-            searchPhrase = QueryParser.escape(searchPhrase);
+            if (printSearchRoutineToSystemOut) System.out.println("Search: " + searchPhrase);
+            //searchPhrase = QueryParser.escape(searchPhrase);
+            String specialChars = "+-&|!(){}[]^\"~*?:\\";
+            for (int i = 0; i < specialChars.length(); i++) {
+                searchPhrase = searchPhrase.replace(String.valueOf(specialChars.charAt(i)), "");
+            }
+            //searchPhrase = searchPhrase.replaceAll("\\+\\-&\\|\\!\\(\\)\\{\\}\\[\\]\\^\"~\\*\\?\\:\\\\", "");
+            if (printSearchRoutineToSystemOut) System.out.println("Escaped:" + searchPhrase);
 
             Directory directory = new MMapDirectory(Paths.get("./db/search_index"));
             Analyzer analyzer = new StandardAnalyzer();
@@ -53,22 +61,34 @@ public class PublicationSearchServiceImpl implements PublicationSearchService {
 
             MultiFieldQueryParser parser = new MultiFieldQueryParser(fields, analyzer);
 
-            String searchString = searchPhrase.trim().replace(" ", "~ ") + "~";
-
+            // right sided wildcard search
+            String searchString = searchPhrase.trim().replace(" ", "* ") + "*";
+            if (printSearchRoutineToSystemOut) System.out.println("Wildcard: " + searchString);
             Query query = parser.parse(searchString);
-
             ScoreDoc[] hits = indexSearcher.search(query, 100).scoreDocs;
 
+            // fuzzy search
             if (hits.length == 0) {
-                query = parser.parse(searchPhrase.trim().replace(" ", "* ") + "*");
+                searchString = searchPhrase.trim().replace(" ", "~ ") + "~";
+                if (printSearchRoutineToSystemOut) System.out.println("Fuzzy: " + searchString);
+                query = parser.parse(searchString);
                 hits = indexSearcher.search(query, 100).scoreDocs;
             }
+
+            // both sided wildcard search
+            if (hits.length == 0) {
+                searchString = searchPhrase.trim().replace(" ", "* *") + "*";
+                if (printSearchRoutineToSystemOut) System.out.println("Wildcard: " + searchString);
+                query = parser.parse(searchString);
+                hits = indexSearcher.search(query, 100).scoreDocs;
+            }
+
+            if (printSearchRoutineToSystemOut) System.out.println("-----------------------");
 
             List<Long> matchedPublicationIds = new ArrayList<>();
 
             for (ScoreDoc hit : hits) {
                 Document hitDoc = indexSearcher.doc(hit.doc);
-
                 matchedPublicationIds.add(Long.parseLong(hitDoc.get("id")));
             }
 
