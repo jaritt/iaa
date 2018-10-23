@@ -10,7 +10,9 @@ import de.nordakademie.iaa.library.service.NoCopyAvailable;
 import de.nordakademie.iaa.library.service.api.CustomerService;
 import de.nordakademie.iaa.library.service.api.LendingService;
 import de.nordakademie.iaa.library.service.api.PublicationService;
+import de.nordakademie.iaa.library.service.internal.api.ReturnDateCalculatorService;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,7 +20,10 @@ public class LendingAction extends ActionSupport {
 
     public LendingAction(LendingService lendingService,
                          PublicationService publicationService,
-                         CustomerService customerService) {
+                         CustomerService customerService,
+                         ReturnDateCalculatorService returnDateCalculator) {
+
+        this.returnDateCalculator = returnDateCalculator;
         this.lendingService = lendingService;
         this.publicationService = publicationService;
         this.customerService = customerService;
@@ -37,33 +42,30 @@ public class LendingAction extends ActionSupport {
 
     private Lending lending;
     private Long lendingId;
+    private ReturnDateCalculatorService returnDateCalculator;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
     private List<Customer> customerList;
     private Long selectedCustomerId;
 
+
     public List<Customer> getCustomerList() {
-        System.out.println("action.getCustomerList " + customerService.listCustomers().getClass());
         return customerService.listCustomers();
     }
 
     public void setCustomerList(List<Customer> customerList) {
-        System.out.println("action.setCustomerList");
         this.customerList = customerList;
     }
 
     public String load() throws LendingNotFoundException {
-        System.out.println("method.load");
         if (lendingId != null) {
-            System.out.println("LendingID != null");
             lending = lendingService.loadLending(lendingId);
-            System.out.println("Lending: " + lending);
             publication = publicationService.loadPublication(lending.getPublicationId());
-            System.out.println("Publication: " + publication);
             customer = customerService.loadCustomer(lending.getCustomerId());
-            System.out.println("Customer: " + customer);
         }
-        System.out.println("LendingID == null");
-        System.out.println("Publication: " + publication);
+        setStartDate(LocalDate.now());
+        setEndDate(returnDateCalculator.reset().getReturnDate());
 
         return SUCCESS;
     }
@@ -78,23 +80,19 @@ public class LendingAction extends ActionSupport {
     }
 
     public Long getSelectedCustomerId() {
-        System.out.println("action.getSelectedCustomerId");
         return selectedCustomerId;
     }
 
     public void setSelectedCustomerId(Long selectedCustomerId) {
-        System.out.println("action.setSelectedCustomerId");
         this.selectedCustomerId = selectedCustomerId;
         lending.setCustomer(customerService.loadCustomer(selectedCustomerId));
     }
 
     public Long getLendingId() {
-        System.out.println("action.getLendingId");
         return lendingId;
     }
 
     public void setLendingId(Long id) {
-        System.out.println("action.setLendingId");
         this.lendingId = id;
     }
 
@@ -103,38 +101,54 @@ public class LendingAction extends ActionSupport {
     }
 
     public void setLending(Lending lending) {
-        System.out.println("action.setLending");
         this.lending = lending;
     }
 
     public Publication getPublication() {
-        System.out.println("action.getPublication");
-        System.out.println("PublicationId: " + publicationId);
         return publicationService.loadPublication(publicationId);
     }
 
     public void setPublication(Publication publication) {
-        System.out.println("action.setPublication");
         this.publication = publication;
     }
 
     public Customer getCustomer() {
-        System.out.println("action.getCustomer");
         return customer;
     }
 
     public void setCustomer(Customer customer) {
-        System.out.println("action.setCustomer");
         this.customer = customer;
     }
 
     public Long getPublicationId() {
-        System.out.println("action.getPublicationId");
         return publicationId;
     }
 
     public void setPublicationId(Long publicationId) {
-        System.out.println("action.setPublicationId");
         this.publicationId = publicationId;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public ReturnDateCalculatorService getReturnDateCalculator() {
+        return returnDateCalculator;
+    }
+
+    public void setReturnDateCalculator(ReturnDateCalculatorService returnDateCalculator) {
+        this.returnDateCalculator = returnDateCalculator;
     }
 }

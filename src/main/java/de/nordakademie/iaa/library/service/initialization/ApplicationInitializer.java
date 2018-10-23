@@ -25,12 +25,22 @@ public class ApplicationInitializer implements ApplicationListener<ContextRefres
             KeywordService keywordService,
             PublicationTypeService typeService,
             PublicationService publicationService,
+<<<<<<< HEAD
             LendingService lendingService) {
+=======
+            LendingService lendingService
+            //PublicationSearchService searchService
+            ) {
+>>>>>>> master
         this.customerService = customerService;
         this.keywordService = keywordService;
         this.typeService = typeService;
         this.publicationService = publicationService;
         this.lendingService = lendingService;
+<<<<<<< HEAD
+=======
+        //this.searchService = searchService;
+>>>>>>> master
     }
 
     private CustomerService customerService;
@@ -43,6 +53,11 @@ public class ApplicationInitializer implements ApplicationListener<ContextRefres
 
     private LendingService lendingService;
 
+<<<<<<< HEAD
+=======
+    //private PublicationSearchService searchService;
+
+>>>>>>> master
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
@@ -51,6 +66,9 @@ public class ApplicationInitializer implements ApplicationListener<ContextRefres
 
     public void setupData() {
         Customer customer = new Customer("Peter", "Parker");
+        customer.setCity("SpiderTown");
+        customer.setStreet("SpiderStreet");
+        customer.setMatnr((long) 8);
         customerService.createCustomer(customer);
 
         PublicationType type = new PublicationType("Fachbuch");

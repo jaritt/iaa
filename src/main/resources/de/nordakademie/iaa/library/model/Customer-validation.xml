@@ -8,26 +8,42 @@
         <field-validator type="requiredstring">
             <message key="error.fieldRequired"/>
         </field-validator>
+        <field-validator type="regex">
+            <param name="regexExpression">^([[a-zA-ZäÄüÜöÖ]- ]{2,50})$</param>
+            <message key="error.customerNameFormat"/>
+        </field-validator>
     </field>
     <field name="firstName">
         <field-validator type="requiredstring">
             <message key="error.fieldRequired"/>
+        </field-validator>
+        <field-validator type="regex">
+            <param name="regexExpression">^([[a-zA-ZäÄüÜöÖ]- ]{2,50})$</param>
+            <message key="error.customerNameFormat"/>
         </field-validator>
     </field>
     <field name="city">
         <field-validator type="requiredstring">
             <message key="error.fieldRequired"/>
         </field-validator>
+        <field-validator type="regex">
+            <param name="regexExpression">^([0-9]{5}(\s))([a-zA-ZäÄüÜöÖ]{2,})(((-)|(\s))([a-zA-ZäÄüÜöÖ]{2,}))*$</param>
+            <message key="error.customerAddressFormat"/>
+        </field-validator>
     </field>
     <field name="street">
         <field-validator type="requiredstring">
             <message key="error.fieldRequired"/>
         </field-validator>
+        <field-validator type="regex">
+            <param name="regexExpression">^(([a-zA-ZäÄöÖüÜ]+)((-)|(\s)))+(\d{1,})(\w{0,1})$</param>
+            <message key="error.customerAddressFormat"/>
+        </field-validator>
     </field>
     <field name="matnr">
         <field-validator type="regex">
-            <param name="regexExpression">[0-9]</param>
-            <message key="error.onlyNumbersAllowed"/>
+            <param name="regexExpression">(\d{4,})</param>
+            <message key="error.customerMatnrFormat"/>
         </field-validator>
     </field>
 </validators>
