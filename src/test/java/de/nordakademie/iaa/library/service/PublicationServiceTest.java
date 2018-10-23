@@ -50,6 +50,7 @@ public class PublicationServiceTest extends BasicServiceTest {
         PublicationType type = new PublicationType("DummyType");
         typeService.createPublicationType(type);
         publication.setTitle("Elmshorn als strategischer Standort");
+        publication.setKey("LS-4002");
         publication.setType(type);
         publication.setLendings(new ArrayList<Lending>());
         publication.setKeywords(new ArrayList<Keyword>());
