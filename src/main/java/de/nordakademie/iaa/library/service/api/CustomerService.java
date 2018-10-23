@@ -61,6 +61,7 @@ public interface CustomerService {
                         String firstName,
                         String city,
                         String street,
-                        Long matnr) throws EntityNotFoundException;
+                        Long matnr,
+                        Long plz) throws EntityNotFoundException;
 
 }

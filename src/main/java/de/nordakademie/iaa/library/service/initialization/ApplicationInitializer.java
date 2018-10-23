@@ -25,15 +25,12 @@ public class ApplicationInitializer implements ApplicationListener<ContextRefres
             KeywordService keywordService,
             PublicationTypeService typeService,
             PublicationService publicationService,
-            LendingService lendingService
-            //PublicationSearchService searchService
-            ) {
+            LendingService lendingService) {
         this.customerService = customerService;
         this.keywordService = keywordService;
         this.typeService = typeService;
         this.publicationService = publicationService;
         this.lendingService = lendingService;
-        //this.searchService = searchService;
     }
 
     private CustomerService customerService;
@@ -46,8 +43,6 @@ public class ApplicationInitializer implements ApplicationListener<ContextRefres
 
     private LendingService lendingService;
 
-    //private PublicationSearchService searchService;
-
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
@@ -58,7 +53,7 @@ public class ApplicationInitializer implements ApplicationListener<ContextRefres
         Customer customer = new Customer("Peter", "Parker");
         customer.setCity("SpiderTown");
         customer.setStreet("SpiderStreet");
-        customer.setMatnr((long) 8);
+        customer.setMatnr(6299L);
         customerService.createCustomer(customer);
 
         PublicationType type = new PublicationType("Fachbuch");
@@ -71,7 +66,9 @@ public class ApplicationInitializer implements ApplicationListener<ContextRefres
         keywordService.createKeyword(keyword);
         Keyword keyword1 = new Keyword("Steuern");
         keywordService.createKeyword(keyword1);
-        Keyword keyword2 = new Keyword("Softwarearchitektur");
+        Keyword keyword3 = new Keyword("Bildung");
+        keywordService.createKeyword(keyword3);
+        Keyword keyword2 = new Keyword("Software");
         keywordService.createKeyword(keyword2);
 
         Publication publication = new Publication("LS-2110", "Design Patterns. Elements of Reusable Object-Oriented Software.", type, 2L);
@@ -84,6 +81,7 @@ public class ApplicationInitializer implements ApplicationListener<ContextRefres
 
         Publication publication2 = new Publication("LS-2200", "Steuerrecht leicht gemacht", type2, 10L);
         publication2.getKeywords().add(keyword1);
+        publication2.getKeywords().add(keyword3);
         publication2.setReleaseDate(LocalDate.of(2007, 10, 10));
         publication2.setAuthor("Stephan Kudert");
         publication2.setIsbn("978-3-87440-330-6");
@@ -98,8 +96,6 @@ public class ApplicationInitializer implements ApplicationListener<ContextRefres
         publication3.setIsbn("978-3-86490-555-1");
         publication3.setPublisher("Dpunkt.verlag GmbH");
         publicationService.createPublication(publication3);
-
-        //searchService.rebuildIndex();
 
         try {
             lendingService.lendPublication(publication, customer);

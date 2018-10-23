@@ -81,7 +81,7 @@ public class CustomerServiceImpl implements CustomerService {
      * @throws EntityNotFoundException
      */
     @Override
-    public void updateCustomer(Long id, String title, String name, String firstName, String city, String street, Long matnr) throws EntityNotFoundException {
+    public void updateCustomer(Long id, String title, String name, String firstName, String city, String street, Long matnr, Long plz) throws EntityNotFoundException {
         Customer customer = loadCustomer(id);
         if (customer == null) {
             throw new EntityNotFoundException();
@@ -93,5 +93,6 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setCity(city);
         customer.setStreet(street);
         customer.setMatnr(matnr);
+        customer.setPlz(plz);
     }
 }

@@ -67,6 +67,11 @@ public class Customer {
      */
     private Long matnr;
 
+    /**
+     * German post code
+     */
+    private Long plz;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
@@ -129,6 +134,15 @@ public class Customer {
 
     public void setMatnr(Long matnr) {
         this.matnr = matnr;
+    }
+
+    @Basic
+    public Long getPlz() {
+        return plz;
+    }
+
+    public void setPlz(Long plz) {
+        this.plz = plz;
     }
 
     /**

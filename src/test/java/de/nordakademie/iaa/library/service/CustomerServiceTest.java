@@ -63,7 +63,8 @@ public class CustomerServiceTest extends BasicServiceTest {
                 "Freddy",
                 "Hamburg",
                 "Mittelweg",
-                14002L);
+                14002L,
+                20357L);
 
         Customer customer1 = service.listCustomers().get(0);
 
@@ -73,5 +74,6 @@ public class CustomerServiceTest extends BasicServiceTest {
         assertThat(customer1.getCity()).isEqualTo("Hamburg");
         assertThat(customer1.getStreet()).isEqualTo("Mittelweg");
         assertThat(customer1.getMatnr()).isEqualTo(14002L);
+        assertThat(customer1.getPlz()).isEqualTo(20357);
     }
 }

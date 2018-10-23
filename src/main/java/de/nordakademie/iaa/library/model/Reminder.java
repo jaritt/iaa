@@ -1,5 +1,8 @@
 package de.nordakademie.iaa.library.model;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -49,6 +52,7 @@ public class Reminder {
     }
 
     @ManyToOne
+    @LazyCollection(LazyCollectionOption.FALSE)
     public Lending getLending() {
         return lending;
     }

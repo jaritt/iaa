@@ -1,9 +1,6 @@
 package de.nordakademie.iaa.library.service;
 
-import de.nordakademie.iaa.library.model.Keyword;
-import de.nordakademie.iaa.library.model.Lending;
-import de.nordakademie.iaa.library.model.Publication;
-import de.nordakademie.iaa.library.model.PublicationType;
+import de.nordakademie.iaa.library.model.*;
 import de.nordakademie.iaa.library.service.api.PublicationService;
 import de.nordakademie.iaa.library.service.api.PublicationTypeService;
 import org.junit.Test;
@@ -37,10 +34,12 @@ public class PublicationServiceTest extends BasicServiceTest {
         Publication publication = new Publication();
         PublicationType type = new PublicationType("Lehrbuch");
         typeService.createPublicationType(type);
+        publication.setKey("LS-2200");
         publication.setTitle("IT for Dummies");
         publication.setType(type);
         publication.setLendings(new ArrayList<Lending>());
         publication.setKeywords(new ArrayList<Keyword>());
+        publication.setCopies(10L);
         service.createPublication(publication);
     }
 
@@ -50,10 +49,10 @@ public class PublicationServiceTest extends BasicServiceTest {
         PublicationType type = new PublicationType("DummyType");
         typeService.createPublicationType(type);
         publication.setTitle("Elmshorn als strategischer Standort");
+        publication.setKey("LS-4002");
         publication.setType(type);
         publication.setLendings(new ArrayList<Lending>());
         publication.setKeywords(new ArrayList<Keyword>());
-        service.createPublication(publication);
         service.createPublication(publication);
         assertThat(service.listPublications().get(0).getTitle()).isEqualTo("Elmshorn als strategischer Standort");
     }
@@ -89,7 +88,9 @@ public class PublicationServiceTest extends BasicServiceTest {
         service.updatePublication(publication.getId(),
                 "Blue Ocean Strategy",
                 "Renee Mauborgne",
-                LocalDate.of(2004, 05, 05),
+                10L,
+                10L,
+                2018L,
                 "Harvard Business Review",
                 publicationType,
                 "978-1-56619-909-4",
@@ -100,11 +101,19 @@ public class PublicationServiceTest extends BasicServiceTest {
 
         assertThat(pub1.getTitle()).isEqualTo("Blue Ocean Strategy");
         assertThat(pub1.getAuthor()).isEqualTo("Renee Mauborgne");
-        assertThat(pub1.getReleaseDate()).isEqualTo(LocalDate.of(2004, 05, 05));
+        assertThat(pub1.getReleaseDate()).isEqualTo("10.10.2018");
         assertThat(pub1.getPublisher()).isEqualTo("Harvard Business Review");
         assertThat(pub1.getType().getTitle()).isEqualTo("Buch");
         assertThat(pub1.getIsbn()).isEqualTo("978-1-56619-909-4");
         assertThat(pub1.getKeywords().get(0).getWord()).isEqualTo("blue");
         assertThat(pub1.getKeywords().get(1).getWord()).isEqualTo("red");
+    }
+
+    @Test
+    public void testEagerLoading() throws NoCopyAvailable {
+        samplePublication();
+        Customer customer = new Customer("Hans", "Beiermann");
+        customerService.createCustomer(customer);
+        lendingService.lendPublication(publicationService.listPublications().get(0), customer);
     }
 }
