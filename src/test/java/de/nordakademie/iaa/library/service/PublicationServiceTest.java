@@ -54,7 +54,6 @@ public class PublicationServiceTest extends BasicServiceTest {
         publication.setLendings(new ArrayList<Lending>());
         publication.setKeywords(new ArrayList<Keyword>());
         service.createPublication(publication);
-        service.createPublication(publication);
         assertThat(service.listPublications().get(0).getTitle()).isEqualTo("Elmshorn als strategischer Standort");
     }
 
