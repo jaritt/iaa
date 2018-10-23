@@ -1,9 +1,6 @@
 package de.nordakademie.iaa.library.service;
 
-import de.nordakademie.iaa.library.model.Keyword;
-import de.nordakademie.iaa.library.model.Lending;
-import de.nordakademie.iaa.library.model.Publication;
-import de.nordakademie.iaa.library.model.PublicationType;
+import de.nordakademie.iaa.library.model.*;
 import de.nordakademie.iaa.library.service.api.PublicationService;
 import de.nordakademie.iaa.library.service.api.PublicationTypeService;
 import org.junit.Test;
@@ -37,10 +34,12 @@ public class PublicationServiceTest extends BasicServiceTest {
         Publication publication = new Publication();
         PublicationType type = new PublicationType("Lehrbuch");
         typeService.createPublicationType(type);
+        publication.setKey("LS-2200");
         publication.setTitle("IT for Dummies");
         publication.setType(type);
         publication.setLendings(new ArrayList<Lending>());
         publication.setKeywords(new ArrayList<Keyword>());
+        publication.setCopies(10L);
         service.createPublication(publication);
     }
 
@@ -107,5 +106,13 @@ public class PublicationServiceTest extends BasicServiceTest {
         assertThat(pub1.getIsbn()).isEqualTo("978-1-56619-909-4");
         assertThat(pub1.getKeywords().get(0).getWord()).isEqualTo("blue");
         assertThat(pub1.getKeywords().get(1).getWord()).isEqualTo("red");
+    }
+
+    @Test
+    public void testEagerLoading() throws NoCopyAvailable {
+        samplePublication();
+        Customer customer = new Customer("Hans", "Beiermann");
+        customerService.createCustomer(customer);
+        lendingService.lendPublication(publicationService.listPublications().get(0), customer);
     }
 }

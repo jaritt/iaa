@@ -1,6 +1,8 @@
 package de.nordakademie.iaa.library.model;
 
 import net.bytebuddy.asm.Advice;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -87,6 +89,7 @@ public class Lending {
     }
 
     @ManyToOne(optional = false)
+    @LazyCollection(LazyCollectionOption.FALSE)
     public Publication getPublication() {
         return publication;
     }
@@ -150,6 +153,7 @@ public class Lending {
     }
 
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     public List<Reminder> getReminders() {
         return reminders;
     }
@@ -275,13 +279,22 @@ public class Lending {
     }
 
     @Transient
-    public Long getPublicationId() { return getPublication().getId(); }
+    public Long getPublicationId() {
+        return getPublication().getId();
+    }
 
     @Transient
-    public Long getCustomerId() { return getCustomer().getId(); }
+    public Long getCustomerId() {
+        return getCustomer().getId();
+    }
 
     @Transient
-    public String getCustomerFullName(){
+    public String getPublicationKey() {
+        return getPublication().getKey();
+    }
+
+    @Transient
+    public String getCustomerFullName() {
         String customerFullName = getCustomer().getFirstName() + " " + getCustomer().getName();
         return customerFullName;
     }

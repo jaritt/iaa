@@ -1,6 +1,8 @@
 
 package de.nordakademie.iaa.library.model;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -190,7 +192,8 @@ public class Publication {
         this.copies = copies;
     }
 
-    @OneToMany
+    @OneToMany()
+    @LazyCollection(LazyCollectionOption.FALSE)
     public List<Lending> getLendings() {
         return lendings;
     }
