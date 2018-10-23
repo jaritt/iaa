@@ -51,7 +51,7 @@
         </s:iterator>
     </table>
     <br>
-    <s:submit key="button.addCustomer" action="addCustomer" value="Add Customer"/>
-    <s:submit key="button.editCustomer" action="loadCustomer" value="Edit Customer"/>
-    <s:submit key="button.deleteCustomer" action="deleteCustomer" value="Delete Customer"/>
+    <s:submit key="button.addCustomer" action="addCustomer"/>
+    <s:submit key="button.editCustomer" action="editCustomer"/>
+    <s:submit key="button.deleteCustomer" action="deleteCustomer"/>
 </s:form>
