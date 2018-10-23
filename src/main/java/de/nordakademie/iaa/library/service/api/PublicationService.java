@@ -57,21 +57,25 @@ public interface PublicationService {
     /**
      * Updates a publication entity and stores the changes into database.
      *
-     * @param id          The unique identifier
-     * @param title       The title of the publication
-     * @param author      The author of the publication
-     * @param releaseDate Release date of the publication
-     * @param publisher   Publisher
-     * @param type        Type of the publication
-     * @param isbn        International standard book number
-     * @param keywords    Keywords related to the publication
-     * @param copies      How many copies are present
+     * @param id           The unique identifier
+     * @param title        The title of the publication
+     * @param author       The author of the publication
+     * @param releaseDay   Day of the release date of the publication
+     * @param releaseMonth Month of the release date of the publication
+     * @param releaseYear  Year of the release date of the publication
+     * @param publisher    Publisher
+     * @param type         Type of the publication
+     * @param isbn         International standard book number
+     * @param keywords     Keywords related to the publication
+     * @param copies       How many copies are present
      * @throws EntityNotFoundException
      */
     void updatePublication(Long id,
                            String title,
                            String author,
-                           LocalDate releaseDate,
+                           Long releaseDay,
+                           Long releaseMonth,
+                           Long releaseYear,
                            String publisher,
                            PublicationType type,
                            String isbn,

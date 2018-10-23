@@ -7,10 +7,9 @@ import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Represents a publication which is owned by the library.
@@ -63,7 +62,9 @@ public class Publication {
     /**
      * Release date
      */
-    private LocalDate releaseDate;
+    private Long releaseYear;
+    private Long releaseMonth;
+    private Long releaseDay;
 
     /**
      * Publisher
@@ -133,12 +134,53 @@ public class Publication {
     }
 
     @Basic
-    public LocalDate getReleaseDate() {
-        return releaseDate;
+    public Long getReleaseYear() {
+        return releaseYear;
     }
 
-    public void setReleaseDate(LocalDate releaseDate) {
-        this.releaseDate = releaseDate;
+    public void setReleaseYear(Long releaseYear) {
+        this.releaseYear = releaseYear;
+    }
+
+    @Basic
+    public Long getReleaseMonth() {
+        return releaseMonth;
+    }
+
+    public void setReleaseMonth(Long releaseMonth) {
+        this.releaseMonth = releaseMonth;
+    }
+
+    @Basic
+    public Long getReleaseDay() {
+        return releaseDay;
+    }
+
+    public void setReleaseDay(Long releaseDay) {
+        this.releaseDay = releaseDay;
+    }
+
+    /**
+     * Return full release date as string
+     *
+     * @return release date as string
+     */
+    @Transient
+    public String getReleaseDate() {
+        if (releaseMonth == null) {
+            return releaseYear.toString();
+        }
+        if (releaseDay == null) {
+            return "." + releaseMonth + "." + releaseYear;
+        }
+        return String.valueOf(releaseDay) + "." + releaseMonth + "." + releaseYear;
+    }
+
+    @Transient
+    public void setReleaseDate(LocalDate date) {
+        this.releaseDay = (long) date.getDayOfMonth();
+        this.releaseMonth = (long) date.getMonthValue();
+        this.releaseYear = (long) date.getYear();
     }
 
     @Basic
@@ -158,7 +200,6 @@ public class Publication {
     public void setType(PublicationType type) {
         this.type = type;
     }
-
 
     @Basic
     public String getIsbn() {

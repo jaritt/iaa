@@ -87,19 +87,32 @@ public class PublicationServiceImpl implements PublicationService {
     /**
      * Update a publication
      *
-     * @param id          The unique identifier
-     * @param title       The title of the publication
-     * @param author      The author of the publication
-     * @param releaseDate Release date of the publication
-     * @param publisher   Publisher
-     * @param type        Type of the publication
-     * @param isbn        International standard book number
-     * @param keywords    Keywords related to the publication
-     * @param copies      How many copies are present
+     * @param id           The unique identifier
+     * @param title        The title of the publication
+     * @param author       The author of the publication
+     * @param releaseDay   Day of the release date of the publication
+     * @param releaseMonth Month of the release date of the publication
+     * @param releaseYear  Year of the release date of the publication
+     * @param publisher    Publisher
+     * @param type         Type of the publication
+     * @param isbn         International standard book number
+     * @param keywords     Keywords related to the publication
+     * @param copies       How many copies are present
      * @throws EntityNotFoundException
      */
     @Override
-    public void updatePublication(Long id, String title, String author, LocalDate releaseDate, String publisher, PublicationType type, String isbn, List<Keyword> keywords, Long copies) throws EntityNotFoundException {
+    public void updatePublication(
+            Long id,
+            String title,
+            String author,
+            Long releaseDay,
+            Long releaseMonth,
+            Long releaseYear,
+            String publisher,
+            PublicationType type,
+            String isbn,
+            List<Keyword> keywords,
+            Long copies) throws EntityNotFoundException {
         Publication publication = loadPublication(id);
         if (publication == null) {
             throw new EntityNotFoundException();
@@ -107,7 +120,9 @@ public class PublicationServiceImpl implements PublicationService {
         publication.setId(id);
         publication.setTitle(title);
         publication.setAuthor(author);
-        publication.setReleaseDate(releaseDate);
+        publication.setReleaseDay(releaseDay);
+        publication.setReleaseMonth(releaseMonth);
+        publication.setReleaseYear(releaseYear);
         publication.setPublisher(publisher);
         publication.setType(type);
         publication.setIsbn(isbn);

@@ -92,7 +92,9 @@ public class PublicationAction extends ActionSupport implements Action {
                     publication.getId(),
                     publication.getTitle(),
                     publication.getAuthor(),
-                    publication.getReleaseDate(),
+                    10L,
+                    10L,
+                    2018L,
                     publication.getPublisher(),
                     publication.getType(),
                     publication.getIsbn(),
@@ -110,7 +112,7 @@ public class PublicationAction extends ActionSupport implements Action {
     }
 
     public void validateSave() {
-        if (selectedTypeId == 0){
+        if (selectedTypeId == 0) {
             addActionError(getText("error.selectPublicationType"));
         }
 
@@ -217,7 +219,7 @@ public class PublicationAction extends ActionSupport implements Action {
         return releaseDate = LocalDate.parse(publicationDate, formatter);
     }
 
-    public String convertDateToString (LocalDate releaseDate) {
+    public String convertDateToString(LocalDate releaseDate) {
         return publicationDate = releaseDate.toString();
     }
 

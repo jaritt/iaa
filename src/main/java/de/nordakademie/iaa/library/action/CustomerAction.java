@@ -19,28 +19,27 @@ public class CustomerAction extends ActionSupport {
     private Long customerId;
     private Customer customer;
 
-    public String load() throws Exception{
+    public String load() throws Exception {
         customer = customerService.loadCustomer(customerId);
 
         return SUCCESS;
     }
 
-    public String save() throws Exception{
-        if (customer.getId() != null){
-            customerService.updateCustomer(customer.getId(),customer.getTitle(),customer.getName(),customer.getFirstName(),customer.getCity(),customer.getStreet(),customer.getMatnr());
-        }
-        else{
+    public String save() throws Exception {
+        if (customer.getId() != null) {
+            customerService.updateCustomer(customer.getId(), customer.getTitle(), customer.getName(), customer.getFirstName(), customer.getCity(), customer.getStreet(), customer.getMatnr(), customer.getPlz());
+        } else {
             customerService.createCustomer(customer);
         }
         return SUCCESS;
     }
 
-    public String delete() throws Exception{
+    public String delete() throws Exception {
         customerService.deleteCustomer(customerId);
         return SUCCESS;
     }
 
-        public void validateLoad() {
+    public void validateLoad() {
         if (customerId == null && customer == null) {
             addActionError(getText("error.selectCustomer"));
         }
