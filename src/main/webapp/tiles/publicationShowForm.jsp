@@ -9,7 +9,9 @@
     <s:textfield name="publication.type.title" key="label.publicationType" disabled="true"/>
     <s:textfield name="publication.title" key="label.publicationTitle" disabled="true"/>
     <s:textfield name="publication.author" key="label.publicationAuthor" disabled="true"/>
-    <s:textfield name="publicationDate" key="label.publicationReleaseDate" disabled="true"/>
+    <s:textfield name="publication.releaseYear" key="label.publicationReleaseYear" disabled="true"/>
+    <s:textfield name="publication.releaseMonth" key="label.publicationReleaseMonth" disabled="true"/>
+    <s:textfield name="publication.releaseDay" key="label.publicationReleaseDay" disabled="true"/>
     <s:textfield name="publication.publisher" key="label.publicationPublisher" disabled="true"/>
     <s:textfield name="publication.isbn" key="label.publicationIsbn" disabled="true"/>
     <s:textfield name="publication.keywordsAsString" key="label.publicationKeywords" disabled="true"/>

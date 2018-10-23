@@ -30,10 +30,28 @@
             <message key="error.publicationAuthor"/>
         </field-validator>
     </field>
-    <field name="releaseDate">
-        <field-validator type="regex">
-            <param name="regex"></param>
-            <message key="error.publicationReleaseDate"/>
+    <field name="releaseYear">
+        <field-validator type="required">
+            <message key="error.fieldRequired"/>
+        </field-validator>
+        <field-validator type="long">
+            <param name="min">0</param>
+            <param name="max">2099</param>
+            <message key="error.publicationReleaseYear"/>
+        </field-validator>
+    </field>
+    <field name="releaseMonth">
+        <field-validator type="long">
+            <param name="min">1</param>
+            <param name="max">12</param>
+            <message key="error.publicationReleaseMonth"/>
+        </field-validator>
+    </field>
+    <field name="releaseDay">
+        <field-validator type="long">
+            <param name="min">1</param>
+            <param name="max">31</param>
+            <message key="error.publicationReleaseDay"/>
         </field-validator>
     </field>
     <field name="publisher">

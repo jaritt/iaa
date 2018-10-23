@@ -13,7 +13,9 @@
               key="label.publicationTypeText"/>
     <s:textfield name="publication.title" key="label.publicationTitle" requiredLabel="true"/>
     <s:textfield name="publication.author" key="label.publicationAuthor"/>
-    <s:textfield name="publicationDate" key="label.publicationReleaseDate"/>
+    <s:textfield name="publication.releaseYear" key="label.publicationReleaseYear" requiredLabel="true"/>
+    <s:textfield name="publication.releaseMonth" key="label.publicationReleaseMonth"/>
+    <s:textfield name="publication.releaseDay" key="label.publicationReleaseDay"/>
     <s:textfield name="publication.publisher" key="label.publicationPublisher"/>
     <s:textfield name="publication.isbn" key="label.publicationIsbn"/>
     <s:select name="keywordIds"

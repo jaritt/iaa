@@ -10,7 +10,6 @@
     <include file="xml/PublicationType.xml"/>
     <include file="xml/Customer.xml"/>
     <include file="xml/Lending.xml"/>
-    <include file="xml/Select.xml"/>
     <package name="default" extends="tiles-default">
         <result-types>
             <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" default="true"/>
