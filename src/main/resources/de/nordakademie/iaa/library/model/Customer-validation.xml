@@ -8,20 +8,27 @@
         <field-validator type="requiredstring">
             <message key="error.fieldRequired"/>
         </field-validator>
-        <field-validator type="stringlength">
-            <param name="minLength">2</param>
-            <param name="maxLength">50</param>
-            <message key="error.inputLength"/>
+        <field-validator type="regex">
+            <param name="regexExpression">^([[a-zA-ZäÄüÜöÖ]- ]{2,50})$</param>
+            <message key="error.customerNameFormat"/>
         </field-validator>
     </field>
     <field name="firstName">
         <field-validator type="requiredstring">
             <message key="error.fieldRequired"/>
         </field-validator>
+        <field-validator type="regex">
+            <param name="regexExpression">^([[a-zA-ZäÄüÜöÖ]- ]{2,50})$</param>
+            <message key="error.customerNameFormat"/>
+        </field-validator>
     </field>
     <field name="city">
         <field-validator type="requiredstring">
             <message key="error.fieldRequired"/>
+        </field-validator>
+        <field-validator type="regex">
+            <param name="regexExpression">^([0-9]{5}(\s))([a-zA-ZäÄüÜöÖ]{2,})(((-)|(\s))([a-zA-ZäÄüÜöÖ]{2,}))*$</param>
+            <message key="error.customerAddressFormat"/>
         </field-validator>
     </field>
     <field name="street">

@@ -25,14 +25,15 @@ public class ApplicationInitializer implements ApplicationListener<ContextRefres
             KeywordService keywordService,
             PublicationTypeService typeService,
             PublicationService publicationService,
-            LendingService lendingService,
-            PublicationSearchService searchService) {
+            LendingService lendingService
+            //PublicationSearchService searchService
+            ) {
         this.customerService = customerService;
         this.keywordService = keywordService;
         this.typeService = typeService;
         this.publicationService = publicationService;
         this.lendingService = lendingService;
-        this.searchService = searchService;
+        //this.searchService = searchService;
     }
 
     private CustomerService customerService;
@@ -45,7 +46,7 @@ public class ApplicationInitializer implements ApplicationListener<ContextRefres
 
     private LendingService lendingService;
 
-    private PublicationSearchService searchService;
+    //private PublicationSearchService searchService;
 
 
     @Override
@@ -98,7 +99,7 @@ public class ApplicationInitializer implements ApplicationListener<ContextRefres
         publication3.setPublisher("Dpunkt.verlag GmbH");
         publicationService.createPublication(publication3);
 
-        searchService.rebuildIndex();
+        //searchService.rebuildIndex();
 
         try {
             lendingService.lendPublication(publication, customer);
