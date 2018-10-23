@@ -13,14 +13,14 @@
 
         <action name="showPublication" class="de.nordakademie.iaa.library.action.PublicationAction" method="load">
             <result type="tiles">publicationShowForm</result>
-            <result name="input" type="chain">showPublicationList</result>
+            <!--<result name="input" type="chain">showPublicationList</result>-->
         </action>
 
         <action name="addPublication" class="de.nordakademie.iaa.library.action.PublicationAction">
             <result name="success" type="tiles">publicationCreateForm</result>
         </action>
 
-        <action name="loadPublication" class="de.nordakademie.iaa.library.action.PublicationAction" method="load">
+        <action name="editPublication" class="de.nordakademie.iaa.library.action.PublicationAction" method="load">
             <result type="tiles">publicationUpdateForm</result>
             <result name="input" type="chain">showPublicationList</result>
         </action>

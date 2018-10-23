@@ -12,9 +12,9 @@
     <s:textfield name="publicationDate" key="label.publicationReleaseDate" disabled="true"/>
     <s:textfield name="publication.publisher" key="label.publicationPublisher" disabled="true"/>
     <s:textfield name="publication.isbn" key="label.publicationIsbn" disabled="true"/>
-    <s:textfield name="publication.keywords.word" key="label.publicationKeywords" disabled="true"/>
+    <s:textfield name="publication.keywordsAsString" key="label.publicationKeywords" disabled="true"/>
     <s:textfield name="publication.copies" key="label.publicationCopies" disabled="true"/>
     <s:textfield name="publication.lendings" key="label.publicationLendings" disabled="true"/>
-    <s:submit key="button.sendPublicationId" action="sendPublicationId"/>
+    <s:submit key="button.toLendingCreate" action="sendPublicationId"/>
     <s:submit key="button.back" action="showPublicationList"/>
 </s:form>

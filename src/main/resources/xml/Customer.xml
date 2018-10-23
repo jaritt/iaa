@@ -14,7 +14,7 @@
             <result type="tiles">customerForm</result>
         </action>
 
-        <action name="loadCustomer" class="de.nordakademie.iaa.library.action.CustomerAction" method="load">
+        <action name="editCustomer" class="de.nordakademie.iaa.library.action.CustomerAction" method="load">
             <result type="tiles">customerForm</result>
             <result name="input" type="chain">showCustomerList</result>
         </action>
@@ -28,5 +28,13 @@
             <result type="redirectAction">showCustomerList</result>
             <result name="input" type="chain">showCustomerList</result>
         </action>
+<!--
+        <action name="sendCustomerId" class="de.nordakademie.iaa.library.action.CustomerAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">showCustomer</param>
+                <param name="customerId">${lending.customerId}</param>
+            </result>
+        </action>
+-->
     </package>
 </struts>

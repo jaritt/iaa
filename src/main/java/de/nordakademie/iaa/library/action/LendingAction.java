@@ -38,7 +38,9 @@ public class LendingAction extends ActionSupport {
 
     private Publication publication;
     private Long publicationId;
+
     private Customer customer;
+    private Long customerId;
 
     private Lending lending;
     private Long lendingId;
@@ -118,6 +120,14 @@ public class LendingAction extends ActionSupport {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long Id) {
+        this.customerId = Id;
     }
 
     public Long getPublicationId() {

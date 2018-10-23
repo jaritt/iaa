@@ -48,7 +48,7 @@
     </table>
     <br>
     <s:submit key="button.addPublication" action="addPublication"/>
-    <s:submit key="button.editPublication" action="loadPublication"/>
+    <s:submit key="button.editPublication" action="editPublication"/>
     <s:submit key="button.deletePublication" action="deletePublication"/>
     <s:submit key="button.showPublication" action="showPublication"/>
 </s:form>

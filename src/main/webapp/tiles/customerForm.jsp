@@ -12,7 +12,7 @@
 
 <s:form>
     <s:hidden name="customer.id"/>
-    <s:select name="customer.title" key="label.customerTitle" headerValue="--Select Title--" headerKey="-1" list="titleList" requiredLabel="true"/>
+    <s:select name="customer.title" key="label.customerTitle" headerValue="--Select Title--" headerKey="-1" list="#{'Herr': 'Herr', 'Frau': 'Frau'}" requiredLabel="true"/>
     <s:textfield name="customer.name" key="label.customerName" requiredLabel="true"/>
     <s:textfield name="customer.firstName" key="label.customerFirstName" requiredLabel="true"/>
     <s:textfield name="customer.city" key="label.customerCity" requiredLabel="true"/>
