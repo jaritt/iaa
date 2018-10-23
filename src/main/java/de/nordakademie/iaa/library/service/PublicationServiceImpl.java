@@ -4,6 +4,7 @@ import de.nordakademie.iaa.library.dao.publication.PublicationDAO;
 import de.nordakademie.iaa.library.model.Keyword;
 import de.nordakademie.iaa.library.model.Publication;
 import de.nordakademie.iaa.library.model.PublicationType;
+import de.nordakademie.iaa.library.service.internal.api.PublicationSearchService;
 import de.nordakademie.iaa.library.service.api.PublicationService;
 
 import javax.inject.Named;
@@ -22,16 +23,22 @@ public class PublicationServiceImpl implements PublicationService {
 
     private PublicationDAO dao;
 
-    public PublicationServiceImpl(PublicationDAO dao) {
+    private PublicationSearchService searchService;
+
+    public PublicationServiceImpl(PublicationDAO dao, PublicationSearchService searchService) {
         this.dao = dao;
+        this.searchService = searchService;
     }
 
     /**
+     * Persists a publication
+     *
      * @param publication The publication to be persisted.
      */
     @Override
     public void createPublication(Publication publication) {
         dao.savePublication(publication);
+        rebuildIndex();
     }
 
     /**
@@ -42,6 +49,11 @@ public class PublicationServiceImpl implements PublicationService {
     @Override
     public List<Publication> listPublications() {
         return dao.listPublications();
+    }
+
+    @Override
+    public List<Publication> listPublications(List<Long> ids) {
+        return dao.listPublications(ids);
     }
 
     /**
@@ -57,6 +69,7 @@ public class PublicationServiceImpl implements PublicationService {
             throw new EntityNotFoundException();
         }
         dao.deletePublication(publication.getId());
+        rebuildIndex();
     }
 
     /**
@@ -100,5 +113,60 @@ public class PublicationServiceImpl implements PublicationService {
         publication.setIsbn(isbn);
         publication.setKeywords(keywords);
         publication.setCopies(copies);
+        rebuildIndex();
+    }
+
+    /**
+     * Load a publication identified by its ISBN
+     *
+     * @param isbn International Standard Book Number
+     * @return requested publication
+     */
+    @Override
+    public Publication findPublicationByISBN(String isbn) {
+        return dao.findPublicationByISBN(isbn);
+    }
+
+    /**
+     * Load a publication identified by its non-technical publication key
+     *
+     * @param key publication key
+     * @return the requested publication
+     */
+    @Override
+    public Publication findPublicationByKey(String key) {
+        return dao.findPublicationByKey(key);
+    }
+
+    /**
+     * Executes a search for a publication with the
+     * given search phrase
+     *
+     * @param searchPhrase search request
+     * @return list of matching publications
+     */
+    @Override
+    public List<Publication> search(String searchPhrase) {
+        return listPublications(searchService.search(searchPhrase));
+    }
+
+    /**
+     * Executes a search for a publication, searching only
+     * the defined fields
+     *
+     * @param searchPhrase search request
+     * @param fields       publication attributes used
+     * @return list of matching publications
+     */
+    @Override
+    public List<Publication> search(String searchPhrase, String[] fields) {
+        return listPublications(searchService.search(searchPhrase, fields));
+    }
+
+    /**
+     * Update the search index
+     */
+    private void rebuildIndex() {
+        searchService.rebuildIndex(listPublications());
     }
 }

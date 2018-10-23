@@ -27,8 +27,16 @@ public interface PublicationService {
      * @return a list of Publication entities. If no publication was found an empty list is
      * returned.
      */
-    @SuppressWarnings("unchecked")
     List<Publication> listPublications();
+
+    /**
+     * List all publications currently stored in the database
+     * which belong to the given set of publication ids.
+     *
+     * @return a list of Publication entities. If no publication was found an empty list is
+     * returned.
+     */
+    List<Publication> listPublications(List<Long> ids);
 
     /**
      * Deletes the publication with the given id.
@@ -69,5 +77,41 @@ public interface PublicationService {
                            String isbn,
                            List<Keyword> keywords,
                            Long copies) throws EntityNotFoundException;
+
+    /**
+     * Loads a publication based on the isbn
+     *
+     * @param isbn specific ISBN
+     * @return requested publication
+     */
+    Publication findPublicationByISBN(String isbn);
+
+    /**
+     * Loads a publication based on the internal
+     * library key
+     *
+     * @param key library key
+     * @return requested publication
+     */
+    Publication findPublicationByKey(String key);
+
+    /**
+     * Executes a search for a publication, searching only
+     * the defined fields
+     *
+     * @param searchPhrase search request
+     * @param fields       publication attributes used
+     * @return list of matching publications
+     */
+    List<Publication> search(String searchPhrase, String[] fields);
+
+    /**
+     * Executes a search for a publication with the
+     * given search phrase
+     *
+     * @param searchPhrase search request
+     * @return list of matching publications
+     */
+    List<Publication> search(String searchPhrase);
 
 }

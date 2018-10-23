@@ -6,6 +6,7 @@ import de.nordakademie.iaa.library.model.Publication;
 import de.nordakademie.iaa.library.service.internal.api.ReturnDateCalculatorService;
 
 import javax.inject.Named;
+import javax.inject.Scope;
 import java.time.LocalDate;
 
 /**

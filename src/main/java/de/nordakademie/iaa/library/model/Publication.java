@@ -250,6 +250,11 @@ public class Publication {
 
     @Transient
     public String getKeywordsAsString() {
-        return this.getKeywords().stream().map(keyword -> keyword.getWord()).collect(Collectors.joining(", "));
+        return this.getKeywords().stream().map(Keyword::getWord).collect(Collectors.joining(", "));
+    }
+
+    @Transient
+    public String getKeywordsAsStringWithoutCommas() {
+        return this.getKeywords().stream().map(Keyword::getWord).collect(Collectors.joining(" "));
     }
 }
