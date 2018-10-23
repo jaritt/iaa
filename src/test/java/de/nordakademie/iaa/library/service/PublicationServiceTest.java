@@ -23,7 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * @author Felix Welter
  */
-public class PublicationServiceTest extends BasicServiceTest{
+public class PublicationServiceTest extends BasicServiceTest {
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
@@ -79,6 +79,13 @@ public class PublicationServiceTest extends BasicServiceTest{
         PublicationType publicationType = new PublicationType("Buch");
         typeService.createPublicationType(publicationType);
 
+
+        Keyword keyword1 = new Keyword("blue");
+        Keyword keyword2 = new Keyword("red");
+
+        keywordService.createKeyword(keyword1);
+        keywordService.createKeyword(keyword2);
+
         service.updatePublication(publication.getId(),
                 "Blue Ocean Strategy",
                 "Renee Mauborgne",
@@ -86,7 +93,7 @@ public class PublicationServiceTest extends BasicServiceTest{
                 "Harvard Business Review",
                 publicationType,
                 "978-1-56619-909-4",
-                Arrays.asList(new Keyword("blue"), new Keyword("red")),
+                Arrays.asList(keyword1, keyword2),
                 10L);
 
         Publication pub1 = service.listPublications().get(0);

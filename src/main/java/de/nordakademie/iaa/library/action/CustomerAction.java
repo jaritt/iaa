@@ -4,19 +4,24 @@ import com.opensymphony.xwork2.ActionSupport;
 import de.nordakademie.iaa.library.model.Customer;
 import de.nordakademie.iaa.library.service.api.CustomerService;
 
+import java.util.List;
+
 
 public class CustomerAction extends ActionSupport {
-
     public CustomerAction(CustomerService customerService) {
-        this.customerService = customerService;
-    }
-    private CustomerService customerService;
 
+        this.customerService = customerService;
+
+    }
+
+    private List<String> titleList;
+    private CustomerService customerService;
     private Long customerId;
     private Customer customer;
 
     public String load() throws Exception{
         customer = customerService.loadCustomer(customerId);
+
         return SUCCESS;
     }
 
@@ -61,5 +66,13 @@ public class CustomerAction extends ActionSupport {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public List<String> getTitleList() {
+        return titleList;
+    }
+
+    public void setTitleList(List<String> titleList) {
+        this.titleList = titleList;
     }
 }
