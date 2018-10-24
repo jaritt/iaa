@@ -22,12 +22,11 @@
                 <td><s:property value="startDate"/></td>
                 <td><s:property value="endDate"/></td>
                 <td><s:property value="status"/></td>
-                <td></td>
             </tr>
         </s:iterator>
     </table>
     <br>
-    <s:submit key="button.extendLending" action="extendLending"/>
     <s:submit key="button.receiveLending" action="receiveLending"/>
-    <s:submit key="button.showLending" action="showLending"/>
+    <s:submit key="button.extendLending" action="extendLending"/>
+    <s:submit key="button.showLending" action="showLendingForm"/>
 </s:form>

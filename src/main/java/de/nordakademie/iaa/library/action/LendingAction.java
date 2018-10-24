@@ -116,9 +116,7 @@ public class LendingAction extends ActionSupport {
         this.lending = lending;
     }
 
-    public Publication getPublication() {
-        return publicationService.loadPublication(publicationId);
-    }
+    public Publication getPublication() { return publication; }
 
     public void setPublication(Publication publication) {
         this.publication = publication;
@@ -136,8 +134,8 @@ public class LendingAction extends ActionSupport {
         return customerId;
     }
 
-    public void setCustomerId(Long Id) {
-        this.customerId = Id;
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
     public Long getPublicationId() {
@@ -146,6 +144,7 @@ public class LendingAction extends ActionSupport {
 
     public void setPublicationId(Long publicationId) {
         this.publicationId = publicationId;
+        lending.setPublication(publicationService.loadPublication(publicationId));
     }
 
     public LocalDate getStartDate() {

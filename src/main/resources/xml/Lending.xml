@@ -15,29 +15,34 @@
             <result type="tiles">lendingCreateForm</result>
         </action>
 
-        <action name="showLending" class="de.nordakademie.iaa.library.action.LendingAction" method="load">
+        <action name="showLendingForm" class="de.nordakademie.iaa.library.action.LendingAction" method="load">
             <result type="tiles">lendingShowForm</result>
-            <!--<result name="input" type="chain">showLendingList</result>-->
+            <result name="input" type="chain">showLendingList</result>
         </action>
-        
+
         <action name="saveLending" class="de.nordakademie.iaa.library.action.LendingAction" method="save">
             <result type="redirectAction">
                 <param name="actionName">showLendingList</param>
                 <param name="publicationId">${publicationId}</param>
             </result>
-            <result name="input" type="chain">showLending</result>
+            <result name="input" type="chain">showLendingForm</result>
         </action>
 
-        <action name="sendCustomerId" class="de.nordakademie.iaa.library.action.LendingAction">
+        <action name="sendCustomerIdForCustomerDetailForm" class="de.nordakademie.iaa.library.action.LendingAction">
             <result name="success" type="redirectAction">
-                <param name="actionName">showCustomer</param>
+                <param name="actionName">showCustomerDetailForm</param>
                 <param name="customerId">${customer.Id}</param>
             </result>
         </action>
 
-        <action name="sendPublicationIdForPublicationShowForm" class="de.nordakademie.iaa.library.action.LendingAction">
+        <!--
+        Die <action> sendPublicationIdForPublicationDetailForm wird von der lendingShowForm aufgerufen.
+        Die publicationId muss mitgegeben werden, damit die korrekte Publikation angezeigt werden kann.
+        -->
+
+        <action name="sendPublicationIdForPublicationDetailForm" class="de.nordakademie.iaa.library.action.LendingAction">
             <result name="success" type="redirectAction">
-                <param name="actionName">showPublication</param>
+                <param name="actionName">showPublicationDetailForm</param>
                 <param name="publicationId">${publication.Id}</param>
             </result>
         </action>

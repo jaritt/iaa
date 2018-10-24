@@ -19,8 +19,13 @@
             <result name="input" type="chain">showCustomerList</result>
         </action>
 
-        <action name="showCustomer" class="de.nordakademie.iaa.library.action.CustomerAction" method="load">
+        <action name="showCustomerShowForm" class="de.nordakademie.iaa.library.action.CustomerAction" method="load">
             <result type="tiles">customerShowForm</result>
+            <result name="input" type="chain">showCustomerList</result>
+        </action>
+
+        <action name="showCustomerDetailForm" class="de.nordakademie.iaa.library.action.CustomerAction" method="load">
+            <result type="tiles">customerDetailForm</result>
             <result name="input" type="chain">showCustomerList</result>
         </action>
 

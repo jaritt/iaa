@@ -11,8 +11,13 @@
             <result type="tiles">publicationList</result>
         </action>
 
-        <action name="showPublication" class="de.nordakademie.iaa.library.action.PublicationAction" method="load">
+        <action name="showPublicationShowForm" class="de.nordakademie.iaa.library.action.PublicationAction" method="load">
             <result type="tiles">publicationShowForm</result>
+            <result name="input" type="chain">showPublicationList</result>
+        </action>
+
+        <action name="showPublicationDetailForm" class="de.nordakademie.iaa.library.action.PublicationAction" method="load">
+            <result type="tiles">publicationDetailForm</result>
             <result name="input" type="chain">showPublicationList</result>
         </action>
 
@@ -45,11 +50,6 @@
                 <param name="publicationId">${publication.Id}</param>
             </result>
         </action>
-
-        <!--
-        Die <action> sendPublicationIdForPublicationShowForm wird von der lendingShowForm aufgerufen.
-        Die publicationId muss mitgegeben werden, damit die korrekte Publikation angezeigt werden kann.
-        -->
 
     </package>
 </struts>

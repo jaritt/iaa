@@ -36,6 +36,10 @@
 		<put-attribute name="content" value="/tiles/publicationShowForm.jsp"/>
 	</definition>
 
+	<definition name="publicationDetailForm" extends="mainTemplate">
+		<put-attribute name="content" value="/tiles/publicationDetailForm.jsp"/>
+	</definition>
+
 	<definition name="publicationTypeList" extends="mainTemplate">
 		<put-attribute name="content" value="/tiles/publicationTypeList.jsp"/>
 	</definition>
@@ -54,6 +58,10 @@
 
 	<definition name="customerShowForm" extends="mainTemplate">
 		<put-attribute name="content" value="/tiles/customerShowForm.jsp"/>
+	</definition>
+
+	<definition name="customerDetailForm" extends="mainTemplate">
+		<put-attribute name="content" value="/tiles/customerDetailForm.jsp"/>
 	</definition>
 
     <definition name="lendingList" extends="mainTemplate">
