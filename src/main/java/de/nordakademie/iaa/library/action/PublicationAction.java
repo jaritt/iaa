@@ -11,11 +11,8 @@ import de.nordakademie.iaa.library.service.api.KeywordService;
 import de.nordakademie.iaa.library.service.api.LendingService;
 import de.nordakademie.iaa.library.service.api.PublicationService;
 import de.nordakademie.iaa.library.service.api.PublicationTypeService;
-import net.bytebuddy.asm.Advice;
 
 import javax.persistence.EntityNotFoundException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,8 +32,6 @@ public class PublicationAction extends ActionSupport implements Action {
         keywordList = this.keywordService.listKeywords();
         System.out.println("PublicationAction constructor");
     }
-
-    final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     private PublicationService publicationService;
     private KeywordService keywordService;

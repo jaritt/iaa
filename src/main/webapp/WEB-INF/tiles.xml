@@ -7,8 +7,9 @@
 <tiles-definitions>
 	<!-- Main template -->
 	<definition name="mainTemplate" template="/template/mainTemplate.jsp">
-		<put-attribute name="title" value="Bibliotheksverwaltung"/>
+		<put-attribute name="title" value="/tiles/title.jsp"/>
 		<put-attribute name="header" value="/tiles/header.jsp"/>
+		<put-attribute name="navigationBar" value="/tiles/navigationBar.jsp"/>
 	</definition>
 
 	<definition name="keywordList" extends="mainTemplate">
