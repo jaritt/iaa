@@ -13,7 +13,7 @@
 
         <action name="showPublication" class="de.nordakademie.iaa.library.action.PublicationAction" method="load">
             <result type="tiles">publicationShowForm</result>
-            <!--<result name="input" type="chain">showPublicationList</result>-->
+            <result name="input" type="chain">showPublicationList</result>
         </action>
 
         <action name="addPublication" class="de.nordakademie.iaa.library.action.PublicationAction">
@@ -34,13 +34,22 @@
             <result type="redirectAction">showPublicationList</result>
             <result name="input" type="chain">showPublicationList</result>
         </action>
-
-        <action name="sendPublicationId" class="de.nordakademie.iaa.library.action.PublicationAction">
+        <!--
+        Die <action> sendPublicationIdForLendingCreateForm wird von der publicationShowForm aufgerufen.
+        Die publicationId muss mitgegeben werden, damit auf der lendingCreateForm
+        der Titel der Publikation angezeigt werden kann.
+        -->
+        <action name="sendPublicationIdForLendingCreateForm" class="de.nordakademie.iaa.library.action.PublicationAction">
             <result name="success" type="redirectAction">
                 <param name="actionName">showLendingCreateForm</param>
                 <param name="publicationId">${publication.Id}</param>
             </result>
         </action>
+
+        <!--
+        Die <action> sendPublicationIdForPublicationShowForm wird von der lendingShowForm aufgerufen.
+        Die publicationId muss mitgegeben werden, damit die korrekte Publikation angezeigt werden kann.
+        -->
 
     </package>
 </struts>
