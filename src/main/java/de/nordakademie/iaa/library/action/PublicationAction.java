@@ -146,8 +146,8 @@ public class PublicationAction extends ActionSupport implements Action {
         return publicationId;
     }
 
-    public void setPublicationId(Long id) {
-        this.publicationId = id;
+    public void setPublicationId(Long publicationId) {
+        this.publicationId = publicationId;
     }
 
     public Publication getPublication() {

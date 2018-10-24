@@ -28,11 +28,17 @@
             <result name="input" type="chain">showLending</result>
         </action>
 
-
         <action name="sendCustomerId" class="de.nordakademie.iaa.library.action.LendingAction">
             <result name="success" type="redirectAction">
                 <param name="actionName">showCustomer</param>
                 <param name="customerId">${customer.Id}</param>
+            </result>
+        </action>
+
+        <action name="sendPublicationIdForPublicationShowForm" class="de.nordakademie.iaa.library.action.LendingAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">showPublication</param>
+                <param name="publicationId">${publication.Id}</param>
             </result>
         </action>
 
