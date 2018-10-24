@@ -44,7 +44,9 @@ public class LendingAction extends ActionSupport {
 
     private Lending lending;
     private Long lendingId;
+
     private ReturnDateCalculatorService returnDateCalculator;
+
     private LocalDate startDate;
     private LocalDate endDate;
 
@@ -73,13 +75,21 @@ public class LendingAction extends ActionSupport {
     }
 
     public String save() throws LendingAlreadyExistsException, NoCopyAvailable {
-        if (lending.getId() != null) {
+        System.out.println("selectedCustomerId: " + selectedCustomerId);
+        lending.setCustomer(customerService.loadCustomer(selectedCustomerId));
+        lending.setPublication(publicationService.loadPublication(publicationId));
+        lendingService.lendPublication(lending.getPublication(), lending.getCustomer());
 
-        } else {
-            lendingService.lendPublication(publication, customer);
-        }
         return SUCCESS;
     }
+
+    /*
+    public void validateSave() {
+        if (selectedCustomerId == 0) {
+            addActionError(getText("error.selectCustomerId"));
+        }
+    }
+    */
 
     public Long getSelectedCustomerId() {
         return selectedCustomerId;

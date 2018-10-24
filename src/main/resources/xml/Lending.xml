@@ -19,14 +19,15 @@
             <result type="tiles">lendingShowForm</result>
             <!--<result name="input" type="chain">showLendingList</result>-->
         </action>
-
-        <action name="lendPublication" class="de.nordakademie.iaa.library.action.LendingAction" method="save">
-            <result name="success" type="redirectAction">
-                <param name="actionName">showLending</param>
-                <param name="publicationId">${publication.Id}</param>
+        
+        <action name="saveLending" class="de.nordakademie.iaa.library.action.LendingAction" method="save">
+            <result type="redirectAction">
+                <param name="actionName">showLendingList</param>
+                <param name="publicationId">${publicationId}</param>
             </result>
-           <!-- <result name="input" type="chain">showLending</result>-->
+            <result name="input" type="chain">showLending</result>
         </action>
+
 
         <action name="sendCustomerId" class="de.nordakademie.iaa.library.action.LendingAction">
             <result name="success" type="redirectAction">

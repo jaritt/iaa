@@ -40,12 +40,13 @@ public class PublicationAction extends ActionSupport implements Action {
 
     private Publication publication;
     private Long publicationId;
+
+    private List<PublicationType> publicationTypeList;
     private Long selectedTypeId;
 
     private List<Long> keywordIds;
     private List<Keyword> keywords;
 
-    private List<PublicationType> publicationTypeList;
     private List<Keyword> keywordList;
     private List<Lending> lendingList;
 

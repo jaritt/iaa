@@ -5,7 +5,6 @@
 
 <s:form>
     <s:hidden name="lending.id"/>
-    <s:hidden name="customer.id"/>
     <s:textfield name="lending.customerFullName" key="label.lendingCustomer" disabled="true"/>
     <s:submit key="button.toCustomer" action="sendCustomerId"/>
     <s:textfield name="lending.startDate" key="label.lendingStartDate" disabled="true"/>
