@@ -11,11 +11,8 @@ import de.nordakademie.iaa.library.service.api.KeywordService;
 import de.nordakademie.iaa.library.service.api.LendingService;
 import de.nordakademie.iaa.library.service.api.PublicationService;
 import de.nordakademie.iaa.library.service.api.PublicationTypeService;
-import net.bytebuddy.asm.Advice;
 
 import javax.persistence.EntityNotFoundException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,8 +33,6 @@ public class PublicationAction extends ActionSupport implements Action {
         System.out.println("PublicationAction constructor");
     }
 
-    final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
     private PublicationService publicationService;
     private KeywordService keywordService;
     private PublicationTypeService publicationTypeService;
@@ -50,13 +45,77 @@ public class PublicationAction extends ActionSupport implements Action {
     private List<Long> keywordIds;
     private List<Keyword> keywords;
 
-    private String publicationDate;
-    private LocalDate releaseDate;
-
     private List<PublicationType> publicationTypeList;
     private List<Keyword> keywordList;
-
     private List<Lending> lendingList;
+
+    public String load() throws EntityNotFoundException {
+        lendingList = lendingService.listLendings();
+        publication = publicationService.loadPublication(publicationId);
+        publicationTypeList = publicationTypeService.listPublicationTypes();
+        keywordList = keywordService.listKeywords();
+        return SUCCESS;
+    }
+
+    public String save() throws PublicationAlreadyExistsException {
+        publication.setType(publicationTypeService.loadPublicationType(selectedTypeId));
+        publication.setKeywords(this.keywords);
+
+        if (publication.getId() != null) {
+            publicationService.updatePublication(
+                    publication.getId(),
+                    publication.getTitle(),
+                    publication.getAuthor(),
+                    publication.getReleaseDay(),
+                    publication.getReleaseMonth(),
+                    publication.getReleaseYear(),
+                    publication.getPublisher(),
+                    publication.getType(),
+                    publication.getIsbn(),
+                    publication.getKeywords(),
+                    publication.getCopies());
+        } else {
+            publicationService.createPublication(publication);
+            }
+        return SUCCESS;
+    }
+
+    public String delete() throws EntityNotFoundException {
+        publicationService.deletePublication(publicationId);
+        return SUCCESS;
+    }
+
+    public void validateSave() {
+        if (selectedTypeId == 0) {
+            addActionError(getText("error.selectPublicationType"));
+        }
+
+        /*
+        if (publication.getReleaseYear() < 0 || publication.getReleaseYear() > 2099){
+            addActionError(getText("error.publicationReleaseYear"));
+        }
+
+        if (publication.getReleaseMonth() < 1 || publication.getReleaseYear() > 12){
+            addActionError(getText("error.publicationReleaseMonth"));
+        }
+
+        if (publicationService.findPublicationByISBN(publication.getIsbn()) != null) {
+            addActionError(getText("error.publicationAlreadyExists"));
+        }
+        */
+    }
+
+    public void validateLoad() {
+        if (publicationId == null && publication == null) {
+            addActionError(getText("error.selectPublication"));
+        }
+    }
+
+    public void validateDelete() {
+        if (publicationId == null && publication == null) {
+            addActionError(getText("error.selectPublication"));
+        }
+    }
 
     public List<PublicationType> getPublicationTypeList() {
         return publicationTypeService.listPublicationTypes();
@@ -74,86 +133,12 @@ public class PublicationAction extends ActionSupport implements Action {
         this.keywordList = keywordList;
     }
 
-    public String load() throws EntityNotFoundException {
-        lendingList = lendingService.listLendings();
-        publication = publicationService.loadPublication(publicationId);
-        publicationTypeList = publicationTypeService.listPublicationTypes();
-        keywordList = keywordService.listKeywords();
-        return SUCCESS;
+    public List<Lending> getLendingList() {
+        return lendingService.listLendings();
     }
 
-    public String save() throws PublicationAlreadyExistsException {
-        publication.setType(publicationTypeService.loadPublicationType(selectedTypeId));
-        publication.setKeywords(this.keywords);
-        publication.setReleaseDate(this.releaseDate = convertStringToDate(publicationDate));
-
-        if (publication.getId() != null) {
-            publicationService.updatePublication(
-                    publication.getId(),
-                    publication.getTitle(),
-                    publication.getAuthor(),
-                    10L,
-                    10L,
-                    2018L,
-                    publication.getPublisher(),
-                    publication.getType(),
-                    publication.getIsbn(),
-                    publication.getKeywords(),
-                    publication.getCopies());
-        } else {
-            publicationService.createPublication(publication);
-        }
-        return SUCCESS;
-    }
-
-    public String delete() throws EntityNotFoundException {
-        publicationService.deletePublication(publicationId);
-        return SUCCESS;
-    }
-
-    public void validateSave() {
-        if (selectedTypeId == 0) {
-            addActionError(getText("error.selectPublicationType"));
-        }
-
-        /**
-         *
-         * Warten bis Felix die Methode im Service implementiert hat.
-         *
-         */
-
-        /*
-        if (findPublicationByIsbn) {
-
-        }
-        */
-
-        /**
-         *
-         * Es ist noch zu klären, ob das Datum nicht einfach ein String sein kann.
-         * Validierung bis auf weiteres auskommentiert.
-         *
-         */
-
-        /*
-        if (!publicationDate.matches("\\d{4}-\\d{2}-\\d{2}")) {
-            addActionError(getText("error.publicationReleaseDate"));
-            addActionMessage(getText("error.publicationReleaseDate"));
-            addFieldError(publicationDate, "Fail");
-        }
-        */
-    }
-
-    public void validateLoad() {
-        if (publicationId == null && publication == null) {
-            addActionError(getText("error.selectPublication"));
-        }
-    }
-
-    public void validateDelete() {
-        if (publicationId == null && publication == null) {
-            addActionError(getText("error.selectPublication"));
-        }
+    public void setLendingList(List<Lending> lendingList) {
+        this.lendingList = lendingList;
     }
 
     public Long getPublicationId() {
@@ -189,38 +174,4 @@ public class PublicationAction extends ActionSupport implements Action {
         this.keywordIds = keywordIds;
         this.keywords = keywordService.listKeywords(keywordIds);
     }
-
-    public LocalDate getReleaseDate() {
-        return releaseDate;
-    }
-
-    public void setReleaseDate(LocalDate releaseDate) {
-        this.releaseDate = releaseDate;
-        publication.setReleaseDate(convertStringToDate(publicationDate));
-    }
-
-    public String getPublicationDate() {
-        return publicationDate = publication.getReleaseDate().toString();
-    }
-
-    public void setPublicationDate(String publicationDate) {
-        this.publicationDate = publicationDate;
-    }
-
-    public List<Lending> getLendingList() {
-        return lendingService.listLendings();
-    }
-
-    public void setLendingList(List<Lending> lendingList) {
-        this.lendingList = lendingList;
-    }
-
-    public LocalDate convertStringToDate(String publicationDate) {
-        return releaseDate = LocalDate.parse(publicationDate, formatter);
-    }
-
-    public String convertDateToString(LocalDate releaseDate) {
-        return publicationDate = releaseDate.toString();
-    }
-
 }

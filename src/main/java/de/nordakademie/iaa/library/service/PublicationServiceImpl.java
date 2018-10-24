@@ -10,6 +10,7 @@ import de.nordakademie.iaa.library.service.api.PublicationService;
 import javax.inject.Named;
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -162,6 +163,10 @@ public class PublicationServiceImpl implements PublicationService {
      */
     @Override
     public List<Publication> search(String searchPhrase) {
+        Publication publication = findPublicationByKey(searchPhrase);
+        if (publication != null) return Arrays.asList(publication);
+        publication = findPublicationByISBN(searchPhrase);
+        if (publication != null) return Arrays.asList(publication);
         return listPublications(searchService.search(searchPhrase));
     }
 
@@ -175,6 +180,10 @@ public class PublicationServiceImpl implements PublicationService {
      */
     @Override
     public List<Publication> search(String searchPhrase, String[] fields) {
+        Publication publication = findPublicationByKey(searchPhrase);
+        if (publication != null) return Arrays.asList(publication);
+        publication = findPublicationByISBN(searchPhrase);
+        if (publication != null) return Arrays.asList(publication);
         return listPublications(searchService.search(searchPhrase, fields));
     }
 

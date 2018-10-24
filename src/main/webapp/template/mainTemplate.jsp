@@ -6,10 +6,11 @@
 <head>
     <title><tiles:insertAttribute name="title"/></title>
     <s:head/>
+    <link rel="stylesheet" type="text/css" href="/css/stylesNavigationBar.css">
 </head>
 <body>
     <tiles:insertAttribute name="header"/>
-    <hr/>
+    <tiles:insertAttribute name="navigationBar"/>
     <tiles:insertAttribute name="content"/>
 </body>
 </html>
