@@ -27,7 +27,7 @@
         </s:iterator>
     </table>
     <br>
-    <s:submit key="button.extendLending" action="extendLending"/>
+    <s:submit key="button.extendLending" action="prolongLending"/>
     <s:submit key="button.receiveLending" action="receiveLending"/>
     <s:submit key="button.showLending" action="showLending"/>
 </s:form>

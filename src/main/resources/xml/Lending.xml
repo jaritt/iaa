@@ -19,6 +19,11 @@
             <result type="tiles">lendingShowForm</result>
             <!--<result name="input" type="chain">showLendingList</result>-->
         </action>
+
+        <action name="prolongLending" class="de.nordakademie.iaa.library.action.LendingAction" method="prolong">
+            <result type="redirectAction">showLendingList</result>
+            <result name="input" type="chain">showLendingList</result>
+        </action>
         
         <action name="saveLending" class="de.nordakademie.iaa.library.action.LendingAction" method="save">
             <result type="redirectAction">

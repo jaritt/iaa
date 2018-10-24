@@ -83,6 +83,12 @@ public class LendingAction extends ActionSupport {
         return SUCCESS;
     }
 
+    public String prolong() {
+        lending = lendingService.loadLending(lendingId);
+        lendingService.prolongLending(lending);
+        return SUCCESS;
+    }
+
     /*
     public void validateSave() {
         if (selectedCustomerId == 0) {
