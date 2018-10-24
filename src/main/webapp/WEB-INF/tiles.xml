@@ -47,8 +47,12 @@
 		<put-attribute name="content" value="/tiles/customerList.jsp"/>
 	</definition>
 
-	<definition name="customerForm" extends="mainTemplate">
-		<put-attribute name="content" value="/tiles/customerForm.jsp"/>
+	<definition name="customerUpdateForm" extends="mainTemplate">
+		<put-attribute name="content" value="/tiles/customerUpdateForm.jsp"/>
+	</definition>
+
+	<definition name="customerShowForm" extends="mainTemplate">
+		<put-attribute name="content" value="/tiles/customerShowForm.jsp"/>
 	</definition>
 
     <definition name="lendingList" extends="mainTemplate">

@@ -12,6 +12,7 @@
 
 <s:form>
     <s:hidden name="lending.id"/>
+    <s:hidden name="publication.id"/>
     <s:select name="selctedCustomerId" headerKey="-1" headerValue="Select customer..."
               list="customerList" listKey="id" listValue="%{name +', ' + firstName}"/>
     <s:textfield name="publication.title" key="label.publicationTitle" disabled="true"/>

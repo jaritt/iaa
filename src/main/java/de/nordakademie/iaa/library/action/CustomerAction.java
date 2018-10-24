@@ -45,6 +45,15 @@ public class CustomerAction extends ActionSupport {
         }
     }
 
+    public void validateSave() {
+        Customer presentCustomer = customerService.findCustomerByMatnr(customer.getMatnr());
+        if (customer.getMatnr() != null &&  presentCustomer != null) {
+            if (customer.getId() != presentCustomer.getId()){
+                addActionError(getText("error.publicationTypeAlreadyExists"));
+            }
+        }
+    }
+
     public void validateDelete() {
         if (customerId == null && customer == null) {
             addActionError(getText("error.selectCustomer"));

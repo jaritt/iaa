@@ -62,4 +62,20 @@ public class CustomerDAO {
         entityManager.persist(customer);
         return customer;
     }
+
+    /**
+     * Load a customer by matnr
+     *
+     * @param matnr
+     * @return requested customer
+     */
+    public Customer findCustomerByMatnr(Long matnr) {
+        TypedQuery<Customer> query = entityManager.createQuery("from Customer l where l.matnr = :matnr", Customer.class);
+        query.setParameter("matnr", matnr);
+        List<Customer> customers = query.getResultList();
+        if (customers.isEmpty()) {
+            return null;
+        }
+        return customers.get(0);
+    }
 }

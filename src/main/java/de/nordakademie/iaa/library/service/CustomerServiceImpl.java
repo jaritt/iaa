@@ -95,4 +95,6 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setMatnr(matnr);
         customer.setPlz(plz);
     }
+
+    public Customer findCustomerByMatnr(Long matnr){ return dao.findCustomerByMatnr(matnr);}
 }

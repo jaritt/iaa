@@ -64,4 +64,13 @@ public interface CustomerService {
                         Long matnr,
                         Long plz) throws EntityNotFoundException;
 
+    /**
+     * Finds a customer identified by the matnr
+     *
+     * @param matnr
+     * @return The customer that is searched for
+     */
+    Customer findCustomerByMatnr(Long matnr);
+
 }
+
