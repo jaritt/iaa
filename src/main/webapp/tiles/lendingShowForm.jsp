@@ -17,5 +17,5 @@
     <s:textfield name="lending.publicationKey" key="label.publicationKey" disabled="true"/>
     <s:textfield name="lending.publicationTitle" key="label.publicationTitle" disabled="true"/>
     <s:submit key="button.toPublication" action="sendPublicationIdForPublicationDetailForm"/>
-    <s:submit key="button.back" action="showLendingList"/>
+    <s:submit key="button.toLendingList" action="showLendingList"/>
 </s:form>

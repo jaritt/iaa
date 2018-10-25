@@ -1,5 +1,6 @@
 package de.nordakademie.iaa.library.action;
 
+import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import de.nordakademie.iaa.library.model.Customer;
 import de.nordakademie.iaa.library.service.api.CustomerService;
@@ -7,7 +8,7 @@ import de.nordakademie.iaa.library.service.api.CustomerService;
 import java.util.List;
 
 
-public class CustomerAction extends ActionSupport {
+public class CustomerAction extends ActionSupport implements Action {
     public CustomerAction(CustomerService customerService) {
 
         this.customerService = customerService;

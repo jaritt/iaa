@@ -7,7 +7,7 @@
     <title><tiles:insertAttribute name="title"/></title>
     <s:head/>
     <link rel="stylesheet" type="text/css" href="/css/stylesNavigationBar.css">
-    <%-- <link rel="stylesheet" type="text/css" href="/css/stylesTable.css"> --%>
+    <link rel="stylesheet" type="text/css" href="/css/stylesTable.css">
     <%-- <link rel="stylesheet" type="text/css" href="/css/stylesButton.css"> --%>
 </head>
 <body>

@@ -57,10 +57,6 @@
             </result>
         </action>
 
-        <action name="sendReminder" class="de.nordakademie.iaa.library.action.LendingAction" method="sendReminder">
-            <result type="tiles">lendingList</result>
-        </action>
-
     </package>
 </struts>
 

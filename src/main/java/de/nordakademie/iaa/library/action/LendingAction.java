@@ -1,10 +1,12 @@
 package de.nordakademie.iaa.library.action;
 
+import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import de.nordakademie.iaa.library.dao.lending.LendingAlreadyExistsException;
 import de.nordakademie.iaa.library.dao.lending.LendingNotFoundException;
 import de.nordakademie.iaa.library.model.Customer;
 import de.nordakademie.iaa.library.model.Lending;
+import de.nordakademie.iaa.library.model.ProlongationNotPossible;
 import de.nordakademie.iaa.library.model.Publication;
 import de.nordakademie.iaa.library.service.NoCopyAvailable;
 import de.nordakademie.iaa.library.service.api.CustomerService;
@@ -16,7 +18,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LendingAction extends ActionSupport {
+public class LendingAction extends ActionSupport implements Action {
 
     public LendingAction(LendingService lendingService,
                          PublicationService publicationService,
@@ -53,6 +55,9 @@ public class LendingAction extends ActionSupport {
     private List<Customer> customerList;
     private Long selectedCustomerId;
 
+    //private List<Lending> overdueLendings = lendingService.listLendings().stream().filter(Lending::isOverDue).collect(Collectors.toList());
+
+
 
     public List<Customer> getCustomerList() {
         return customerService.listCustomers();
@@ -83,7 +88,7 @@ public class LendingAction extends ActionSupport {
         return SUCCESS;
     }
 
-    public String prolongLending() {
+    public String prolongLending() throws ProlongationNotPossible {
         lending = lendingService.loadLending(lendingId);
         lendingService.prolongLending(lending);
         return SUCCESS;
@@ -95,9 +100,6 @@ public class LendingAction extends ActionSupport {
         return SUCCESS;
     }
 
-    public String sendReminder() {
-        return SUCCESS;
-    }
     /*
     public void validateSave() {
         if (selectedCustomerId == 0) {
@@ -106,7 +108,12 @@ public class LendingAction extends ActionSupport {
     }
     */
 
-
+    public void validateProlongLending() {
+        lending = lendingService.loadLending(lendingId);
+        if (lending.getTimesProlonged() == 2) {
+            addActionError(getText("error.prolongationNotPossible"));
+        }
+    }
 
     public Long getSelectedCustomerId() {
         return selectedCustomerId;

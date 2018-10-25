@@ -1,3 +1,3 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-Bibliotheksverwaltung
+<s:text name="header.library"/>

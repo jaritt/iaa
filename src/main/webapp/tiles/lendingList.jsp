@@ -27,20 +27,22 @@
             <th><s:text name="label.lendingEndDate"/></th>
             <th><s:text name="label.lendingStatus"/></th>
             <th><s:text name="label.lendingReminderSent"/></th>
-            <th><s:text name="label.lendingRemeinderDue"/></th>
+            <th><s:text name="label.lendingReminderDue"/></th>
         </tr>
-        <s:iterator value="lendings">
-            <tr>
-                <td><s:radio list="#{id:''}" name="lendingId" theme="simple"/></td>
-                <td><s:property value="publicationTitle"/></td>
-                <td><s:property value="customerFullName"/></td>
-                <td><s:property value="startDate"/></td>
-                <td><s:property value="endDate"/></td>
-                <td><s:if test="isOverDue"><s:text name="label.lendinsStateOverDue"/></s:if><s:else><s:text name="label.lendinsStateLent"/></s:else></td>
-                <td><s:property value="reminders.size"/></td>
-                <td><s:if test="reminderDue"><s:submit key="button.sendReminder" action="sendReminder"/></s:if><s:else><s:text name="label.ReminderNotDueYet"/></s:else></td>
-            </tr>
-        </s:iterator>
+        <div>
+            <s:iterator value="lendings">
+                <tr>
+                    <td><s:radio list="#{id:''}" name="lendingId" theme="simple"/></td>
+                    <td><s:property value="publicationTitle"/></td>
+                    <td><s:property value="customerFullName"/></td>
+                    <td><s:property value="startDate"/></td>
+                    <td><s:property value="endDate"/></td>
+                    <td><s:if test="overDue"><s:text name="label.lendingsStateOverDue"/></s:if><s:else><s:text name="label.lendingsStateLent"/></s:else></td>
+                    <td><s:property value="reminders.size"/></td>
+                    <td><s:if test="reminderDue"><button  type="submit" formaction="sendReminderFromLendingList"><s:text name="button.sendReminder"/></button></s:if><s:else><s:text name="label.ReminderNotDueYet"/></s:else></td>
+                </tr>
+            </s:iterator>
+        </div>
     </table>
     <br>
     <s:submit key="button.prolongLending" action="prolongLending"/>

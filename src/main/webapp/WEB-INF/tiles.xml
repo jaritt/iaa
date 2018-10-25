@@ -12,6 +12,10 @@
 		<put-attribute name="navigationBar" value="/tiles/navigationBar.jsp"/>
 	</definition>
 
+	<definition name="main" extends="mainTemplate">
+		<put-attribute name="content" value="/tiles/main.jsp"/>
+	</definition>
+
 	<definition name="keywordList" extends="mainTemplate">
 		<put-attribute name="content" value="/tiles/keywordList.jsp"/>
 	</definition>

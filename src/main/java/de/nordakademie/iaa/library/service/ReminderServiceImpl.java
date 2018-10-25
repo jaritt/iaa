@@ -26,12 +26,13 @@ import java.util.List;
 public class ReminderServiceImpl implements ReminderService {
 
     private ReminderDAO dao;
-
+    private LendingService lending;
     private NotifierService notifier;
 
-    public ReminderServiceImpl(ReminderDAO dao, NotifierService notifier) {
+    public ReminderServiceImpl(ReminderDAO dao, NotifierService notifier, LendingService lending) {
         this.dao = dao;
         this.notifier = notifier;
+        this.lending = lending;
     }
 
     /**
@@ -103,10 +104,11 @@ public class ReminderServiceImpl implements ReminderService {
      */
     @Override
     public void sendReminder(Lending lending) {
+        Lending currentLending = this.lending.loadLending(lending.getId());
         notifier.sendMessage(lending.getCustomer(), getReminderMessage(lending));
         Reminder reminder = new Reminder();
         reminder.setDate(LocalDate.now());
-        lending.addReminder(reminder);
+        currentLending.addReminder(reminder);
         createReminder(reminder);
     }
 

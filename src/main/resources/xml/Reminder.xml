@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="Reminder" extends="tiles-default">
+
+        <action name="sendReminderFromMain" class="de.nordakademie.iaa.library.action.ReminderAction" method="remind">
+            <result type="redirectAction">showMain</result>
+            <result name="input" type="chain">showMain</result>
+        </action>
+
+        <action name="sendReminderFromLendingList" class="de.nordakademie.iaa.library.action.ReminderAction" method="remind">
+            <result type="redirectAction">showLendingList</result>
+            <result name="input" type="chain">showLendingList</result>
+        </action>
+
+    </package>
+</struts>
