@@ -8,20 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <style>
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-            text-align: center;
-        }
-    </style>
-</head>
-<body>
-
-
 <h1><s:text name="header.customerList"/></h1>
 
 <s:actionerror/>

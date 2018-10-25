@@ -1,23 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<!DOCTYPE html>
 <html>
-<head>
-    <style>
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-    </style>
-</head>
+<header>
+    <h1><s:text name="header.publicationManagement"/></h1>
+</header>
 <body>
-
-<h1><s:text name="header.publicationManagement"/></h1>
 
 <s:actionerror/>
 <s:form>
-    <table style="width: 100%">
+    <table>
         <tr>
             <th></th>
             <th><s:text name="label.publicationKey"/></th>
@@ -44,13 +36,12 @@
                 <td><s:property value="copies"/></td>
             </tr>
         </s:iterator>
-
     </table>
     <br>
     <s:submit key="button.addPublication" action="addPublication"/>
     <s:submit key="button.editPublication" action="editPublication"/>
+    <s:submit key="button.showPublication" action="showPublicationShowForm"/>
     <s:submit key="button.deletePublication" action="deletePublication"/>
-    <s:submit key="button.showPublication" action="showPublication"/>
 </s:form>
 </body>
 </html>

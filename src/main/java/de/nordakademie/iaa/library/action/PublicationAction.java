@@ -171,6 +171,12 @@ public class PublicationAction extends ActionSupport implements Action {
         return this.publication.getKeywords().stream().map(Keyword::getId).collect(Collectors.toList());
     }
 
+    /*
+    public List<Long> getLendingIds)() {
+        return this.publication.getLendings().stream().map(Lending::getId).collect(Collectors.toList());
+    }
+    */
+
     public void setKeywordIds(List<Long> keywordIds) {
         this.keywordIds = keywordIds;
         this.keywords = keywordService.listKeywords(keywordIds);

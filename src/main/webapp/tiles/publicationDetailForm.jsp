@@ -16,7 +16,6 @@
     <s:textfield name="publication.isbn" key="label.publicationIsbn" disabled="true"/>
     <s:textfield name="publication.keywordsAsString" key="label.publicationKeywords" disabled="true"/>
     <s:textfield name="publication.copies" key="label.publicationCopies" disabled="true"/>
-    <s:textfield name="publication.lendings" key="label.publicationLendings" disabled="true"/>
-    <s:submit key="button.toLendingCreate" action="sendPublicationIdForLendingCreateForm"/>
-    <s:submit key="button.back" action="showPublicationList"/>
+    <s:textfield name="publication.lendingsAsString" key="label.publicationLendings" disabled="true"/>
+    <s:submit key="button.back" action="showLendingForm"/>
 </s:form>
