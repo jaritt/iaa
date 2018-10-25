@@ -53,6 +53,8 @@ public class LendingAction extends ActionSupport {
     private List<Customer> customerList;
     private Long selectedCustomerId;
 
+    private Lending newLending;
+
 
     public List<Customer> getCustomerList() {
         return customerService.listCustomers();
@@ -78,7 +80,7 @@ public class LendingAction extends ActionSupport {
         System.out.println("selectedCustomerId: " + selectedCustomerId);
         lending.setCustomer(customerService.loadCustomer(selectedCustomerId));
         lending.setPublication(publicationService.loadPublication(publicationId));
-        lendingService.lendPublication(lending.getPublication(), lending.getCustomer());
+        newLending = lendingService.lendPublication(lending.getPublication(), lending.getCustomer());
 
         return SUCCESS;
     }
