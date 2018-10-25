@@ -1,6 +1,8 @@
 package de.nordakademie.iaa.library.service;
 
+import de.nordakademie.iaa.library.dao.customer.CustomerDAO;
 import de.nordakademie.iaa.library.dao.lending.LendingDAO;
+import de.nordakademie.iaa.library.dao.publication.PublicationDAO;
 import de.nordakademie.iaa.library.model.*;
 import de.nordakademie.iaa.library.service.api.LendingService;
 import de.nordakademie.iaa.library.service.internal.api.ReturnDateCalculatorService;
@@ -18,11 +20,20 @@ public class LendingServiceImpl implements LendingService {
 
     private LendingDAO dao;
 
+    private PublicationDAO publicationDao;
+
+    private CustomerDAO customerDAO;
+
     private ReturnDateCalculatorService returnDateCalculator;
 
-    public LendingServiceImpl(LendingDAO dao, ReturnDateCalculatorService returnDateCalculator) {
+    public LendingServiceImpl(LendingDAO dao,
+                              ReturnDateCalculatorService returnDateCalculator,
+                              PublicationDAO publicationDao,
+                              CustomerDAO customerDAO) {
         this.dao = dao;
+        this.publicationDao = publicationDao;
         this.returnDateCalculator = returnDateCalculator;
+        this.customerDAO = customerDAO;
     }
 
     /**
@@ -65,6 +76,10 @@ public class LendingServiceImpl implements LendingService {
     @Override
     public Lending lendPublication(Publication publication, Customer customer) throws NoCopyAvailable {
 
+        Publication currentPublication = publicationDao.loadPublication(publication.getId());
+
+        Customer currentCustomer = customerDAO.loadCustomer(customer.getId());
+
         if (!publication.isCopyAvailable()) {
             throw new NoCopyAvailable();
         }
@@ -73,12 +88,13 @@ public class LendingServiceImpl implements LendingService {
         lending.setReturned(false);
         lending.setLost(false);
         lending.setStartDate(LocalDate.now());
-        lending.setEndDate(returnDateCalculator.reset().setCustomer(customer).setPublication(publication).getReturnDate());
+        lending.setEndDate(returnDateCalculator.reset().setCustomer(currentCustomer).setPublication(currentPublication).getReturnDate());
         lending.setTimesProlonged(0L);
         lending.setReminders(new ArrayList<>());
-        lending.setCustomer(customer);
-        publication.addLending(lending);
+        lending.setCustomer(currentCustomer);
+        currentPublication.addLending(lending);
         dao.saveLending(lending);
+
         return lending;
     }
 
