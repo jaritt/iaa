@@ -20,7 +20,12 @@
             <result name="input" type="chain">showLendingList</result>
         </action>
 
-        <action name="prolongLending" class="de.nordakademie.iaa.library.action.LendingAction" method="prolong">
+        <action name="prolongLending" class="de.nordakademie.iaa.library.action.LendingAction" method="prolongLending">
+            <result type="redirectAction">showLendingList</result>
+            <result name="input" type="chain">showLendingList</result>
+        </action>
+
+        <action name="receivedLending" class="de.nordakademie.iaa.library.action.LendingAction" method="receivedLending">
             <result type="redirectAction">showLendingList</result>
             <result name="input" type="chain">showLendingList</result>
         </action>
@@ -50,6 +55,10 @@
                 <param name="actionName">showPublicationDetailForm</param>
                 <param name="publicationId">${publication.Id}</param>
             </result>
+        </action>
+
+        <action name="sendReminder" class="de.nordakademie.iaa.library.action.LendingAction" method="sendReminder">
+            <result type="tiles">lendingList</result>
         </action>
 
     </package>

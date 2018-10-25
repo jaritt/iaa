@@ -92,8 +92,9 @@ public class LendingServiceImpl implements LendingService {
      */
     @Override
     public void prolongLending(Lending lending) throws ProlongationNotPossible {
+        Lending currentLending = loadLending(lending.getId());
         LocalDate newReturnDate = returnDateCalculator.reset().setLending(lending).getReturnDate();
-        lending.prolongUntil(newReturnDate);
+        currentLending.prolongUntil(newReturnDate);
     }
 
     @Override

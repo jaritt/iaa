@@ -46,11 +46,6 @@ public class Lending {
     private Customer customer;
 
     /**
-     * The full name of the customer who received the publication
-     */
-    private String customerFullName;
-
-    /**
      * Date when the customer received the publication
      * and the lending started
      */
@@ -82,11 +77,6 @@ public class Lending {
      * Reminder that have been sent for this lending
      */
     private List<Reminder> reminders;
-
-    /**
-     * Status of the lending
-     */
-    private String status;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -305,46 +295,9 @@ public class Lending {
 
     @Transient
     public String getCustomerFullName() {
-        return customerFullName = getCustomer().getFirstName() + " " + getCustomer().getName();
+        String customerFullName = getCustomer().getFirstName() + " " + getCustomer().getName();
+        return customerFullName;
     }
-
-
-    @Transient
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-
-    @Transient
-    public String getStatus() {
-        if (this.isReminderDue()){
-            switch  (getReminders().size()){
-                case 0: this.status = "OverDue";
-                    break;
-                case 1: this.status = "Second OverDue";
-                    break;
-                case 2: this.status = "Third OverDue";
-                    break;
-                default: this.status = "Status unavailable";
-                    break;
-            }
-        }
-        else {
-            switch (getReminders().size()) {
-                case 0: this.status = "Lent";
-                    break;
-                case 1: this.status = "First Reminder Out";
-                    break;
-                case 2: this.status = "Second Reminder Out";
-                    break;
-                case 3: this.status = "Third Reminder Out";
-                    break;
-                default: this.status = "Status unavailable";
-            }
-        }
-        return status;
-    }
-
 
     @Override
     public boolean equals(Object o) {
