@@ -1,9 +1,6 @@
 package de.nordakademie.iaa.library.service.initialization;
 
-import de.nordakademie.iaa.library.model.Customer;
-import de.nordakademie.iaa.library.model.Keyword;
-import de.nordakademie.iaa.library.model.Publication;
-import de.nordakademie.iaa.library.model.PublicationType;
+import de.nordakademie.iaa.library.model.*;
 import de.nordakademie.iaa.library.service.NoCopyAvailable;
 import de.nordakademie.iaa.library.service.api.*;
 import org.springframework.context.ApplicationListener;
@@ -99,6 +96,12 @@ public class ApplicationInitializer implements ApplicationListener<ContextRefres
 
         try {
             lendingService.lendPublication(publication, customer);
+            Lending lending2 = lendingService.lendPublication(publication2, customer);
+            Lending lending3 = lendingService.lendPublication(publication3, customer);
+            lending2.setStartDate(LocalDate.of(2018,10,1));
+            lending3.setStartDate(LocalDate.of(2018,10,1));
+            lending2.setEndDate(LocalDate.of(2018,10,24));
+            lending3.setEndDate(LocalDate.of(2018,10,20));
         } catch (NoCopyAvailable noCopyAvailable) {
             noCopyAvailable.printStackTrace();
         }

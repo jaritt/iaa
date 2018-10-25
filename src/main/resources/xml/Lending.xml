@@ -20,6 +20,16 @@
             <result name="input" type="chain">showLendingList</result>
         </action>
 
+        <action name="prolongLending" class="de.nordakademie.iaa.library.action.LendingAction" method="prolongLending">
+            <result type="redirectAction">showLendingList</result>
+            <result name="input" type="chain">showLendingList</result>
+        </action>
+
+        <action name="receivedLending" class="de.nordakademie.iaa.library.action.LendingAction" method="receivedLending">
+            <result type="redirectAction">showLendingList</result>
+            <result name="input" type="chain">showLendingList</result>
+        </action>
+
         <action name="saveLending" class="de.nordakademie.iaa.library.action.LendingAction" method="save">
             <result type="redirectAction">
                 <param name="actionName">showLendingList</param>
