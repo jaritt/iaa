@@ -1,6 +1,11 @@
 package de.nordakademie.iaa.library.service;
 
+import de.nordakademie.iaa.library.dao.customer.CustomerDAO;
+import de.nordakademie.iaa.library.dao.keyword.KeywordDAO;
 import de.nordakademie.iaa.library.dao.lending.LendingDAO;
+import de.nordakademie.iaa.library.dao.publication.PublicationDAO;
+import de.nordakademie.iaa.library.dao.publicationtype.PublicationTypeDAO;
+import de.nordakademie.iaa.library.dao.reminder.ReminderDAO;
 import de.nordakademie.iaa.library.model.*;
 import de.nordakademie.iaa.library.service.api.*;
 import org.junit.Before;
@@ -22,6 +27,24 @@ abstract public class BasicServiceTest {
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
+    protected CustomerDAO customerDAO;
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
+    @Autowired
+    protected KeywordDAO keywordDAO;
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
+    @Autowired
+    protected PublicationDAO publicationDAO;
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
+    @Autowired
+    protected PublicationTypeDAO typeDAO;
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
+    @Autowired
+    protected LendingDAO lendingDAO;
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
+    @Autowired
+    protected ReminderDAO reminderDAO;
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
+    @Autowired
     protected CustomerService customerService;
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
@@ -37,24 +60,27 @@ abstract public class BasicServiceTest {
     protected LendingService lendingService;
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
-    protected LendingDAO lendingDAO;
+    protected ReminderService reminderService;
 
     @Before
     public void clearData() {
-        for (Lending item : lendingService.listLendings()) {
+        for (Reminder item : reminderDAO.listReminders()) {
+            reminderDAO.deleteReminder(item.getId());
+        }
+        for (Lending item : lendingDAO.listLendings()) {
             lendingDAO.deleteLending(item.getId());
         }
-        for (Publication item : publicationService.listPublications()) {
-            publicationService.deletePublication(item.getId());
+        for (Publication item : publicationDAO.listPublications()) {
+            publicationDAO.deletePublication(item.getId());
         }
-        for (Customer item : customerService.listCustomers()) {
-            customerService.deleteCustomer(item.getId());
+        for (Customer item : customerDAO.listCustomers()) {
+            customerDAO.deleteCustomer(item.getId());
         }
-        for (Keyword item : keywordService.listKeywords()) {
-            keywordService.deleteKeyword(item.getId());
+        for (Keyword item : keywordDAO.listKeywords()) {
+            keywordDAO.deleteKeyword(item.getId());
         }
-        for (PublicationType item : typeService.listPublicationTypes()) {
-            typeService.deletePublicationType(item.getId());
+        for (PublicationType item : typeDAO.listPublicationTypes()) {
+            typeDAO.deletePublicationType(item.getId());
         }
     }
 }
