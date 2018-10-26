@@ -8,6 +8,9 @@
     <s:head/>
     <link rel="stylesheet" type="text/css" href="/css/stylesNavigationBar.css">
     <link rel="stylesheet" type="text/css" href="/css/stylesTable.css">
+    <script src="/js/jquery-latest.js"></script>
+    <script src="/js/jquery.tablesorter.min.js"></script>
+    <script src="/js/sortable-table-init.js"></script>
     <%-- <link rel="stylesheet" type="text/css" href="/css/stylesButton.css"> --%>
 </head>
 <body>
