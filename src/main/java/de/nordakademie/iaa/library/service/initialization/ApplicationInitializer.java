@@ -99,8 +99,8 @@ public class ApplicationInitializer implements ApplicationListener<ContextRefres
             Lending lending2 = lendingService.lendPublication(publication2, customer);
             Lending lending3 = lendingService.lendPublication(publication3, customer);
             lending2.setStartDate(LocalDate.of(2018,10,1));
-            lending3.setStartDate(LocalDate.of(2018,10,1));
             lending2.setEndDate(LocalDate.of(2018,10,24));
+            lending3.setStartDate(LocalDate.of(2018,10,1));
             lending3.setEndDate(LocalDate.of(2018,10,20));
         } catch (NoCopyAvailable noCopyAvailable) {
             noCopyAvailable.printStackTrace();

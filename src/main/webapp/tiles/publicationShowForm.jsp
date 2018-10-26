@@ -31,13 +31,14 @@
             <th><s:text name="label.lendingEndDate"/></th>
             <th><s:text name="label.lendingStatus"/></th>
         </tr>
-        <s:iterator value="publication.lendings">
+        <s:iterator value="openLendings">
             <tr>
                 <td><s:property value="publication.title"/></td>
                 <td><s:property value="customerFullName"/></td>
                 <td><s:property value="startDate"/></td>
                 <td><s:property value="endDate"/></td>
-                <td><s:property value="status"/></td>
+                <td><s:if test="overDue"><s:text name="label.lendingsStateOverDue"/></s:if>
+                    <s:else><s:text name="label.lendingsStateLent"/></s:else></td>
             </tr>
         </s:iterator>
     </table>

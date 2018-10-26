@@ -31,9 +31,15 @@ public class ShowPublicationListAction implements Action{
     private List<PublicationType> publicationTypes;
     private List<Keyword> keywords;
 
+    private String searchTerm = "";
+
     @Override
     public String execute() throws EntityNotFoundException {
-        publications = publicationService.listPublications();
+        if (searchTerm == "") {
+            publications = publicationService.listPublications();
+        } else {
+            publications = publicationService.search(searchTerm);
+        }
         publicationTypes = publicationTypeService.listPublicationTypes();
         keywords = keywordService.listKeywords();
         return SUCCESS;
@@ -75,5 +81,13 @@ public class ShowPublicationListAction implements Action{
 
     public void setKeywordService(KeywordService keywordService) {
         this.keywordService = keywordService;
+    }
+
+    public String getSearchTerm() {
+        return searchTerm;
+    }
+
+    public void setSearchTerm(String searchTerm) {
+        this.searchTerm = searchTerm;
     }
 }

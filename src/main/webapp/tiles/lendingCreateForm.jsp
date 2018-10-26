@@ -10,6 +10,7 @@
 
 <h1><s:text name="header.lendingForm" /></h1>
 
+<s:actionerror/>
 <s:form>
     <s:hidden name="lending.id"/>
     <s:hidden name="publicationId"/>

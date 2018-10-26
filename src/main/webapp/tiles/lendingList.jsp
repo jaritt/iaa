@@ -53,7 +53,7 @@
     </table>
     <br>
     <s:submit key="button.showLending" action="showLendingForm"/>
-    <s:submit key="button.receiveLending" action="receivedLending"/>
     <s:submit key="button.prolongLending" action="prolongLending"/>
+    <s:submit key="button.receiveLending" action="receivedLending"/>
     <s:submit key="button.sendReminder" action="sendReminderFromLendingList"/>
 </s:form>

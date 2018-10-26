@@ -7,6 +7,7 @@ import de.nordakademie.iaa.library.model.Keyword;
 import de.nordakademie.iaa.library.model.Lending;
 import de.nordakademie.iaa.library.model.Publication;
 import de.nordakademie.iaa.library.model.PublicationType;
+import de.nordakademie.iaa.library.service.SearchFailedException;
 import de.nordakademie.iaa.library.service.api.KeywordService;
 import de.nordakademie.iaa.library.service.api.LendingService;
 import de.nordakademie.iaa.library.service.api.PublicationService;
@@ -50,13 +51,14 @@ public class PublicationAction extends ActionSupport implements Action {
     private List<Keyword> keywordList;
     private List<Lending> lendingList;
 
-    private String title;
+    private List<Lending> openLendings;
 
     public String load() throws EntityNotFoundException {
         lendingList = lendingService.listLendings();
         publication = publicationService.loadPublication(publicationId);
         publicationTypeList = publicationTypeService.listPublicationTypes();
         keywordList = keywordService.listKeywords();
+        openLendings = publication.getLendings().stream().filter(lending -> !lending.isCompleted()).collect(Collectors.toList());
         return SUCCESS;
     }
 
@@ -184,7 +186,11 @@ public class PublicationAction extends ActionSupport implements Action {
         this.keywords = keywordService.listKeywords(keywordIds);
     }
 
-    public String getTitle() {
-        return "Test";
+    public List<Lending> getOpenLendings() {
+        return openLendings;
+    }
+
+    public void setOpenLendings(List<Lending> openLendings) {
+        this.openLendings = openLendings;
     }
 }

@@ -11,6 +11,13 @@
             <result type="tiles">publicationList</result>
         </action>
 
+        <action name="searchForPublication" class="de.nordakademie.iaa.library.action.ShowPublicationListAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">showPublicationList</param>
+                <param name="searchTerm">${searchTerm}</param>
+            </result>
+        </action>
+
         <action name="showPublicationShowForm" class="de.nordakademie.iaa.library.action.PublicationAction" method="load">
             <result type="tiles">publicationShowForm</result>
             <result name="input" type="chain">showPublicationList</result>
@@ -50,6 +57,7 @@
                 <param name="publicationId">${publication.Id}</param>
             </result>
         </action>
+
 
     </package>
 </struts>

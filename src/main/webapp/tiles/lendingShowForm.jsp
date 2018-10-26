@@ -3,19 +3,62 @@
 
 <h1><s:text name="header.lendingForm"/></h1>
 
-<s:form>
-    <s:hidden name="lending.id"/>
-    <s:hidden name="publication.id"/>
-    <s:hidden name="lending.publicationId"/>
-    <s:hidden name="customer.id"/>
-    <s:hidden name="lending.customerId"/>
-    <s:textfield name="lending.customerFullName" key="label.lendingCustomer" disabled="true"/>
-    <s:submit key="button.toCustomer" action="sendCustomerIdForCustomerDetailForm"/>
-    <s:textfield name="lending.startDate" key="label.lendingStartDate" disabled="true"/>
-    <s:textfield name="lending.endDate"  key="label.lendingEndDate" disabled="true"/>
-    <s:textfield name="lending.status" key="label.lendingStatus" disabled="true"/>
-    <s:textfield name="lending.publicationKey" key="label.publicationKey" disabled="true"/>
-    <s:textfield name="lending.publicationTitle" key="label.publicationTitle" disabled="true"/>
-    <s:submit key="button.toPublication" action="sendPublicationIdForPublicationDetailForm"/>
-    <s:submit key="button.toLendingList" action="showLendingList"/>
-</s:form>
+<div>
+    <s:form>
+        <s:hidden name="lending.id"/>
+        <s:hidden name="publication.id"/>
+        <s:hidden name="customer.id"/>
+        <table>
+            <div>
+                <tr>
+                    <th><s:text name="label.lendingCustomer"/></th>
+                    <td><s:property value="lending.customerFullName"/></td>
+                </tr>
+                <tr>
+                    <th><s:text name="label.lendingStartDate"/></th>
+                    <td><s:property value="lending.startdate"/></td>
+                </tr>
+                <tr>
+                    <th><s:text name="label.lendingEndDate"/></th>
+                    <td><s:property value="lending.enddate"/></td>
+                </tr>
+                <tr>
+                    <th><s:text name="label.lendingStatus"/></th>
+                    <td><s:if test="overDue"><s:text name="label.lendingsStateOverDue"/></s:if>
+                        <s:else><s:text name="label.lendingsStateLent"/></s:else>
+                    </td>
+                </tr>
+                <tr>
+                    <th><s:text name="label.lendingTimesProlonged"/></th>
+                    <td><s:property value="lending.timesProlonged"/></td>
+                </tr>
+                <tr>
+                    <th><s:text name="label.lendingPublicationKey"/></th>
+                    <td><s:property value="lending.publicationKey"/></td>
+                </tr>
+                <tr>
+                    <th><s:text name="label.lendingPublicationTitle"/></th>
+                    <td><s:property value="lending.publicationTitle"/></td>
+                </tr>
+            </div>
+        </table>
+        <br>
+        <div>
+            <button formaction="sendCustomerIdForCustomerDetailForm"><s:text name="button.toCustomer"/></button>
+            <button formaction="sendPublicationIdForPublicationDetailForm"><s:text name="button.toPublication"/></button>
+            <button formaction="showLendingList"><s:text name="button.toLendingList"/></button>
+        </div>
+    </s:form>
+</div>
+<div>
+    <s:form>
+        <table>
+            <s:iterator value="reminders">
+                <tr>
+                    <th><s:text name="label.sendReminderDate"/></th>
+                    <td><s:property value="date"/></td>
+                </tr>
+            </s:iterator>
+        </table>
+    </s:form>
+</div>

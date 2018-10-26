@@ -4,16 +4,13 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import de.nordakademie.iaa.library.dao.lending.LendingAlreadyExistsException;
 import de.nordakademie.iaa.library.dao.lending.LendingNotFoundException;
-import de.nordakademie.iaa.library.model.Customer;
-import de.nordakademie.iaa.library.model.Lending;
-import de.nordakademie.iaa.library.model.ProlongationNotPossible;
-import de.nordakademie.iaa.library.model.Publication;
+import de.nordakademie.iaa.library.model.*;
 import de.nordakademie.iaa.library.service.NoCopyAvailable;
 import de.nordakademie.iaa.library.service.api.CustomerService;
 import de.nordakademie.iaa.library.service.api.LendingService;
 import de.nordakademie.iaa.library.service.api.PublicationService;
+import de.nordakademie.iaa.library.service.api.ReminderService;
 import de.nordakademie.iaa.library.service.internal.api.ReturnDateCalculatorService;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -22,12 +19,14 @@ public class LendingAction extends ActionSupport implements Action {
     public LendingAction(LendingService lendingService,
                          PublicationService publicationService,
                          CustomerService customerService,
-                         ReturnDateCalculatorService returnDateCalculator) {
+                         ReturnDateCalculatorService returnDateCalculator,
+                         ReminderService reminderService) {
 
         this.returnDateCalculator = returnDateCalculator;
         this.lendingService = lendingService;
         this.publicationService = publicationService;
         this.customerService = customerService;
+        this.reminderService = reminderService;
 
         customerList = this.customerService.listCustomers();
         System.out.println("LendingAction constructor");
@@ -36,6 +35,7 @@ public class LendingAction extends ActionSupport implements Action {
     private LendingService lendingService;
     private PublicationService publicationService;
     private CustomerService customerService;
+    private ReminderService reminderService;
 
     private Publication publication;
     private Long publicationId;
@@ -53,6 +53,8 @@ public class LendingAction extends ActionSupport implements Action {
 
     private List<Customer> customerList;
     private Long selectedCustomerId;
+
+    private List<Reminder> reminders;
 
     private Lending newLending;
 
@@ -76,11 +78,11 @@ public class LendingAction extends ActionSupport implements Action {
         lending = lendingService.loadLending(lendingId);
         publication = publicationService.loadPublication(lending.getPublicationId());
         customer = customerService.loadCustomer(lending.getCustomerId());
+        reminders = reminderService.findRemindersByLending(lending);
         return SUCCESS;
     }
 
     public String save() throws LendingAlreadyExistsException, NoCopyAvailable {
-        System.out.println("selectedCustomerId: " + selectedCustomerId);
         lending.setCustomer(customerService.loadCustomer(selectedCustomerId));
         lending.setPublication(publicationService.loadPublication(publicationId));
         newLending = lendingService.lendPublication(lending.getPublication(), lending.getCustomer());
@@ -105,13 +107,13 @@ public class LendingAction extends ActionSupport implements Action {
         return SUCCESS;
     }
 
-    /*
     public void validateSave() {
+        publication = publicationService.loadPublication(publicationId);
+        System.out.println("Copy: " + publication.isCopyAvailable());
         if (selectedCustomerId == 0) {
-            addActionError(getText("error.selectCustomerId"));
+            addActionError(getText("error.selectLending"));
         }
     }
-    */
 
     public void validateLoad() {
         if (lending == null && lendingId == null) {
@@ -218,5 +220,13 @@ public class LendingAction extends ActionSupport implements Action {
 
     public void setReturnDateCalculator(ReturnDateCalculatorService returnDateCalculator) {
         this.returnDateCalculator = returnDateCalculator;
+    }
+
+    public List<Reminder> getReminders() {
+        return reminders;
+    }
+
+    public void setReminders(List<Reminder> reminders) {
+        this.reminders = reminders;
     }
 }

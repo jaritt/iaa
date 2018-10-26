@@ -18,7 +18,6 @@
 <h1><s:text name="header.main"/></h1>
 
 <s:actionerror/>
-<s:fielderror fieldName="reminder"/>
 <s:form>
     <table>
         <tr>

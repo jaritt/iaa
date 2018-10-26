@@ -2,7 +2,17 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 
-<h1><s:text name="header.publicationManagement"/></h1>
+<h1>
+    <s:text name="header.publicationManagement"/>
+</h1>
+<br>
+<div>
+    <s:form>
+        <s:textfield name="searchTerm" key="nav.searchBar"/>
+        <s:submit key="button.search" action="searchForPublication"/>
+        <%--<button formaction="searchForPublication"><s:text name="button.search"/></button>--%>
+    </s:form>
+</div>
 
 <s:actionerror/>
 <s:form>
