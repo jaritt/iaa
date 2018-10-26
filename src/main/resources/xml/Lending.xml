@@ -11,7 +11,7 @@
             <result type="tiles">lendingList</result>
         </action>
 
-        <action name="showLendingCreateForm" class="de.nordakademie.iaa.library.action.LendingAction" method="load">
+        <action name="showLendingCreateForm" class="de.nordakademie.iaa.library.action.LendingAction" method="start">
             <result type="tiles">lendingCreateForm</result>
         </action>
 

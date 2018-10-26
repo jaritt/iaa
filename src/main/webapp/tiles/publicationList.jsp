@@ -1,11 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<html>
-<header>
-    <h1><s:text name="header.publicationManagement"/></h1>
-</header>
-<body>
+
+<h1><s:text name="header.publicationManagement"/></h1>
 
 <s:actionerror/>
 <s:form>
@@ -43,5 +40,3 @@
     <s:submit key="button.showPublication" action="showPublicationShowForm"/>
     <s:submit key="button.deletePublication" action="deletePublication"/>
 </s:form>
-</body>
-</html>

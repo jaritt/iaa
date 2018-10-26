@@ -16,7 +16,6 @@ import de.nordakademie.iaa.library.service.internal.api.ReturnDateCalculatorServ
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LendingAction extends ActionSupport implements Action {
 
@@ -67,15 +66,21 @@ public class LendingAction extends ActionSupport implements Action {
         this.customerList = customerList;
     }
 
+    public String start() throws LendingNotFoundException {
+        publication = publicationService.loadPublication(publicationId);
+        setStartDate(LocalDate.now());
+        setEndDate(returnDateCalculator.reset().getReturnDate());
+
+        return SUCCESS;
+    }
+
+
     public String load() throws LendingNotFoundException {
         if (lendingId != null) {
             lending = lendingService.loadLending(lendingId);
             publication = publicationService.loadPublication(lending.getPublicationId());
             customer = customerService.loadCustomer(lending.getCustomerId());
         }
-        setStartDate(LocalDate.now());
-        setEndDate(returnDateCalculator.reset().getReturnDate());
-
         return SUCCESS;
     }
 
@@ -88,7 +93,7 @@ public class LendingAction extends ActionSupport implements Action {
         return SUCCESS;
     }
 
-    public String prolongLending() throws ProlongationNotPossible {
+    public String prolongLending() {
         lending = lendingService.loadLending(lendingId);
         lendingService.prolongLending(lending);
         return SUCCESS;
@@ -108,10 +113,21 @@ public class LendingAction extends ActionSupport implements Action {
     }
     */
 
+    public void validateLoad(){
+        if (lending == null && lendingId == null) {
+            addActionError(getText("error.selectLending"));
+        }
+    }
+
     public void validateProlongLending() {
-        lending = lendingService.loadLending(lendingId);
-        if (lending.getTimesProlonged() == 2) {
+        if (lending == null && lendingId == null) {
+            addActionError(getText("error.selectLending"));
+        }
+        if (lendingId != null){
+            lending = lendingService.loadLending(lendingId);
+            if (lending.canBeProlonged()) {
             addActionError(getText("error.prolongationNotPossible"));
+            }
         }
     }
 
