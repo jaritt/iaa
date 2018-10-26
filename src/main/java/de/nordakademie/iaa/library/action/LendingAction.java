@@ -56,8 +56,6 @@ public class LendingAction extends ActionSupport implements Action {
 
     private Lending newLending;
 
-    //private List<Lending> overdueLendings = lendingService.listLendings().stream().filter(Lending::isOverDue).collect(Collectors.toList());
-
     public List<Customer> getCustomerList() {
         return customerService.listCustomers();
     }
@@ -74,13 +72,10 @@ public class LendingAction extends ActionSupport implements Action {
         return SUCCESS;
     }
 
-
     public String load() throws LendingNotFoundException {
-        if (lendingId != null) {
-            lending = lendingService.loadLending(lendingId);
-            publication = publicationService.loadPublication(lending.getPublicationId());
-            customer = customerService.loadCustomer(lending.getCustomerId());
-        }
+        lending = lendingService.loadLending(lendingId);
+        publication = publicationService.loadPublication(lending.getPublicationId());
+        customer = customerService.loadCustomer(lending.getCustomerId());
         return SUCCESS;
     }
 
@@ -95,7 +90,12 @@ public class LendingAction extends ActionSupport implements Action {
 
     public String prolongLending() {
         lending = lendingService.loadLending(lendingId);
-        lendingService.prolongLending(lending);
+        try {
+            lendingService.prolongLending(lending);
+        } catch (ProlongationNotPossible prolongationNotPossible) {
+            addActionError(getText("error.prolongationNotPossible"));
+            return ERROR;
+        }
         return SUCCESS;
     }
 
@@ -113,7 +113,7 @@ public class LendingAction extends ActionSupport implements Action {
     }
     */
 
-    public void validateLoad(){
+    public void validateLoad() {
         if (lending == null && lendingId == null) {
             addActionError(getText("error.selectLending"));
         }
@@ -123,11 +123,17 @@ public class LendingAction extends ActionSupport implements Action {
         if (lending == null && lendingId == null) {
             addActionError(getText("error.selectLending"));
         }
-        if (lendingId != null){
+        if (lendingId != null) {
             lending = lendingService.loadLending(lendingId);
-            if (lending.canBeProlonged()) {
-            addActionError(getText("error.prolongationNotPossible"));
+            if (!lending.canBeProlonged()) {
+                addActionError(getText("error.prolongationNotPossible"));
             }
+        }
+    }
+
+    public void validateReceivedLending() {
+        if (lending == null && lendingId == null) {
+            addActionError(getText("error.selectLending"));
         }
     }
 
@@ -156,7 +162,9 @@ public class LendingAction extends ActionSupport implements Action {
         this.lending = lending;
     }
 
-    public Publication getPublication() { return publication; }
+    public Publication getPublication() {
+        return publication;
+    }
 
     public void setPublication(Publication publication) {
         this.publication = publication;
@@ -175,6 +183,7 @@ public class LendingAction extends ActionSupport implements Action {
     }
 
     public void setCustomerId(Long customerId) {
+
         this.customerId = customerId;
     }
 

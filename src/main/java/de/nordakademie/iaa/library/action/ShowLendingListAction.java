@@ -5,6 +5,7 @@ import de.nordakademie.iaa.library.model.Lending;
 import de.nordakademie.iaa.library.service.api.LendingService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ShowLendingListAction implements Action {
 
@@ -13,13 +14,13 @@ public class ShowLendingListAction implements Action {
     }
 
     private LendingService lendingService;
-    private List<Lending> lendings;
+    private List<Lending> openLendings;
 
     @Override
     public String execute() throws Exception {
-        lendings = lendingService.listLendings();
+        openLendings = lendingService.listLendings().stream().filter(l ->!(l.isCompleted())).collect(Collectors.toList());
         return SUCCESS;
     }
 
-    public List<Lending> getLendings() {return lendings;}
+    public List<Lending> getOpenLendings() {return openLendings;}
 }

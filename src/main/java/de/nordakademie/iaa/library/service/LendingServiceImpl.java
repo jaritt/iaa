@@ -115,12 +115,14 @@ public class LendingServiceImpl implements LendingService {
 
     @Override
     public void markLendingAsReturned(Lending lending) {
-        lending.setReturned(true);
+        Lending currentLending = loadLending(lending.getId());
+        currentLending.setReturned(true);
     }
 
     @Override
     public void markLendingAsLost(Lending lending) {
-        lending.setLost(true);
-        lending.getPublication().decreaseCopyCount();
+        Lending currentLending = loadLending(lending.getId());
+        currentLending.setLost(true);
+        currentLending.getPublication().decreaseCopyCount();
     }
 }

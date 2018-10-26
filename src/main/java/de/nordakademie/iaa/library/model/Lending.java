@@ -254,7 +254,7 @@ public class Lending {
      */
     @Transient
     public boolean isOverDue() {
-        return LocalDate.now().isAfter(getEndDate());
+        return LocalDate.now().isAfter(getEndDate()) && !isCompleted();
     }
 
     /**

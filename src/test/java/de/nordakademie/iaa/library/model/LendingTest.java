@@ -51,7 +51,7 @@ public class LendingTest {
     }
 
     @Test
-    void testErrorOnTooManyProlongations() {
+    void testErrorOnTooManyProlongations() throws ProlongationNotPossible {
         Lending lending = new Lending();
         lending.setStartDate(date(1));
         lending.setEndDate(date(2));

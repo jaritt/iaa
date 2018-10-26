@@ -50,6 +50,8 @@ public class PublicationAction extends ActionSupport implements Action {
     private List<Keyword> keywordList;
     private List<Lending> lendingList;
 
+    private String title;
+
     public String load() throws EntityNotFoundException {
         lendingList = lendingService.listLendings();
         publication = publicationService.loadPublication(publicationId);
@@ -180,5 +182,9 @@ public class PublicationAction extends ActionSupport implements Action {
     public void setKeywordIds(List<Long> keywordIds) {
         this.keywordIds = keywordIds;
         this.keywords = keywordService.listKeywords(keywordIds);
+    }
+
+    public String getTitle() {
+        return "Test";
     }
 }

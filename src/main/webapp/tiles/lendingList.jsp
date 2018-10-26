@@ -19,18 +19,20 @@
 <s:actionerror/>
 <s:form>
     <table>
-        <tr>
-            <th></th>
-            <th><s:text name="label.lendingPublication"/></th>
-            <th><s:text name="label.lendingCustomer"/></th>
-            <th><s:text name="label.lendingStartDate"/></th>
-            <th><s:text name="label.lendingEndDate"/></th>
-            <th><s:text name="label.lendingStatus"/></th>
-            <th><s:text name="label.lendingReminderSent"/></th>
-            <th><s:text name="label.lendingReminderDue"/></th>
-        </tr>
         <div>
-            <s:iterator value="lendings">
+            <tr>
+                <th></th>
+                <th><s:text name="label.lendingPublication"/></th>
+                <th><s:text name="label.lendingCustomer"/></th>
+                <th><s:text name="label.lendingStartDate"/></th>
+                <th><s:text name="label.lendingEndDate"/></th>
+                <th><s:text name="label.lendingStatus"/></th>
+                <th><s:text name="label.lendingReminderSent"/></th>
+                <th><s:text name="label.lendingReminderDue"/></th>
+            </tr>
+        </div>
+        <div>
+            <s:iterator value="openLendings">
                 <tr>
                     <td><s:radio list="#{id:''}" name="lendingId" theme="simple"/></td>
                     <td><s:property value="publicationTitle"/></td>
@@ -39,13 +41,19 @@
                     <td><s:property value="endDate"/></td>
                     <td><s:if test="overDue"><s:text name="label.lendingsStateOverDue"/></s:if><s:else><s:text name="label.lendingsStateLent"/></s:else></td>
                     <td><s:property value="reminders.size"/></td>
-                    <td><s:if test="reminderDue"><button  type="submit" formaction="sendReminderFromLendingList"><s:text name="button.sendReminder"/></button></s:if><s:else><s:text name="label.ReminderNotDueYet"/></s:else></td>
+                    <td><s:if test="reminders.size == 3"><s:text name="label.MaxRemindersReached"/></s:if>
+                        <s:else>
+                            <s:if test="reminderDue"><s:text name="label.ReminderIsDue"/></s:if>
+                                <s:else><s:text name="label.ReminderNotDueYet"/></s:else>
+                        </s:else>
+                    </td>
                 </tr>
             </s:iterator>
         </div>
     </table>
     <br>
-    <s:submit key="button.prolongLending" action="prolongLending"/>
-    <s:submit key="button.receiveLending" action="receivedLending"/>
     <s:submit key="button.showLending" action="showLendingForm"/>
+    <s:submit key="button.receiveLending" action="receivedLending"/>
+    <s:submit key="button.prolongLending" action="prolongLending"/>
+    <s:submit key="button.sendReminder" action="sendReminderFromLendingList"/>
 </s:form>

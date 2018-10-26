@@ -32,6 +32,16 @@ public class ReminderAction extends ActionSupport implements Action {
         if (lending == null && lendingId == null){
             addActionError(getText("error.selectLending"));
         }
+        if (lendingId != null){
+            lending = lendingService.loadLending(lendingId);
+            if (lending.getReminders().size() == 3) {
+                addActionError(getText("error.noReminderPossible"));
+            }
+            if (!lending.isReminderDue()) {
+                addActionError(getText("error.reminderNotDueYet"));
+            }
+        }
+
     }
 
     public Reminder getReminder() {
