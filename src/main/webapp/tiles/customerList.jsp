@@ -1,43 +1,90 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: VSHARMA
-  Date: 16.10.2018
-  Time: 17:02
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+
+<style>
+    head, body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    h1 {
+        margin: 14px 16px;
+    }
+
+    table, td {
+        border: 1px solid black;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+
+    th {
+        text-align: left;
+        color: #f2f2f2;
+        background-color: #333;
+    }
+
+    td {
+        text-align: center;
+    }
+
+    button {
+        background-color: #333;
+        color: #f2f2f2;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+    }
+</style>
 
 <h1><s:text name="header.customerList"/></h1>
 
 <s:actionerror/>
 <s:form>
-    <table>
-        <tr>
-            <th></th>
-            <th><s:text name="label.customerId"/></th>
-            <th><s:text name="label.customerTitle"/></th>
-            <th><s:text name="label.customerName"/></th>
-            <th><s:text name="label.customerFirstName"/></th>
-            <th><s:text name="label.customerCity"/></th>
-            <th><s:text name="label.customerStreet"/></th>
-            <th><s:text name="label.customerMatnr"/></th>
-        </tr>
-        <s:iterator value="customers">
+    <table class="sortable">
+        <thead>
+        <div>
             <tr>
-                <td><s:radio list="#{id:''}" name="customerId" theme="simple"/></td>
-                <td><s:property value="id"/></td>
-                <td><s:property value="title"/></td>
-                <td><s:property value="name"/></td>
-                <td><s:property value="firstName"/></td>
-                <td><s:property value="city"/></td>
-                <td><s:property value="street"/></td>
-                <td><s:property value="matnr"/></td>
+                <th></th>
+                <th><s:text name="label.customerId"/></th>
+                <th><s:text name="label.customerTitle"/></th>
+                <th><s:text name="label.customerName"/></th>
+                <th><s:text name="label.customerFirstName"/></th>
+                <th><s:text name="label.customerCity"/></th>
+                <th><s:text name="label.customerStreet"/></th>
+                <th><s:text name="label.customerMatnr"/></th>
             </tr>
-        </s:iterator>
+        </div>
+        </thead>
+        <tbody>
+        <div>
+            <s:iterator value="customers">
+                <tr>
+                    <td><s:radio list="#{id:''}" name="customerId" theme="simple"/></td>
+                    <td><s:property value="id"/></td>
+                    <td><s:property value="title"/></td>
+                    <td><s:property value="name"/></td>
+                    <td><s:property value="firstName"/></td>
+                    <td><s:property value="city"/></td>
+                    <td><s:property value="street"/></td>
+                    <td><s:property value="matnr"/></td>
+                </tr>
+            </s:iterator>
+        </div>
+        </tbody>
     </table>
     <br>
-    <s:submit key="button.addCustomer" action="addCustomer"/>
-    <s:submit key="button.editCustomer" action="editCustomer"/>
-    <s:submit key="button.deleteCustomer" action="deleteCustomer"/>
+    <div>
+        <button formaction="addCustomer"><s:text name="button.addCustomer"/></button>
+        <button formaction="editCustomer"><s:text name="button.editCustomer"/></button>
+        <button formaction="deleteCustomer"><s:text name="button.deleteCustomer"/></button>
+    </div>
 </s:form>

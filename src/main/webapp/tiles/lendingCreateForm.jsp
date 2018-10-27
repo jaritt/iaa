@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: VSHARMA
-  Date: 20.10.2018
-  Time: 17:22
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
@@ -28,3 +21,39 @@
     <s:submit key="button.back" action="showPublicationShowForm"/>
     <s:submit key="button.cancel" action="showPublicationList"/>
 </s:form>
+
+<%--
+<s:actionerror/>
+<s:form>
+    <s:hidden name="lending.id"/>
+    <s:hidden name="publicationiId"/>
+    <s:text name="label.lendingCustomer"/>
+    <s:select name="selectedCustomerId"
+              headerKey="0"
+              headerValue="Select..."
+              list="customerList"
+              listKey="id"
+              listValue="%{name + ', ' + firstName}"
+              key="label.lendingCustomer"/>
+    <table>
+        <tr>
+            <th><s:text name="label.lendingPublicationTitle"/></th>
+            <td><s:property value="publication.title"/></td>
+        </tr>
+        <tr>
+            <th><s:text name="label.lendingStartDate"/></th>
+            <td><s:property value="startDate"/></td>
+        </tr>
+        <tr>
+            <th><s:text name="label.lendingEndDate"/></th>
+            <td><s:property value="endDate"/></td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <button formaction="saveLending"><s:text name="button.lendPublication"/></button>
+        <button formaction="showPublicationShowForm"><s:text name="button.back"/></button>
+        <button formaction="showPublicationList"><s:text name="button.cancel"/></button>
+    </div>
+</s:form>
+--%>
