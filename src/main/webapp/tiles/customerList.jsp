@@ -58,6 +58,7 @@
                 <th><s:text name="label.customerTitle"/></th>
                 <th><s:text name="label.customerName"/></th>
                 <th><s:text name="label.customerFirstName"/></th>
+                <th><s:text name="label.customerPlz"/></th>
                 <th><s:text name="label.customerCity"/></th>
                 <th><s:text name="label.customerStreet"/></th>
                 <th><s:text name="label.customerMatnr"/></th>
@@ -73,6 +74,7 @@
                     <td><s:property value="title"/></td>
                     <td><s:property value="name"/></td>
                     <td><s:property value="firstName"/></td>
+                    <td><s:property value="plz"/></td>
                     <td><s:property value="city"/></td>
                     <td><s:property value="street"/></td>
                     <td><s:property value="matnr"/></td>
