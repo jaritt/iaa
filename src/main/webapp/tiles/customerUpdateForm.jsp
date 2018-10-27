@@ -15,6 +15,7 @@
     <s:select name="customer.title" key="label.customerTitle" headerValue="--Select Title--" headerKey="-1" list="#{'Herr': 'Herr', 'Frau': 'Frau'}" requiredLabel="true"/>
     <s:textfield name="customer.name" key="label.customerName" requiredLabel="true"/>
     <s:textfield name="customer.firstName" key="label.customerFirstName" requiredLabel="true"/>
+    <s:textfield name="customer.plz" key="label.customerPlz" requiredLabel="true"/>
     <s:textfield name="customer.city" key="label.customerCity" requiredLabel="true"/>
     <s:textfield name="customer.street" key="label.customerStreet" requiredLabel="true"/>
     <s:textfield name="customer.matnr" key="label.customerMatnr" requiredLabel="false"/>

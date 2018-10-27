@@ -48,8 +48,10 @@ public class ApplicationInitializer implements ApplicationListener<ContextRefres
 
     public void setupData() {
         Customer customer = new Customer("Peter", "Parker");
+        customer.setTitle("Herr");
+        customer.setPlz(25421L);
         customer.setCity("SpiderTown");
-        customer.setStreet("SpiderStreet");
+        customer.setStreet("SpiderStreet 22");
         customer.setMatnr(6299L);
         customerService.createCustomer(customer);
 

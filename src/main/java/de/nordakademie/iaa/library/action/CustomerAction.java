@@ -12,10 +12,8 @@ public class CustomerAction extends ActionSupport implements Action {
     public CustomerAction(CustomerService customerService) {
 
         this.customerService = customerService;
-
     }
 
-    private List<String> titleList;
     private CustomerService customerService;
     private Long customerId;
     private Customer customer;
@@ -77,11 +75,4 @@ public class CustomerAction extends ActionSupport implements Action {
         this.customer = customer;
     }
 
-    public List<String> getTitleList() {
-        return titleList;
-    }
-
-    public void setTitleList(List<String> titleList) {
-        this.titleList = titleList;
-    }
 }
