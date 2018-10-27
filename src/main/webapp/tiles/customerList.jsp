@@ -54,7 +54,6 @@
         <div>
             <tr>
                 <th></th>
-                <th><s:text name="label.customerId"/></th>
                 <th><s:text name="label.customerTitle"/></th>
                 <th><s:text name="label.customerName"/></th>
                 <th><s:text name="label.customerFirstName"/></th>
@@ -70,7 +69,6 @@
             <s:iterator value="customers">
                 <tr>
                     <td><s:radio list="#{id:''}" name="customerId" theme="simple"/></td>
-                    <td><s:property value="id"/></td>
                     <td><s:property value="title"/></td>
                     <td><s:property value="name"/></td>
                     <td><s:property value="firstName"/></td>

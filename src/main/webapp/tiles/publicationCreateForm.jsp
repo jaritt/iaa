@@ -12,7 +12,9 @@
               list="publicationTypeList"
               listKey="id"
               listValue="title"
-              key="label.publicationTypeText"/>
+              key="label.publicationTypeText"
+              requiredLabel="true"
+    />
     <s:textfield name="publication.title" key="label.publicationTitle" requiredLabel="true"/>
     <s:textfield name="publication.author" key="label.publicationAuthor"/>
     <s:textfield name="publication.releaseYear" key="label.publicationReleaseYear" requiredLabel="true"/>

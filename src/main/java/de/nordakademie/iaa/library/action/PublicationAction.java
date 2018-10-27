@@ -7,7 +7,6 @@ import de.nordakademie.iaa.library.model.Keyword;
 import de.nordakademie.iaa.library.model.Lending;
 import de.nordakademie.iaa.library.model.Publication;
 import de.nordakademie.iaa.library.model.PublicationType;
-import de.nordakademie.iaa.library.service.SearchFailedException;
 import de.nordakademie.iaa.library.service.api.KeywordService;
 import de.nordakademie.iaa.library.service.api.LendingService;
 import de.nordakademie.iaa.library.service.api.PublicationService;
@@ -91,18 +90,7 @@ public class PublicationAction extends ActionSupport implements Action {
     }
 
     public void validateSave() {
-        if (selectedTypeId == 0) {
-            addActionError(getText("error.selectPublicationType"));
-        }
-        /*
-        if (publication.getReleaseYear() < 0 || publication.getReleaseYear() > 2099){
-            addActionError(getText("error.publicationReleaseYear"));
-        }
 
-        if (publication.getReleaseMonth() < 1 || publication.getReleaseYear() > 12){
-            addActionError(getText("error.publicationReleaseMonth"));
-        }
-        */
         if (publicationService.findPublicationByISBN(publication.getIsbn()) != null) {
             addActionError(getText("error.publicationAlreadyExists"));
         }

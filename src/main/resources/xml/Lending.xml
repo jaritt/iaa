@@ -35,7 +35,7 @@
                 <param name="actionName">showLendingList</param>
                 <param name="publicationId">${publicationId}</param>
             </result>
-            <result name="input" type="chain">showLendingForm</result>
+            <result name="input" type="chain">showLendingList</result>
         </action>
 
         <action name="sendCustomerIdForCustomerDetailForm" class="de.nordakademie.iaa.library.action.LendingAction">
