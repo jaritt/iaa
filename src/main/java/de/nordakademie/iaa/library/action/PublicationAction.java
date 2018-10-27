@@ -94,7 +94,6 @@ public class PublicationAction extends ActionSupport implements Action {
         if (selectedTypeId == 0) {
             addActionError(getText("error.selectPublicationType"));
         }
-
         /*
         if (publication.getReleaseYear() < 0 || publication.getReleaseYear() > 2099){
             addActionError(getText("error.publicationReleaseYear"));
@@ -103,11 +102,10 @@ public class PublicationAction extends ActionSupport implements Action {
         if (publication.getReleaseMonth() < 1 || publication.getReleaseYear() > 12){
             addActionError(getText("error.publicationReleaseMonth"));
         }
-
+        */
         if (publicationService.findPublicationByISBN(publication.getIsbn()) != null) {
             addActionError(getText("error.publicationAlreadyExists"));
         }
-        */
     }
 
     public void validateLoad() {
