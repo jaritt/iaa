@@ -1,24 +1,110 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
+<style>
+    head, body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    h1 {
+        margin: 14px 16px;
+    }
+
+    table, td {
+        border: 1px solid black;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 50%;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+
+    th {
+        text-align: left;
+        color: #f2f2f2;
+        background-color: #333;
+    }
+
+    td {
+        text-align: center;
+    }
+
+    button {
+        background-color: #333;
+        color: #f2f2f2;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+    }
+</style>
+
 <h1><s:text name="header.publicationForm"/></h1>
 
 <s:actionerror/>
 <s:form>
     <s:hidden name="publication.id"/>
-    <s:textfield name="publication.key" key="label.publicationKey" disabled="true"/>
-    <s:textfield name="publication.type.title" key="label.publicationType" disabled="true"/>
-    <s:textfield name="publication.title" key="label.publicationTitle" disabled="true"/>
-    <s:textfield name="publication.author" key="label.publicationAuthor" disabled="true"/>
-    <s:textfield name="publication.releaseYear" key="label.publicationReleaseYear" disabled="true"/>
-    <s:textfield name="publication.releaseMonth" key="label.publicationReleaseMonth" disabled="true"/>
-    <s:textfield name="publication.releaseDay" key="label.publicationReleaseDay" disabled="true"/>
-    <s:textfield name="publication.publisher" key="label.publicationPublisher" disabled="true"/>
-    <s:textfield name="publication.isbn" key="label.publicationIsbn" disabled="true"/>
-    <s:textfield name="publication.keywordsAsString" key="label.publicationKeywords" disabled="true"/>
-    <s:textfield name="publication.copies" key="label.publicationCopies" disabled="true"/>
-    <s:submit key="button.toLendingCreate" action="sendPublicationIdForLendingCreateForm"/>
-    <s:submit key="button.back" action="showPublicationList"/>
+    <table>
+        <tr>
+            <th><s:text name="label.publicationKey"/></th>
+            <td><s:property value="publication.key"/></td>
+        </tr>
+        <tr>
+            <th><s:text name="label.publicationType"/></th>
+            <td><s:property value="publication.type.title"/></td>
+        </tr>
+        <tr>
+            <th><s:text name="label.publicationTitle"/></th>
+            <td><s:property value="publication.title"/></td>
+        </tr>
+        <tr>
+            <th><s:text name="label.publicationAuthor"/></th>
+            <td><s:property value="publication.author"/></td>
+        </tr>
+        <tr>
+            <th><s:text name="label.publicationReleaseYear"/></th>
+            <td><s:property value="publication.releaseYear"/></td>
+        </tr>
+        <tr>
+            <th><s:text name="label.publicationReleaseMonth"/></th>
+            <td><s:property value="publication.releaseMonth"/></td>
+        </tr>
+        <tr>
+            <th><s:text name="label.publicationReleaseDay"/></th>
+            <td><s:property value="publication.releaseDay"/></td>
+        </tr>
+        <tr>
+            <th><s:text name="label.publicationPublisher"/></th>
+            <td><s:property value="publication.publisher"/></td>
+        </tr>
+        <tr>
+            <th><s:text name="label.publicationIsbn"/></th>
+            <td><s:property value="publication.isbn"/></td>
+        </tr>
+        <tr>
+            <th><s:text name="label.publicationKeywords"/></th>
+            <td><s:property value="publication.keywordsAsString"/></td>
+        </tr>
+        <tr>
+            <th><s:text name="label.publicationCopies"/></th>
+            <td><s:property value="publication.copies"/></td>
+        </tr>
+        <tr>
+            <th><s:text name="label.publicationKey"/></th>
+            <td><s:property value="publication.key"/></td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <button formaction="sendPublicationIdForLendingCreateForm"><s:text name="button.toLendingCreate"/></button>
+        <button formaction="showPublicationList"><s:text name="button.back"/></button>
+    </div>
 </s:form>
 
 <s:actionerror/>
