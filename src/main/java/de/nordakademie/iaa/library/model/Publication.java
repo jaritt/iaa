@@ -171,9 +171,21 @@ public class Publication {
             return releaseYear.toString();
         }
         if (releaseDay == null) {
-            return "." + releaseMonth + "." + releaseYear;
+            if (releaseMonth < 10) {
+                return releaseYear + "-0" + releaseMonth;
+            } else {
+                return releaseYear + "-" + releaseMonth;
+            }
         }
-        return String.valueOf(releaseDay) + "." + releaseMonth + "." + releaseYear;
+        if (releaseMonth < 10) {
+            if (releaseDay < 10) {
+                return String.valueOf(releaseYear) + "-0" + releaseMonth + "-0" + releaseDay;
+            }
+            return String.valueOf(releaseYear) + "-0" + releaseMonth + "-" + releaseDay;
+        } else if (releaseDay < 10){
+            return String.valueOf(releaseYear) + "-" + releaseMonth + "-0" + releaseDay;
+        }
+        return String.valueOf(releaseYear) + "-" + releaseMonth + "-" + releaseDay;
     }
 
     @Transient
