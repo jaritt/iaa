@@ -52,7 +52,7 @@
                 <param name="lendingId">${lending.Id}</param>
             </result>
         </action>
-        
+
     </package>
 </struts>
 
