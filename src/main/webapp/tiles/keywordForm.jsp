@@ -20,6 +20,14 @@
         display: inline-block;
         font-size: 12px;
     }
+
+    input[type=text], select {
+        width: 200%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+    }
 </style>
 
 <h1><s:text name="header.editKeyword"/></h1>
