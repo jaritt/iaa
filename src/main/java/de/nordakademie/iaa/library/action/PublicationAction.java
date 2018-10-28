@@ -94,7 +94,7 @@ public class PublicationAction extends ActionSupport implements Action {
             addActionError(getText("error.selectPublicationType"));
         }
 
-        if (!(publication.getIsbn().equals(""))) {
+        if (publication.getId() == null && !(publication.getIsbn().equals(""))) {
             if (publicationService.findPublicationByISBN(publication.getIsbn()) != null) {
                 addActionError(getText("error.publicationAlreadyExists"));
             }
