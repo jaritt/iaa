@@ -52,27 +52,7 @@
                 <param name="lendingId">${lending.Id}</param>
             </result>
         </action>
-
-        <action name="sendCustomerIdForCustomerDetailForm" class="de.nordakademie.iaa.library.action.LendingAction">
-            <result name="success" type="redirectAction">
-                <param name="actionName">showCustomerDetailForm</param>
-                <param name="customerId">${customer.Id}</param>
-                <param name="lendingId">${lending.Id}</param>
-            </result>
-        </action>
-
-        <!--
-        Die <action> sendPublicationIdForPublicationDetailForm wird von der lendingShowForm aufgerufen.
-        Die publicationId muss mitgegeben werden, damit die korrekte Publikation angezeigt werden kann.
-        -->
-
-        <action name="sendPublicationIdForPublicationDetailForm" class="de.nordakademie.iaa.library.action.LendingAction">
-            <result name="success" type="redirectAction">
-                <param name="actionName">showPublicationDetailForm</param>
-                <param name="publicationId">${publication.Id}</param>
-            </result>
-        </action>
-
+        
     </package>
 </struts>
 
