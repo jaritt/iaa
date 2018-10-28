@@ -1,24 +1,52 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: VSHARMA
-  Date: 17.10.2018
-  Time: 11:35
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<h1><s:text name="header.customerForm" /></h1>
+<style>
+    head, body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    h1 {
+        margin: 14px 16px;
+    }
+
+    button {
+        background-color: #333;
+        color: #f2f2f2;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+    }
+
+    input[type=text], select {
+        width: 200%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+    }
+</style>
+
+<h1><s:text name="header.customerForm"/></h1>
 
 <s:form>
-    <s:hidden name="customer.id"/>
-    <s:select name="customer.title" key="label.customerTitle" headerValue="--Select Title--" headerKey="-1" list="#{'Herr': 'Herr', 'Frau': 'Frau'}" requiredLabel="true"/>
-    <s:textfield name="customer.name" key="label.customerName" requiredLabel="true"/>
-    <s:textfield name="customer.firstName" key="label.customerFirstName" requiredLabel="true"/>
-    <s:textfield name="customer.plz" key="label.customerPlz" requiredLabel="true"/>
-    <s:textfield name="customer.city" key="label.customerCity" requiredLabel="true"/>
-    <s:textfield name="customer.street" key="label.customerStreet" requiredLabel="true"/>
-    <s:textfield name="customer.matnr" key="label.customerMatnr" requiredLabel="false"/>
-    <s:submit key="button.save" action="saveCustomer"/>
-    <s:submit key="button.cancel" action="showCustomerList"/>
+    <table>
+        <s:hidden name="customer.id"/>
+        <s:select name="customer.title" key="label.customerTitle" headerValue="--Select Title--" headerKey="-1"
+                  list="#{'Herr': 'Herr', 'Frau': 'Frau'}" requiredLabel="true"/>
+        <s:textfield name="customer.name" key="label.customerName" requiredLabel="true"/>
+        <s:textfield name="customer.firstName" key="label.customerFirstName" requiredLabel="true"/>
+        <s:textfield name="customer.plz" key="label.customerPlz" requiredLabel="true"/>
+        <s:textfield name="customer.city" key="label.customerCity" requiredLabel="true"/>
+        <s:textfield name="customer.street" key="label.customerStreet" requiredLabel="true"/>
+        <s:textfield name="customer.matnr" key="label.customerMatnr" requiredLabel="false"/>
+    </table>
+    <br>
+    <div>
+        <button formaction="saveCustomer"><s:text name="button.save"/></button>
+        <button formaction="showCustomerList"><s:text name="button.cancel"/></button>
+    </div>
 </s:form>
