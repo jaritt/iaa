@@ -11,10 +11,6 @@
         margin: 14px 16px;
     }
 
-    select {
-        width: 100%;
-    }
-
     button {
         background-color: #333;
         color: #f2f2f2;
@@ -23,6 +19,14 @@
         text-decoration: none;
         display: inline-block;
         font-size: 12px;
+    }
+
+    input[type=text], select {
+        width: 200%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
     }
 </style>
 
