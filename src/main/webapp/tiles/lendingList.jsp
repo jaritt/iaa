@@ -77,8 +77,8 @@
                     <td><s:property value="customerFullName"/></td>
                     <td><s:property value="startDate"/></td>
                     <td><s:property value="endDate"/></td>
-                    <td><s:if test="overDue"><s:text name="label.lendingsStateOverDue"/></s:if><s:else><s:text
-                            name="label.lendingsStateLent"/></s:else></td>
+                    <td><s:if test="overDue"><s:text name="label.lendingStateOverDue"/></s:if><s:else><s:text
+                            name="label.lendingStateLent"/></s:else></td>
                     <td><s:property value="reminders.size"/></td>
                     <td><s:if test="reminders.size == 3"><s:text name="label.MaxRemindersReached"/></s:if>
                         <s:else>

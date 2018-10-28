@@ -94,8 +94,8 @@
         </tr>
         <tr>
             <th><s:text name="label.lendingStatus"/></th>
-            <td><s:if test="overDue"><s:text name="label.lendingsStateOverDue"/></s:if>
-                <s:else><s:text name="label.lendingsStateLent"/></s:else>
+            <td><s:if test="overDue"><s:text name="label.lendingStateOverDue"/></s:if>
+                <s:else><s:text name="label.lendingStateLent"/></s:else>
             </td>
         </tr>
         <tr>

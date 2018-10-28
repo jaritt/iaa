@@ -99,10 +99,6 @@
             <th><s:text name="label.publicationCopies"/></th>
             <td><s:property value="publication.copies"/></td>
         </tr>
-        <tr>
-            <th><s:text name="label.publicationKey"/></th>
-            <td><s:property value="publication.key"/></td>
-        </tr>
     </table>
     <br>
     <div>
