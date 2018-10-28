@@ -107,6 +107,23 @@ public class LendingAction extends ActionSupport implements Action {
         return SUCCESS;
     }
 
+    public String lostLending() {
+        lendingService.markLendingAsLost(lending);
+        return SUCCESS;
+    }
+
+    public void validateLostLending() {
+        if (lending == null && lendingId == null) {
+            addActionError(getText("error.selectLending"));
+        }
+        if (lendingId != null){
+            lending = lendingService.loadLending(lendingId);
+            if (!lending.isLossPossible()) {
+                addActionError(getText("error.lossNotPossible"));
+            }
+        }
+    }
+
     public void validateSave() {
         if (selectedCustomerId == 0) {
             addActionError(getText("error.selectLending"));

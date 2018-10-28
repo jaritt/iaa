@@ -73,6 +73,11 @@
             </result>
         </action>
 
+        <action name="markAsLostFromLendingList" class="de.nordakademie.iaa.library.action.LendingAction" method="lostLending">
+            <result type="redirectAction">showLendingList</result>
+            <result name="input" type="chain">showLendingList</result>
+        </action>
+
     </package>
 </struts>
 

@@ -94,5 +94,6 @@
         <button formaction="prolongLending"><s:text name="button.prolongLending"/></button>
         <button formaction="receivedLending"><s:text name="button.receiveLending"/></button>
         <button formaction="sendReminderFromLendingList"><s:text name="button.sendReminder"/></button>
+        <button formaction="markAsLostFromLendingList"><s:text name="button.markAsLost"/></button>
     </div>
 </s:form>
