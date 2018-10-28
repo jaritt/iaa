@@ -22,12 +22,13 @@ public class ApplicationInitializer implements ApplicationListener<ContextRefres
             KeywordService keywordService,
             PublicationTypeService typeService,
             PublicationService publicationService,
-            LendingService lendingService) {
+            LendingService lendingService, ReminderService reminderService) {
         this.customerService = customerService;
         this.keywordService = keywordService;
         this.typeService = typeService;
         this.publicationService = publicationService;
         this.lendingService = lendingService;
+        this.reminderService = reminderService;
     }
 
     private CustomerService customerService;
@@ -39,6 +40,8 @@ public class ApplicationInitializer implements ApplicationListener<ContextRefres
     private PublicationService publicationService;
 
     private LendingService lendingService;
+
+    private ReminderService reminderService;
 
 
     @Override
@@ -54,6 +57,20 @@ public class ApplicationInitializer implements ApplicationListener<ContextRefres
         customer.setStreet("SpiderStreet 22");
         customer.setMatnr(6299L);
         customerService.createCustomer(customer);
+
+        Customer customer2 = new Customer("Lili", "Musterfrau");
+        customer2.setTitle("Frau");
+        customer2.setPlz(20355L);
+        customer2.setCity("Hamburg");
+        customer2.setStreet("Statusallee 233");
+        customerService.createCustomer(customer2);
+
+        Customer customer3 = new Customer("Janina", "Blaukraut");
+        customer3.setTitle("Frau");
+        customer3.setPlz(82231L);
+        customer3.setCity("München");
+        customer3.setStreet("Brezelstraße 11");
+        customerService.createCustomer(customer3);
 
         PublicationType type = new PublicationType("Fachbuch");
         typeService.createPublicationType(type);
@@ -98,12 +115,23 @@ public class ApplicationInitializer implements ApplicationListener<ContextRefres
 
         try {
             lendingService.lendPublication(publication, customer);
+
             Lending lending2 = lendingService.lendPublication(publication2, customer);
             Lending lending3 = lendingService.lendPublication(publication3, customer);
+
+            lendingService.lendPublication(publication3, customer2);
+
             lending2.setStartDate(LocalDate.of(2018,10,1));
             lending2.setEndDate(LocalDate.of(2018,10,24));
             lending3.setStartDate(LocalDate.of(2018,10,1));
             lending3.setEndDate(LocalDate.of(2018,10,20));
+
+            reminderService.sendReminder(lending2);
+
+            reminderService.sendReminder(lending2);
+
+            reminderService.sendReminder(lending2);
+
         } catch (NoCopyAvailable noCopyAvailable) {
             noCopyAvailable.printStackTrace();
         }
