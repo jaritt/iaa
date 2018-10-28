@@ -5,6 +5,7 @@
 
 <s:form>
     <s:hidden name="customer.id"/>
+    <s:hidden name="lending.id"/>
     <s:textfield name="customer.title" key="label.customerTitle" disabled="true"/>
     <s:textfield name="customer.name" key="label.customerName" disabled="true"/>
     <s:textfield name="customer.firstName" key="label.customerFirstName" disabled="true"/>
@@ -12,4 +13,5 @@
     <s:textfield name="customer.street" key="label.customerStreet" disabled="true"/>
     <s:textfield name="customer.matnr" key="label.customerMatnr" disabled="true"/>
     <s:submit key="button.back" action="showLendingForm"/>
+    <s:submit key="button.back" action="sendCustomerIdForCustomerDetailForm"/>
 </s:form>

@@ -90,9 +90,14 @@ public class PublicationAction extends ActionSupport implements Action {
     }
 
     public void validateSave() {
+        if (selectedTypeId == -1){
+            addActionError(getText("error.selectPublicationType"));
+        }
 
-        if (publicationService.findPublicationByISBN(publication.getIsbn()) != null) {
-            addActionError(getText("error.publicationAlreadyExists"));
+        if (!(publication.getIsbn().equals(""))) {
+            if (publicationService.findPublicationByISBN(publication.getIsbn()) != null) {
+                addActionError(getText("error.publicationAlreadyExists"));
+            }
         }
     }
 

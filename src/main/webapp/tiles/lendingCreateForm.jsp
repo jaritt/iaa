@@ -17,7 +17,7 @@
     <s:textfield name="publication.title" key="label.publicationTitle" disabled="true"/>
     <s:textfield name="startDate" key="label.lendingStartDate" disabled="true"/>
     <s:textfield name="endDate"  key="label.lendingEndDate" disabled="true"/>
-    <s:submit key="button.lendPublication" action="saveLending"/>
+    <s:submit key="button.lendPublication" action="lendPublication"/>
     <s:submit key="button.back" action="showPublicationShowForm"/>
     <s:submit key="button.cancel" action="showPublicationList"/>
 </s:form>

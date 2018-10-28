@@ -30,6 +30,13 @@
             <result name="input" type="chain">showLendingList</result>
         </action>
 
+        <action name="lendPublication" class="de.nordakademie.iaa.library.action.LendingAction" method="save">
+            <result type="redirectAction">
+                <param name="actionName">showLendingList</param>
+            </result>
+        </action>
+
+        <!--
         <action name="saveLending" class="de.nordakademie.iaa.library.action.LendingAction" method="save">
             <result type="redirectAction">
                 <param name="actionName">showLendingList</param>
@@ -37,11 +44,20 @@
             </result>
             <result name="input" type="chain">showLendingList</result>
         </action>
+        -->
+
+        <action name="sendLendingIdForLendingShowForm" class="de.nordakademie.iaa.library.action.LendingAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">showLendingForm</param>
+                <param name="lendingId">${lending.Id}</param>
+            </result>
+        </action>
 
         <action name="sendCustomerIdForCustomerDetailForm" class="de.nordakademie.iaa.library.action.LendingAction">
             <result name="success" type="redirectAction">
                 <param name="actionName">showCustomerDetailForm</param>
                 <param name="customerId">${customer.Id}</param>
+                <param name="lendingId">${lending.Id}</param>
             </result>
         </action>
 

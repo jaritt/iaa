@@ -108,8 +108,6 @@ public class LendingAction extends ActionSupport implements Action {
     }
 
     public void validateSave() {
-        publication = publicationService.loadPublication(publicationId);
-        System.out.println("Copy: " + publication.isCopyAvailable());
         if (selectedCustomerId == 0) {
             addActionError(getText("error.selectLending"));
         }

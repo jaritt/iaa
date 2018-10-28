@@ -7,7 +7,7 @@
     <s:hidden name="publication.id"/>
     <s:textfield name="publication.key" key="label.publicationKey" requiredLabel="true"/>
     <s:select name="selectedTypeId"
-              headerKey="0"
+              headerKey="-1"
               headerValue="Select..."
               list="publicationTypeList"
               listKey="id"
