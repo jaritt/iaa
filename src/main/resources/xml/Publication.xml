@@ -23,11 +23,6 @@
             <result name="input" type="chain">showPublicationList</result>
         </action>
 
-        <action name="showPublicationDetailForm" class="de.nordakademie.iaa.library.action.PublicationAction" method="load">
-            <result type="tiles">publicationDetailForm</result>
-            <result name="input" type="chain">showPublicationList</result>
-        </action>
-
         <action name="addPublication" class="de.nordakademie.iaa.library.action.PublicationAction">
             <result name="success" type="tiles">publicationCreateForm</result>
         </action>
@@ -57,7 +52,6 @@
                 <param name="publicationId">${publication.Id}</param>
             </result>
         </action>
-
 
     </package>
 </struts>
