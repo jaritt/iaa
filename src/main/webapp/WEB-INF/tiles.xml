@@ -39,7 +39,7 @@
 	<definition name="publicationShowForm" extends="mainTemplate">
 		<put-attribute name="content" value="/tiles/publicationShowForm.jsp"/>
 	</definition>
-	
+
 	<definition name="publicationTypeList" extends="mainTemplate">
 		<put-attribute name="content" value="/tiles/publicationTypeList.jsp"/>
 	</definition>
