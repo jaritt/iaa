@@ -210,7 +210,9 @@ public class Publication {
         this.isbn = isbn;
     }
 
-    @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {
+            CascadeType.MERGE
+    }, fetch = FetchType.EAGER)
     @JoinTable(
             name = "publication_keyword",
             joinColumns = @JoinColumn(name = "publication_id"),

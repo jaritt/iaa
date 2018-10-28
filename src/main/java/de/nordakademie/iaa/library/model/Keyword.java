@@ -1,6 +1,7 @@
 package de.nordakademie.iaa.library.model;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -30,6 +31,11 @@ public class Keyword {
      * The actual word
      */
     private String word;
+
+    /**
+     * List of related publications
+     */
+    private List<Publication> publications;
 
     @Basic
     public String getWord() {
@@ -61,5 +67,21 @@ public class Keyword {
     @Override
     public int hashCode() {
         return Objects.hash(word);
+    }
+
+    @ManyToMany(cascade = {
+            CascadeType.MERGE
+    }, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "publication_keyword",
+            joinColumns = @JoinColumn(name = "keyword_id"),
+            inverseJoinColumns = @JoinColumn(name = "publication_id")
+    )
+    public List<Publication> getPublications() {
+        return publications;
+    }
+
+    public void setPublications(List<Publication> publications) {
+        this.publications = publications;
     }
 }
