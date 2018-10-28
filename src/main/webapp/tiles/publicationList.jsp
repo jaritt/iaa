@@ -47,6 +47,10 @@
     input {
         margin: 14px 16px;
     }
+
+    .errormessage li {
+        color: #ff0000;
+    }
 </style>
 
 <h1><s:text name="header.publicationManagement"/></h1>

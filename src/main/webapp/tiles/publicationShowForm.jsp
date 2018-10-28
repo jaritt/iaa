@@ -43,6 +43,10 @@
         display: inline-block;
         font-size: 12px;
     }
+
+    span {
+        color: #ff0000;
+    }
 </style>
 
 <h1><s:text name="header.publicationForm"/></h1>

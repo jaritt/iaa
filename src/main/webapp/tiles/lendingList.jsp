@@ -43,8 +43,11 @@
         display: inline-block;
         font-size: 12px;
     }
-</style>
 
+    .errormessage li {
+        color: #ff0000;
+    }
+</style>
 
 <h1><s:text name="header.lendingList"/></h1>
 

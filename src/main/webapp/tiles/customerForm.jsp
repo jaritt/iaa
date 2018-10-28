@@ -28,6 +28,10 @@
         border-radius: 4px;
         resize: vertical;
     }
+
+    span {
+        color: #ff0000;
+    }
 </style>
 
 <h1><s:text name="header.customerForm"/></h1>
