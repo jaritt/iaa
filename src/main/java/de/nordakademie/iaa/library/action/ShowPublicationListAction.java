@@ -31,11 +31,11 @@ public class ShowPublicationListAction implements Action{
     private List<PublicationType> publicationTypes;
     private List<Keyword> keywords;
 
-    private String searchTerm = "";
+    private String searchTerm;
 
     @Override
     public String execute() throws EntityNotFoundException {
-        if (searchTerm == "") {
+        if (searchTerm == null || searchTerm == "") {
             publications = publicationService.listPublications();
         } else {
             publications = publicationService.search(searchTerm);

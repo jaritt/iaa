@@ -52,12 +52,19 @@
         color: #ff0000;
     }
 </style>
+<script type="text/javascript">
+    function SelectAll(id)
+    {
+        document.getElementById(id).focus();
+        document.getElementById(id).select();
+    }
+</script>
 
 <h1><s:text name="header.publicationManagement"/></h1>
 <br>
 <div>
     <s:form>
-        <input name="searchTerm"/>
+        <input id="searchField" name="searchTerm" onclick="SelectAll('searchField');" value=<s:property value="searchTerm"/>>
         <button formaction="searchForPublication"><s:text name="button.search"/></button>
     </s:form>
 </div>

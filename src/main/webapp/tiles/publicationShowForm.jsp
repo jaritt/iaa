@@ -106,7 +106,7 @@
     </table>
     <br>
     <div>
-        <button formaction="sendPublicationIdForLendingCreateForm"><s:text name="button.toLendingCreate"/></button>
+        <button style="background-color: maroon" formaction="sendPublicationIdForLendingCreateForm"><s:text name="button.toLendingCreate"/></button>
         <button formaction="showPublicationList"><s:text name="button.back"/></button>
     </div>
 </s:form>
