@@ -60,10 +60,6 @@
 		<put-attribute name="content" value="/tiles/customerUpdateForm.jsp"/>
 	</definition>
 
-	<definition name="customerShowForm" extends="mainTemplate">
-		<put-attribute name="content" value="/tiles/customerShowForm.jsp"/>
-	</definition>
-
 	<definition name="customerDetailForm" extends="mainTemplate">
 		<put-attribute name="content" value="/tiles/customerDetailForm.jsp"/>
 	</definition>

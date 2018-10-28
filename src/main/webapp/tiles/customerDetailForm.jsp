@@ -13,5 +13,5 @@
     <s:textfield name="customer.street" key="label.customerStreet" disabled="true"/>
     <s:textfield name="customer.matnr" key="label.customerMatnr" disabled="true"/>
     <s:submit key="button.back" action="showLendingForm"/>
-    <s:submit key="button.back" action="sendCustomerIdForCustomerDetailForm"/>
+    <s:submit key="button.back" action="sendLendingIdForLendingShowForm"/>
 </s:form>
