@@ -19,6 +19,7 @@
             <message key="error.customerNameFormat"/>
         </field-validator>
     </field>
+    <!--
     <field name="plz">
         <field-validator type="requiredstring">
             <message key="error.fieldRequired"/>
@@ -28,12 +29,13 @@
             <message key="error.customerPlzFormat"/>
         </field-validator>
     </field>
+    -->
     <field name="city">
         <field-validator type="requiredstring">
             <message key="error.fieldRequired"/>
         </field-validator>
         <field-validator type="regex">
-            <param name="regexExpression">^([a-zA-ZäÄüÜöÖ]{2,})(((-)|(\s))([a-zA-ZäÄüÜöÖ]{2,}))*$</param>
+            <param name="regexExpression">^([a-zA-ZäÄüÜßöÖ]{2,})(((-)|(\s))([a-zA-ZäÄüÜßöÖ]{2,}))*$</param>
             <message key="error.customerCityFormat"/>
         </field-validator>
     </field>
@@ -42,7 +44,7 @@
             <message key="error.fieldRequired"/>
         </field-validator>
         <field-validator type="regex">
-            <param name="regexExpression">^(([a-zA-ZäÄöÖüÜ]+)((-)|(\s)))+(\d{1,})(\w{0,1})$</param>
+            <param name="regexExpression">^(([a-zA-ZäÄöÖßüÜ]+)((-)|(\s)))+(\d{1,})(\w{0,1})$</param>
             <message key="error.customerAddressFormat"/>
         </field-validator>
     </field>

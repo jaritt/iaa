@@ -3,18 +3,24 @@ package de.nordakademie.iaa.library.action;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import de.nordakademie.iaa.library.model.Customer;
+import de.nordakademie.iaa.library.model.Lending;
 import de.nordakademie.iaa.library.service.api.CustomerService;
+import de.nordakademie.iaa.library.service.api.LendingService;
 
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 
 public class CustomerAction extends ActionSupport implements Action {
-    public CustomerAction(CustomerService customerService) {
+    public CustomerAction(CustomerService customerService, LendingService lendingService) {
 
         this.customerService = customerService;
+        this.lendingService = lendingService;
     }
 
     private CustomerService customerService;
+    private LendingService lendingService;
     private Long customerId;
     private Customer customer;
 
@@ -46,16 +52,22 @@ public class CustomerAction extends ActionSupport implements Action {
 
     public void validateSave() {
         Customer presentCustomer = customerService.findCustomerByMatnr(customer.getMatnr());
-        if (customer.getMatnr() != null &&  presentCustomer != null) {
-            if (customer.getId() != presentCustomer.getId()){
+        if (customer.getMatnr() != null && presentCustomer != null) {
+            if (customer.getId() != presentCustomer.getId()) {
                 addActionError(getText("error.publicationTypeAlreadyExists"));
             }
         }
     }
 
     public void validateDelete() {
-        if (customerId == null && customer == null) {
+        if (customerId == null) {
             addActionError(getText("error.selectCustomer"));
+        }
+        List<Lending> lendingList = lendingService.listLendings().stream()
+                .filter(lending -> lending.getCustomer().getId().equals(customerId))
+                .collect(Collectors.toList());
+        if (!lendingList.isEmpty()) {
+            addActionError(getText("error.customerHadLendings"));
         }
     }
 

@@ -3,17 +3,24 @@ package de.nordakademie.iaa.library.action;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import de.nordakademie.iaa.library.dao.publication.PublicationAlreadyExistsException;
+import de.nordakademie.iaa.library.model.Publication;
 import de.nordakademie.iaa.library.model.PublicationType;
+import de.nordakademie.iaa.library.service.api.PublicationService;
 import de.nordakademie.iaa.library.service.api.PublicationTypeService;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class PublicationTypeAction extends ActionSupport implements Action {
-    public PublicationTypeAction(PublicationTypeService publicationTypeService) {
+
+    public PublicationTypeAction(PublicationTypeService publicationTypeService, PublicationService publicationService) {
         this.publicationTypeService = publicationTypeService;
+        this.publicationService = publicationService;
     }
 
     private PublicationTypeService publicationTypeService;
+    private PublicationService publicationService;
 
     private Long publicationTypeId;
     private PublicationType publicationType;
@@ -24,10 +31,9 @@ public class PublicationTypeAction extends ActionSupport implements Action {
     }
 
     public String save() throws PublicationAlreadyExistsException {
-        if (publicationType.getId() != null){
+        if (publicationType.getId() != null) {
             publicationTypeService.updatePublicationType(publicationType.getId(), publicationType.getTitle());
-        }
-        else {
+        } else {
             publicationTypeService.createPublicationType(publicationType);
         }
         return SUCCESS;
@@ -51,8 +57,16 @@ public class PublicationTypeAction extends ActionSupport implements Action {
     }
 
     public void validateDelete() {
-        if (publicationTypeId == null && publicationType == null) {
+        if (publicationTypeId == null) {
             addActionError(getText("error.selectPublicationType"));
+        }
+        if (publicationTypeId != null) {
+            List<Publication> publications = publicationService.listPublications()
+                    .stream().filter(publication -> publication.getType().getId().equals(publicationTypeId))
+                    .collect(Collectors.toList());
+            if(!publications.isEmpty()){
+                addActionError(getText("error.publicationTypeIsInUse"));
+            }
         }
     }
 

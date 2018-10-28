@@ -80,7 +80,7 @@ public class PublicationAction extends ActionSupport implements Action {
                     publication.getCopies());
         } else {
             publicationService.createPublication(publication);
-            }
+        }
         return SUCCESS;
     }
 
@@ -90,11 +90,11 @@ public class PublicationAction extends ActionSupport implements Action {
     }
 
     public void validateSave() {
-        if (selectedTypeId == -1){
+        if (selectedTypeId == -1) {
             addActionError(getText("error.selectPublicationType"));
         }
 
-        if (!(publication.getIsbn().equals(""))) {
+        if (publication.getId() == null && !(publication.getIsbn().equals(""))) {
             if (publicationService.findPublicationByISBN(publication.getIsbn()) != null) {
                 addActionError(getText("error.publicationAlreadyExists"));
             }
@@ -108,8 +108,13 @@ public class PublicationAction extends ActionSupport implements Action {
     }
 
     public void validateDelete() {
-        if (publicationId == null && publication == null) {
+        if (publicationId == null) {
             addActionError(getText("error.selectPublication"));
+        }
+        if (publicationId != null) {
+            if (!publicationService.loadPublication(publicationId).getLendings().isEmpty()) {
+                addActionError(getText("error.publicationHasLendings"));
+            }
         }
     }
 
