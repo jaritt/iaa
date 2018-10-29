@@ -40,7 +40,8 @@
 
 <h1><s:text name="header.publicationForm"/></h1>
 
-<s:form>
+<s:actionerror/>
+<s:form validate="true">
     <table>
         <s:hidden name="publication.id"/>
         <s:textfield name="publication.key" key="label.publicationKey" requiredLabel="true"/>
