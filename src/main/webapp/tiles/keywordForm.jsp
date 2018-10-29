@@ -40,6 +40,7 @@
 
 <h1><s:text name="header.keywordForm"/></h1>
 
+<s:actionerror/>
 <s:form>
     <s:hidden name="keyword.id"/>
     <table>

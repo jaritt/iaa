@@ -40,6 +40,7 @@
 
 <h1><s:text name="header.publicationForm"/></h1>
 
+<s:actionerror/>
 <s:form>
     <table>
         <s:hidden name="publication.id"/>
