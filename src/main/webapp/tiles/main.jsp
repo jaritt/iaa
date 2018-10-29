@@ -1,9 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<!--
-@author Vikash Sharma
--->
+<%--
+@author Vikash Sharma, Jannis Bär
+--%>
 
 <style>
     head, body {
@@ -58,7 +58,8 @@
 
 <s:actionerror/>
 <s:form>
-    <table>
+    <table class="sortable">
+        <thead>
         <tr>
             <th></th>
             <th><s:text name="label.lendingPublication"/></th>
@@ -69,6 +70,8 @@
             <th><s:text name="label.lendingReminderSent"/></th>
             <th><s:text name="label.lendingReminderDue"/></th>
         </tr>
+        </thead>
+        <tbody>
         <s:iterator value="overdueLendings">
             <tr>
                 <td><s:radio list="#{id:''}" name="lendingId" theme="simple"/></td>
@@ -87,6 +90,7 @@
                 </td>
             </tr>
         </s:iterator>
+        </tbody>
     </table>
     <br>
     <div>
