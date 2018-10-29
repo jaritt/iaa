@@ -34,7 +34,6 @@ public class PublicationAction extends ActionSupport implements Action {
 
         publicationTypeList = this.publicationTypeService.listPublicationTypes();
         keywordList = this.keywordService.listKeywords();
-        System.out.println("PublicationAction constructor");
     }
 
     private PublicationService publicationService;

@@ -33,7 +33,6 @@ public class LendingAction extends ActionSupport implements Action {
         this.reminderService = reminderService;
 
         customerList = this.customerService.listCustomers();
-        System.out.println("LendingAction constructor");
     }
 
     private LendingService lendingService;
