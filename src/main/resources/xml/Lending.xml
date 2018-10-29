@@ -44,7 +44,7 @@
                 <param name="actionName">showLendingList</param>
             </result>
         </action>
-        
+
         <action name="sendLendingIdForLendingShowForm" class="de.nordakademie.iaa.library.action.LendingAction">
             <result name="success" type="redirectAction">
                 <param name="actionName">showLendingForm</param>

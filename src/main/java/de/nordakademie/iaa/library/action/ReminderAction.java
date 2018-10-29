@@ -41,7 +41,7 @@ public class ReminderAction extends ActionSupport implements Action {
             if (lending.getReminders().size() == 3) {
                 addActionError(getText("error.noReminderPossible"));
             }
-            if (!lending.isReminderDue()) {
+            if (!lending.isReminderDue() && lending.getReminders().size() < 3) {
                 addActionError(getText("error.reminderNotDueYet"));
             }
         }
