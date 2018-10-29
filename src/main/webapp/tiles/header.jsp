@@ -1,5 +1,9 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
+<!--
+@author Jannis Bär
+-->
+
 <style>
     .title a:link {
         text-decoration: none;

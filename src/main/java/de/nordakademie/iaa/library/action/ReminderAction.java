@@ -7,6 +7,10 @@ import de.nordakademie.iaa.library.model.Reminder;
 import de.nordakademie.iaa.library.service.api.LendingService;
 import de.nordakademie.iaa.library.service.api.ReminderService;
 
+/**
+ * @author Jannis Bär & Vikash Sharma
+ */
+
 public class ReminderAction extends ActionSupport implements Action {
 
     public ReminderAction(LendingService lendingService, ReminderService reminderService) {

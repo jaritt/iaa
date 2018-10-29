@@ -6,6 +6,10 @@ import de.nordakademie.iaa.library.service.api.PublicationTypeService;
 
 import java.util.List;
 
+/**
+ * @author Jannis Bär & Vikash Sharma
+ */
+
 public class ShowPublicationTypeListAction implements Action {
 
     public ShowPublicationTypeListAction(PublicationTypeService publicationTypeService) {

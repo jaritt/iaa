@@ -6,6 +6,10 @@ import de.nordakademie.iaa.library.service.api.CustomerService;
 
 import java.util.List;
 
+/**
+ * @author Jannis Bär & Vikash Sharma
+ */
+
 public class ShowCustomerListAction implements Action {
 
     public ShowCustomerListAction(CustomerService customerService) {

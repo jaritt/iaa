@@ -9,6 +9,10 @@ import de.nordakademie.iaa.library.service.api.KeywordService;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
+/**
+ * @author Jannis Bär & Vikash Sharma
+ */
+
 public class KeywordAction extends ActionSupport implements Action {
 
     public KeywordAction(KeywordService keywordService) {

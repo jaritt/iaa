@@ -1,6 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
+<!--
+@author Jannis Bär & Vikash Sharma
+-->
+
 <style>
     head, body {
         margin: 0;
@@ -102,7 +106,12 @@
     </table>
     <br>
     <div>
-        <button style="background-color: maroon" formaction="sendPublicationIdForLendingCreateForm"><s:text name="button.toLendingCreate"/></button>
+        <s:if test="publication.isCopyAvailable">
+            <button style="background-color: maroon" formaction="sendPublicationIdForLendingCreateForm">
+                <s:text name="button.toLendingCreate"/>
+            </button>
+        </s:if>
+        <s:else><s:text name="error.noCopyAvailable"/></s:else>
         <button formaction="showPublicationList"><s:text name="button.back"/></button>
     </div>
 </s:form>

@@ -11,6 +11,10 @@ import de.nordakademie.iaa.library.service.api.PublicationTypeService;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
+/**
+ * @author Jannis Bär & Vikash Sharma
+ */
+
 public class ShowPublicationListAction implements Action{
 
     public ShowPublicationListAction(PublicationService publicationService,

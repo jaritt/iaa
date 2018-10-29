@@ -8,6 +8,10 @@ import de.nordakademie.iaa.library.service.api.LendingService;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author Jannis Bär & Vikash Sharma
+ */
+
 public class ShowMainAction extends ActionSupport implements Action {
 
     public ShowMainAction(LendingService lendingService) {

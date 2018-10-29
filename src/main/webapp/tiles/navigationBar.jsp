@@ -1,5 +1,9 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
+<!--
+@author Jannis Bär
+-->
+
 <div class="topnav">
     <s:a href="showPublicationList"><s:text name="nav.publicationList"/></s:a>
     <s:a href="showLendingList"><s:text name="nav.lendingList"/></s:a>

@@ -12,6 +12,10 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author Jannis Bär & Vikash Sharma
+ */
+
 public class PublicationTypeAction extends ActionSupport implements Action {
 
     public PublicationTypeAction(PublicationTypeService publicationTypeService, PublicationService publicationService) {

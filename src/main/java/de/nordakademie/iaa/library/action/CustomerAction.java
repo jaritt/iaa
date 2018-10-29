@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+/**
+ * @author Jannis Bär & Vikash Sharma
+ */
 
 public class CustomerAction extends ActionSupport implements Action {
     public CustomerAction(CustomerService customerService, LendingService lendingService) {
