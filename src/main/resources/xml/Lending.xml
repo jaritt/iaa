@@ -19,9 +19,14 @@
             <result type="tiles">lendingCreateForm</result>
         </action>
 
-        <action name="showLendingForm" class="de.nordakademie.iaa.library.action.LendingAction" method="load">
+        <action name="showLendingFormFromLendingList" class="de.nordakademie.iaa.library.action.LendingAction" method="load">
             <result type="tiles">lendingShowForm</result>
             <result name="input" type="chain">showLendingList</result>
+        </action>
+
+        <action name="showLendingFormFromMain" class="de.nordakademie.iaa.library.action.LendingAction" method="load">
+            <result type="tiles">lendingShowForm</result>
+            <result name="input" type="chain">showMain</result>
         </action>
 
         <action name="prolongLending" class="de.nordakademie.iaa.library.action.LendingAction" method="prolongLending">
@@ -39,17 +44,7 @@
                 <param name="actionName">showLendingList</param>
             </result>
         </action>
-
-        <!--
-        <action name="saveLending" class="de.nordakademie.iaa.library.action.LendingAction" method="save">
-            <result type="redirectAction">
-                <param name="actionName">showLendingList</param>
-                <param name="publicationId">${publicationId}</param>
-            </result>
-            <result name="input" type="chain">showLendingList</result>
-        </action>
-        -->
-
+        
         <action name="sendLendingIdForLendingShowForm" class="de.nordakademie.iaa.library.action.LendingAction">
             <result name="success" type="redirectAction">
                 <param name="actionName">showLendingForm</param>
@@ -64,11 +59,6 @@
                 <param name="lendingId">${lending.Id}</param>
             </result>
         </action>
-
-        <!--
-        Die <action> sendPublicationIdForPublicationDetailForm wird von der lendingShowForm aufgerufen.
-        Die publicationId muss mitgegeben werden, damit die korrekte Publikation angezeigt werden kann.
-        -->
 
         <action name="sendPublicationIdForPublicationDetailForm" class="de.nordakademie.iaa.library.action.LendingAction">
             <result name="success" type="redirectAction">

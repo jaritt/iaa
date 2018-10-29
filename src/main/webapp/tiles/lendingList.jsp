@@ -93,7 +93,7 @@
     </table>
     <br>
     <div>
-        <button formaction="showLendingForm"><s:text name="button.showLending"/></button>
+        <button formaction="showLendingFormFromLendingList"><s:text name="button.showLending"/></button>
         <button formaction="prolongLending"><s:text name="button.prolongLending"/></button>
         <button formaction="receivedLending"><s:text name="button.receiveLending"/></button>
         <button formaction="sendReminderFromLendingList"><s:text name="button.sendReminder"/></button>

@@ -51,7 +51,6 @@
     .errormessage li {
         color: #ff0000;
     }
-
 </style>
 
 <h1><s:text name="header.main"/></h1>
@@ -94,7 +93,7 @@
     </table>
     <br>
     <div>
-        <button formaction="showLendingForm"><s:text name="button.showLending"/></button>
+        <button formaction="showLendingFormFromMain"><s:text name="button.showLending"/></button>
         <button formaction="sendReminderFromMain"><s:text name="button.sendReminder"/></button>
         <button formaction="markAsLostFromMain"><s:text name="button.markAsLost"/></button>
     </div>
