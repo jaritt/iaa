@@ -65,7 +65,6 @@
 
 <h1><s:text name="header.publicationManagement"/></h1>
 <br>
-<s:actionerror/>
 <s:form>
     <input id="searchField" name="searchTerm" onclick="SelectAll('searchField');" value=<s:property
             value="searchTerm"/>>
