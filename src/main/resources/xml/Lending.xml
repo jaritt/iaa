@@ -77,7 +77,6 @@
             <result type="redirectAction">showLendingList</result>
             <result name="input" type="chain">showLendingList</result>
         </action>
-
     </package>
 </struts>
 

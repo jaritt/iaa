@@ -43,6 +43,10 @@
         display: inline-block;
         font-size: 12px;
     }
+
+    span {
+        color: #ff0000;
+    }
 </style>
 
 <h1><s:text name="header.publicationForm"/></h1>
@@ -95,14 +99,10 @@
             <th><s:text name="label.publicationCopies"/></th>
             <td><s:property value="publication.copies"/></td>
         </tr>
-        <tr>
-            <th><s:text name="label.publicationKey"/></th>
-            <td><s:property value="publication.key"/></td>
-        </tr>
     </table>
     <br>
     <div>
-        <button formaction="sendPublicationIdForLendingCreateForm"><s:text name="button.toLendingCreate"/></button>
+        <button style="background-color: maroon" formaction="sendPublicationIdForLendingCreateForm"><s:text name="button.toLendingCreate"/></button>
         <button formaction="showPublicationList"><s:text name="button.back"/></button>
     </div>
 </s:form>
@@ -123,8 +123,8 @@
                 <td><s:property value="customerFullName"/></td>
                 <td><s:property value="startDate"/></td>
                 <td><s:property value="endDate"/></td>
-                <td><s:if test="overDue"><s:text name="label.lendingsStateOverDue"/></s:if>
-                    <s:else><s:text name="label.lendingsStateLent"/></s:else></td>
+                <td><s:if test="overDue"><s:text name="label.lendingStateOverDue"/></s:if>
+                    <s:else><s:text name="label.lendingStateLent"/></s:else></td>
             </tr>
         </s:iterator>
     </table>

@@ -28,9 +28,13 @@
         border-radius: 4px;
         resize: vertical;
     }
+
+    span {
+        color: #ff0000;
+    }
 </style>
 
-<h1><s:text name="header.editKeyword"/></h1>
+<h1><s:text name="header.keywordForm"/></h1>
 
 <s:form>
     <s:hidden name="keyword.id"/>

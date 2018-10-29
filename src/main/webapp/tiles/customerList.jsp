@@ -43,6 +43,11 @@
         display: inline-block;
         font-size: 12px;
     }
+
+    .errormessage li {
+        color: #ff0000;
+    }
+
 </style>
 
 <h1><s:text name="header.customerList"/></h1>
@@ -51,34 +56,30 @@
 <s:form>
     <table class="sortable">
         <thead>
-        <div>
-            <tr>
-                <th></th>
-                <th><s:text name="label.customerTitle"/></th>
-                <th><s:text name="label.customerName"/></th>
-                <th><s:text name="label.customerFirstName"/></th>
-                <th><s:text name="label.customerPlz"/></th>
-                <th><s:text name="label.customerCity"/></th>
-                <th><s:text name="label.customerStreet"/></th>
-                <th><s:text name="label.customerMatnr"/></th>
-            </tr>
-        </div>
+        <tr>
+            <th></th>
+            <th><s:text name="label.customerTitle"/></th>
+            <th><s:text name="label.customerName"/></th>
+            <th><s:text name="label.customerFirstName"/></th>
+            <th><s:text name="label.customerPlz"/></th>
+            <th><s:text name="label.customerCity"/></th>
+            <th><s:text name="label.customerStreet"/></th>
+            <th><s:text name="label.customerMatnr"/></th>
+        </tr>
         </thead>
         <tbody>
-        <div>
-            <s:iterator value="customers">
-                <tr>
-                    <td><s:radio list="#{id:''}" name="customerId" theme="simple"/></td>
-                    <td><s:property value="title"/></td>
-                    <td><s:property value="name"/></td>
-                    <td><s:property value="firstName"/></td>
-                    <td><s:property value="plz"/></td>
-                    <td><s:property value="city"/></td>
-                    <td><s:property value="street"/></td>
-                    <td><s:property value="matnr"/></td>
-                </tr>
-            </s:iterator>
-        </div>
+        <s:iterator value="customers">
+            <tr>
+                <td><s:radio list="#{id:''}" name="customerId" theme="simple"/></td>
+                <td><s:property value="title"/></td>
+                <td><s:property value="name"/></td>
+                <td><s:property value="firstName"/></td>
+                <td><s:property value="plz"/></td>
+                <td><s:property value="city"/></td>
+                <td><s:property value="street"/></td>
+                <td><s:property value="matnr"/></td>
+            </tr>
+        </s:iterator>
         </tbody>
     </table>
     <br>

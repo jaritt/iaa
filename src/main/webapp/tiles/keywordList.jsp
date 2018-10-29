@@ -43,6 +43,10 @@
         display: inline-block;
         font-size: 12px;
     }
+
+    .errormessage li {
+        color: #ff0000;
+    }
 </style>
 
 <h1><s:text name="header.keywordManagement"/></h1>
@@ -51,22 +55,18 @@
 <s:form>
     <table class="sortable">
         <thead>
-        <div>
-            <tr>
-                <th></th>
-                <th><s:text name="label.keywordText"/></th>
-            </tr>
-        </div>
+        <tr>
+            <th></th>
+            <th><s:text name="label.keywordText"/></th>
+        </tr>
         </thead>
         <tbody>
-        <div>
-            <s:iterator value="keywords">
-                <tr>
-                    <td><s:radio list="#{id:''}" name="keywordId" theme="simple"/></td>
-                    <td><s:property value="word"/></td>
-                </tr>
-            </s:iterator>
-        </div>
+        <s:iterator value="keywords">
+            <tr>
+                <td><s:radio list="#{id:''}" name="keywordId" theme="simple"/></td>
+                <td><s:property value="word"/></td>
+            </tr>
+        </s:iterator>
         </tbody>
     </table>
     <br>

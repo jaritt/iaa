@@ -43,6 +43,10 @@
         display: inline-block;
         font-size: 12px;
     }
+
+    .errormessage li {
+        color: #ff0000;
+    }
 </style>
 
 <h1><s:text name="header.publicationTypeList"/></h1>
@@ -51,22 +55,18 @@
 <s:form>
     <table class="sortable">
         <thead>
-        <div>
             <tr>
                 <th></th>
                 <th><s:text name="label.publicationTypeText"/></th>
             </tr>
-        </div>
         </thead>
         <tbody>
-        <div>
             <s:iterator value="publicationTypes">
                 <tr>
                     <td><s:radio list="#{id:''}" name="publicationTypeId" theme="simple"/></td>
                     <td><s:property value="title"/></td>
                 </tr>
             </s:iterator>
-        </div>
         </tbody>
     </table>
     <br>

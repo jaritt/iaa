@@ -43,6 +43,10 @@
         display: inline-block;
         font-size: 12px;
     }
+
+    span {
+        color: #ff0000;
+    }
 </style>
 
 <h1><s:text name="header.lendingForm"/></h1>
@@ -53,43 +57,77 @@
     <s:hidden name="publication.id"/>
     <s:hidden name="customer.id"/>
     <table>
-        <div>
-            <tr>
-                <th><s:text name="label.lendingCustomer"/></th>
-                <td><s:property value="lending.customerFullName"/></td>
-            </tr>
-            <tr>
-                <th><s:text name="label.lendingStartDate"/></th>
-                <td><s:property value="lending.startdate"/></td>
-            </tr>
-            <tr>
-                <th><s:text name="label.lendingEndDate"/></th>
-                <td><s:property value="lending.enddate"/></td>
-            </tr>
-            <tr>
-                <th><s:text name="label.lendingStatus"/></th>
-                <td><s:if test="overDue"><s:text name="label.lendingsStateOverDue"/></s:if>
-                    <s:else><s:text name="label.lendingsStateLent"/></s:else>
-                </td>
-            </tr>
-            <tr>
-                <th><s:text name="label.lendingTimesProlonged"/></th>
-                <td><s:property value="lending.timesProlonged"/></td>
-            </tr>
-            <tr>
-                <th><s:text name="label.lendingPublicationKey"/></th>
-                <td><s:property value="lending.publicationKey"/></td>
-            </tr>
-            <tr>
-                <th><s:text name="label.lendingPublicationTitle"/></th>
-                <td><s:property value="lending.publicationTitle"/></td>
-            </tr>
-        </div>
+        <tr>
+            <th><s:text name="label.customerTitle"/></th>
+            <td><s:property value="customer.title"/></td>
+        </tr>
+        <tr>
+            <th><s:text name="label.lendingCustomer"/></th>
+            <td><s:property value="lending.customerFullName"/></td>
+        </tr>
+        <tr>
+            <th><s:text name="label.customerPlz"/></th>
+            <td><s:property value="customer.plz"/></td>
+        </tr>
+        <tr>
+            <th><s:text name="label.customerCity"/></th>
+            <td><s:property value="customer.city"/></td>
+        </tr>
+        <tr>
+            <th><s:text name="label.customerStreet"/></th>
+            <td><s:property value="customer.street"/></td>
+        </tr>
+        <tr>
+            <th><s:text name="label.customerMatnr"/></th>
+            <td><s:property value="customer.matnr"/></td>
+        </tr>
+    </table>
+    <br>
+    <table>
+        <tr>
+            <th><s:text name="label.lendingStartDate"/></th>
+            <td><s:property value="lending.startdate"/></td>
+        </tr>
+        <tr>
+            <th><s:text name="label.lendingEndDate"/></th>
+            <td><s:property value="lending.enddate"/></td>
+        </tr>
+        <tr>
+            <th><s:text name="label.lendingStatus"/></th>
+            <td><s:if test="overDue"><s:text name="label.lendingStateOverDue"/></s:if>
+                <s:else><s:text name="label.lendingStateLent"/></s:else>
+            </td>
+        </tr>
+        <tr>
+            <th><s:text name="label.lendingTimesProlonged"/></th>
+            <td><s:property value="lending.timesProlonged"/></td>
+        </tr>
+    </table>
+    <br>
+    <table>
+        <tr>
+            <th><s:text name="label.lendingPublicationKey"/></th>
+            <td><s:property value="publication.key"/></td>
+        </tr>
+        <tr>
+            <th><s:text name="label.publicationTypeText"/></th>
+            <td><s:property value="publication.type.title"/></td>
+        </tr>
+        <tr>
+            <th><s:text name="label.lendingPublicationTitle"/></th>
+            <td><s:property value="publication.title"/></td>
+        </tr>
+        <tr>
+            <th><s:text name="label.publicationAuthor"/></th>
+            <td><s:property value="publication.author"/></td>
+        </tr>
+        <tr>
+            <th><s:text name="label.publicationReleaseDate"/></th>
+            <td><s:property value="publication.releaseDate"/></td>
+        </tr>
     </table>
     <br>
     <div>
-        <button formaction="sendCustomerIdForCustomerDetailForm"><s:text name="button.toCustomer"/></button>
-        <button formaction="sendPublicationIdForPublicationDetailForm"><s:text name="button.toPublication"/></button>
         <button formaction="showLendingList"><s:text name="button.toLendingList"/></button>
     </div>
 </s:form>
