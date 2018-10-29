@@ -10,6 +10,7 @@
 
 <struts>
     <package name="Main" extends="tiles-default">
+        <default-action-ref name="showMain" />
         <action name="showMain" class="de.nordakademie.iaa.library.action.ShowMainAction">
             <result type="tiles">main</result>
         </action>

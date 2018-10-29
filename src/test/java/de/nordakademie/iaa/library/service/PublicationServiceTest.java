@@ -101,7 +101,7 @@ public class PublicationServiceTest extends BasicServiceTest {
 
         assertThat(pub1.getTitle()).isEqualTo("Blue Ocean Strategy");
         assertThat(pub1.getAuthor()).isEqualTo("Renee Mauborgne");
-        assertThat(pub1.getReleaseDate()).isEqualTo("10.10.2018");
+        assertThat(pub1.getReleaseDate()).isEqualTo("2018-10-10");
         assertThat(pub1.getPublisher()).isEqualTo("Harvard Business Review");
         assertThat(pub1.getType().getTitle()).isEqualTo("Buch");
         assertThat(pub1.getIsbn()).isEqualTo("978-1-56619-909-4");
