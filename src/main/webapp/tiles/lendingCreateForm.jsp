@@ -46,8 +46,6 @@
     <s:hidden name="lending.id"/>
     <s:hidden name="publicationId"/>
     <s:select name="selectedCustomerId"
-              headerKey="0"
-              headerValue="Select..."
               list="customerList"
               listKey="id"
               listValue="%{name +', ' + firstName}"

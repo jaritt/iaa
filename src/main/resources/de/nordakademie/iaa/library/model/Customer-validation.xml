@@ -23,17 +23,6 @@
             <message key="error.customerNameFormat"/>
         </field-validator>
     </field>
-    <!--
-    <field name="plz">
-        <field-validator type="requiredstring">
-            <message key="error.fieldRequired"/>
-        </field-validator>
-        <field-validator type="regex">
-            <param name="regexExpression">^[0-9]{5}$</param>
-            <message key="error.customerPlzFormat"/>
-        </field-validator>
-    </field>
-    -->
     <field name="city">
         <field-validator type="requiredstring">
             <message key="error.fieldRequired"/>

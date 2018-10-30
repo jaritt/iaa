@@ -68,6 +68,7 @@
                   key="label.publicationKeywords"/>
         <s:textfield name="publication.copies" key="label.publicationCopies" requiredLabel="true"/>
     </table>
+    <br>
     <div>
         <button formaction="savePublication"><s:text name="button.save"/></button>
         <button formaction="showPublicationList"><s:text name="button.cancel"/></button>

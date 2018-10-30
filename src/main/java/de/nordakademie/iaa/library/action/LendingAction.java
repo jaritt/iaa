@@ -129,7 +129,7 @@ public class LendingAction extends ActionSupport implements Action {
 
     public void validateSave() {
         if (selectedCustomerId == 0) {
-            addActionError(getText("error.selectLending"));
+            addActionError(getText("error.selectCustomer"));
         }
     }
 
