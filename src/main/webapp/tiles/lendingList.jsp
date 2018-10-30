@@ -56,6 +56,9 @@
 <h1><s:text name="header.lendingList"/></h1>
 
 <s:actionerror/>
+<br>
+<text style="font-size: 10px" ><s:text name="label.sortableTables"/></text>
+<br>
 <s:form>
     <table class="sortable">
         <thead>
