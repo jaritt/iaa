@@ -56,6 +56,9 @@
 <h1><s:text name="header.main"/></h1>
 
 <s:actionerror/>
+
+<text style="font-size: 10px" ><s:text name="label.sortableTables"/></text>
+<br>
 <s:form>
     <table class="sortable">
         <thead>
