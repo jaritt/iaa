@@ -1,21 +1,26 @@
-# iaa
+# IAA
 Hausarbeit Internet Anwendungssysteme
 
-# Software Requirements
+# Benötigte Software
 
-1. Intellij
-2. H2 Database (http://www.h2database.com/html/main.html)
-3. Tomcat 8.5.34 (https://tomcat.apache.org/download-80.cgi) choose windows zip version
+-	Java SDK 1.8.0_181
+- H2 Datenbank 1.4.197
+-	Tomcat 8.5.34
+-	Intellij (optional, wird aber für diese Anleitung vorausgesetzt)
 
-# Installation
+Versionen mit der gleichen Major-Versionsnummer funktionieren mit hoher Wahrscheinlichkeit ebenfalls, werden jedoch nicht unterstützt.
+Die Folgenden Installationsschritte erfordern die Intellij IDE. Prinzipiell ist das Ausführen der Anwendung aber auch ohne möglich.
 
-1. Checkout repo with intellij or download zip and import into intellij
-2. Install maven dependencies with intellij
-3. Add Configuration -> + -> Tomcat Server Local: Set your tomcat folder as application server.
-4. In the same Config window you see "No artifacts marked for deployment". Click fix and choose library.orm exploded.
-5. If needed, set the project sdk in the "project structure" window.
-6. If you dont have the sdk installed, you can download it here: https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+# Installation 
 
-# Notes on design decision
-
-1. Dependency injection is done via the constructor, since everything a class needs to deliver minimal functionality should be inserted during object creation. 
+1.	Den Quellcode von https://github.com/jaritt/iaa herunterladen, bzw. mit Intellij auschecken. Alternativ: Den Code aus dem eingereichten zip-Verzeichnis installieren.
+2.	Externe Bibliotheken mit Maven installieren.
+3.	Sicherstellen, dass das Java Software Development Kit 1.8 für das Projekt eingetragen ist unter „Project Structure“ -> „Project“ -> „Project SDK“.
+4.	Tomcat als Server hinzufügen
+5.	Rechts oben auf „Edit Configurations…“ klicken.
+6.	Eine neue lokale Tomcat Konfiguration erstellen. 
+7.	Einen sprechenden Namen eingeben (optional).
+8.	Als Application Server den Tomcat auswählen.
+9.	Falls nicht vorausgewählt, als JRE das Project SDK 1.8 auswählen.
+10.	Unter Deployment das Artefakt „library.app:war exploded“ zur Liste hinzufügen. 
+11.	Starten der Anwendung über die soeben eingerichtete Tomcat Konfiguration.
