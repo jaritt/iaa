@@ -57,7 +57,7 @@ public class CustomerAction extends ActionSupport implements Action {
         Customer presentCustomer = customerService.findCustomerByMatnr(customer.getMatnr());
         if (customer.getMatnr() != null && presentCustomer != null) {
             if (customer.getId() != presentCustomer.getId()) {
-                addActionError(getText("error.publicationTypeAlreadyExists"));
+                addActionError(getText("error.customerAlreadyExists"));
             }
         }
     }
